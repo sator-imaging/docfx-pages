@@ -1,6 +1,6 @@
 using System;
 
-namespace SatorImaging.DocFXPages.Tests
+namespace SatorImaging.DocFXPages.Tests.Instances
 {
     /// <summary>Hi, `shown as inline code?`</summary>
     public class TestClass
@@ -27,7 +27,10 @@ namespace SatorImaging.DocFXPages.Tests
 
     [Obsolete("This class is deprecated!")]
     public class DeprecatedClass {}
+}
 
+namespace SatorImaging.DocFXPages.Tests
+{
     /// <summary>
     /// This is sealed class.<br/>
     /// markdown enabled?? <a href='https://www.sator-imaging.com/'>HTML Link Tag</a>
