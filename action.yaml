@@ -16,18 +16,21 @@ inputs:
       Text shown next to header logo.
       Default 'docfx-pages'
     default:  'docfx-pages'
+    required: true
 
   site_title:
     description: |
       Website title used as suffix for HTML pages. ex) "HTML Page Title | <site title>"
       Default 'DocFX for GitHub Pages'
     default:  'DocFX for GitHub Pages'
+    required: true
 
   site_footer:
     description: |
       Footer text for generated pages. HTML accepted.
       Default '&copy; 2023 Sator Imaging'
     default:  '&copy; 2023 Sator Imaging'
+    required: true
 
   # optional
   member_layout:
