@@ -1,3 +1,4 @@
+/*
 namespace SatorImaging.DocFXPages.Tests
 {
     public class TestClass
@@ -19,3 +20,4 @@ namespace SatorImaging.DocFXPages.Tests
         public static void Main(string[] args) { }
     }
 }
+*/
