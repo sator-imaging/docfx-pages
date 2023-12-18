@@ -19,7 +19,7 @@ inputs:
 
   site_title:
     description: |
-      Website title used as suffix for HTML pages. ex) "HTML Page Title | <site_title>"
+      Website title used as suffix for HTML pages. ex) "HTML Page Title | <site title>"
       Default 'DocFX for GitHub Pages'
     default:  'DocFX for GitHub Pages'
 
@@ -40,14 +40,14 @@ inputs:
   site_logo:
     description: |
       Website logo file path. Accepts full-qualified URI or relative path to '.docfx' folder.
-      Default 'images/wikimedia-commons/logo-csharp.svg'
-    default:  'images/wikimedia-commons/logo-csharp.svg'
+      Default 'images/wikimedia-commons/logo-csharp-recolor.svg'
+    default:  'images/wikimedia-commons/logo-csharp-recolor.svg'
 
   site_favicon:
     description: |
       Favicon file path. Accepts full-qualified URI or relative path to '.docfx' folder.
-      Default 'images/wikimedia-commons/logo-csharp.svg'
-    default:  'images/wikimedia-commons/logo-csharp.svg'
+      Default 'images/wikimedia-commons/logo-csharp-recolor.svg'
+    default:  'images/wikimedia-commons/logo-csharp-recolor.svg'
 
   google_analytics:
     description: |
@@ -151,8 +151,19 @@ runs:
       shell: bash
       run: |
         cd .docfx
+
           printf "$(cat docfx.json)" \
+            "${{ inputs.member_layout }}" \
             "${{ inputs.app_name }}" \
+            "${{ inputs.site_title }}" \
+            "${{ inputs.site_footer }}" \
+            "${{ inputs.site_logo }}" \
+            "${{ inputs.site_favicon }}" \
+            "${{ inputs.google_analytics }}" \
+            > docfx.json
+
+          echo "${{ inputs.main_js }}"  >> template/public/main.js
+          echo "${{ inputs.main_css }}" >> template/public/main.css
 
         cd ..
         
