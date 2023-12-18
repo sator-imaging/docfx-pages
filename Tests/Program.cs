@@ -1,5 +1,5 @@
 using System;
-usng System.ComponentModel;
+using System.ComponentModel;
 
 namespace SatorImaging.DocFXPages.Tests.Instances
 {
