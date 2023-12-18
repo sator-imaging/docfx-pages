@@ -27,9 +27,13 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    
+
+
     ######## sator-imaging/docfx-pages ########
     steps:
+      - name: Checkout is required for testing
+        uses: actions/checkout@v3
+
       - uses: ./
         with:
           # required
