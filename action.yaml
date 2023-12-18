@@ -88,12 +88,13 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: 'sator-imaging/docfx-pages'
-        path: 'tmp'
+        path: 'tmp-docfx-pages'
 
     - name: Combine repository
       shell: bash
       run: |
-        cp -n -r 'tmp/.docfx' '.'
+        cp -n -r 'tmp-docfx-pages/.docfx' '.'
+        rm -rf    tmp-docfx-pages
 
     - name: Rename README and LICENSE
       shell: bash
