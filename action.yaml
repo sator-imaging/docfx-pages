@@ -94,13 +94,14 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: 'sator-imaging/docfx-pages'
+        sparse-checkout: '.docfx'
+        sparse-checkout-cone-mode: true
         path: 'tmp-docfx-pages'
 
     - name: Combine repository
       shell: bash
       run: |
         cp -n -r 'tmp-docfx-pages/.docfx' '.'
-        rm -rf    tmp-docfx-pages
 
     - name: Rename README and LICENSE
       shell: bash

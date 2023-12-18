@@ -36,8 +36,8 @@ jobs:
       - name: Checkout is required for testing
         uses: actions/checkout@v3
 
-      - uses: ./   # replace to: sator-imaging/docfx-pages@v1
-        id: deployment
+      - uses: ./         # replace to: sator-imaging/docfx-pages@v1
+        id: deployment   # required to show link in workflow graph in actions result page.
         with:
           # required options  NOTE: double-quote (") cannot be used
           app_name: 'Deploy Test'
@@ -46,13 +46,14 @@ jobs:
 
           # optional
           member_layout: 'separatePages'  # 'separatePages' or 'samePage'
-          site_logo: 'https://avatars.githubusercontent.com/u/16752340'
-          site_favicon: 'https://avatars.githubusercontent.com/u/45192683'
           google_analytics: ''  # empty to disable
 
-          # advanced options
-          # https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
+          # paths must be relative from .docfx folder. url works but only in top page.
+          site_logo: 'https://avatars.githubusercontent.com/u/16752340'     
+          site_favicon: 'https://avatars.githubusercontent.com/u/45192683'
 
+          # advanced options
+          # --> https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
           # main.js
           # NOTE: double-quote (") cannot be used
           main_js: |
@@ -64,21 +65,6 @@ jobs:
                         icon: 'github',
                         href: 'https://github.com/sator-imaging',
                         title: 'GitHub'
-                    },
-                    {
-                        icon: 'twitter',
-                        href: 'https://twitter.com/sator_imaging',
-                        title: 'Twitter'
-                    },
-                    {
-                        icon: 'youtube',
-                        href: 'https://www.youtube.com/@SatorImaging',
-                        title: 'YouTube'
-                    },
-                    {
-                        icon: 'chat-quote-fill',
-                        href: 'https://www.sator-imaging.com/',
-                        title: 'Contact'
                     },
                 ],
             }
