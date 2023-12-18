@@ -33,7 +33,7 @@ inputs:
     required: true
 
   # optional
-  member_layout:
+  class_members:
     description: |
       Generate all-in-one class api document or separate each member into pages.
       Accepts one of: 'separatePages' | 'samePage'
@@ -164,7 +164,7 @@ runs:
         cd .docfx
 
           printf "$(cat docfx.json)" \
-            "${{ inputs.member_layout }}" \
+            "${{ inputs.class_members }}" \
             "${{ inputs.app_name }}" \
             "${{ inputs.site_title }}" \
             "${{ inputs.site_footer }}" \
