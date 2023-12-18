@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@200;300;900');
+@import url('https://fonts.googleapis.com/css2?display=swap&family=M+PLUS+2:wght@200;300;900');
+@import url('https://fonts.googleapis.com/css2?display=swap&family=Poppins:wght@200;300;900');
+
+
+/** colors */
+
+body {
+    --DISABLED--bs-link-color-rgb: 66, 184, 131 !important;
+    --DISABLED--bs-link-hover-color-rgb: 64, 180, 128 !important;
+}
+
+nav.navbar i.bi {
+    -color: #22cbe1;
+}
+
+
+/** navbar */
+
+nav.navbar a.navbar-brand {
+    margin-left: 0.5rem;
+    margin-right: 0.6rem;
+}
+
+nav.navbar a.navbar-brand,
+nav.navbar a.nav-link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+nav.navbar a.navbar-brand img {
+    height: 34px;
+    margin: 8px 0.5em 8px 0.2em;
+}
+
+nav.navbar a.navbar-brand img[src$="images/unity/made-with-unity.svg"] {
+    height: 32px;
+    margin: 10px 0.5em 8px 0.3em;
+}
+
+nav.navbar ul.dropdown-menu {
+    padding: 2px 12px;
+    width: max-content;
+}
+
+
+/** left side toc */
+
+nav.toc li>ul {
+    -display: block !important;
+}
+
+nav.toc span.expand-stub {
+    -display: none !important;
+    padding-right: 0.2rem;
+    line-height: 1.2rem;
+}
+
+
+/** affix */
+
+body[data-yaml-mime=ApiPage] div.affix .badge {
+    vertical-align: super;
+}
+
+body[data-yaml-mime=ApiPage] div.affix .link-body-emphasis {
+    font-size: 1.1em;
+}
+
+body[data-yaml-mime=ApiPage] div.affix .link-secondary {
+    font-size: 0.9em;
+}
+
+[data-bs-theme=light] body[data-yaml-mime=ApiPage] div.affix .link-secondary {
+    opacity: 0.75;
+}
+
+
+/** api page */
+
+h1.api>.badge,
+h2.api>.badge {
+    font-size: 0.4em;
+    line-height: 1em;
+    font-weight: 300;
+    letter-spacing: 0px;
+    vertical-align: super !important;
+}
+
+h2.api {
+    position: relative;
+}
+
+
+/** content */
+
+.alert {
+    padding: 0.75rem 1.5rem;
+}
+
+.alert>*:last-child {
+    margin-bottom: 0.0rem;
+}
+
+
+/** font styles */
+
+nav.navbar a.navbar-brand {
+    font-size: 1.5em;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2 {
+    font-family: 'Inter', 'M PLUS 2', sans-serif;
+    letter-spacing: -0.025em;
+    font-weight: 900;
+}
+
+h3,
+body[data-yaml-mime=ApiPage] article h3[data-uid] {
+    font-weight: 200;
+}

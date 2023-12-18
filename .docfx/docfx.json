@@ -1,0 +1,156 @@
+{
+    "metadata": [
+        {
+            "filter": "docfx-filter.yml",
+            "includePrivateMembers": false,
+            "EnumSortOrder": "declaringOrder",
+            "includeExplicitInterfaceImplementations": true,
+            "memberLayout": "%s",
+            "src": [
+                {
+                    "src": "../",
+                    "files": [
+                        "**/*.csproj",
+                        "**/*.dll",
+                        "**/*.cs"
+                    ],
+                    "exclude": [
+                        "**/.*",
+                        "**/bin/**",
+                        "**/obj/**"
+                    ]
+                }
+            ],
+            "outputFormat": "apiPage",
+            "dest": "api",
+            "disableGitFeatures": false,
+            "disableDefaultFilter": false,
+            "shouldSkipMarkup": false,
+            "properties": {
+                "DefineConstants": "SYMBOL_FOR_IF_DIRECTIVES;",
+                "TargetFramework": "netstandard2.0"
+            }
+        }
+    ],
+    "build": {
+        "globalMetadata": {
+            "_appName": "%s",
+            "_appTitle": "%s",
+            "_appFooter": "%s &nbsp; <small>Made with <a href=\"https://dotnet.github.io/docfx\">docfx</a> + <a href=\"https://github.com/sator-imaging/docfx-pages\">sator-imaging/docfx-pages</a></small>",
+            "_appLogoPath": "%s",
+            "_appFaviconPath": "%s",
+            "_googleAnalyticsTagId": "%s",
+            "pdf": false,
+            "_enableSearch": true,
+            "_enableNewTab": false,
+            "_disableContribution": false,
+            "_disableNavbar": false,
+            "_disableBreadcrumb": false,
+            "_disableToc": false,
+            "_disableAffix": false,
+            "_disableNextArticle": false,
+            "_disableTocFilter": false
+        },
+        "template": [
+            "default",
+            "modern",
+            "template"
+        ],
+        "dest": "_site",
+        "sitemap": {
+            "baseUrl": "If the value is not specified, sitemap.xml will NOT be generated.",
+            "priority": 0.1,
+            "changefreq": "monthly",
+            "fileOptions": {
+                "**.yml": {
+                    "priority": 0.5,
+                    "changefreq": "daily",
+                    "lastmod": "2023-12-12"
+                }
+            }
+        },
+        "content": [
+            {
+                "src": "../",
+                "files": [
+                    "**.yml",
+                    "**.md"
+                ],
+                "exclude": [
+                    "_site/**",
+                    "obj/**",
+                    "**/.*"
+                ]
+            },
+            {
+                "files": [
+                    "**.yml",
+                    "**.md"
+                ],
+                "exclude": [
+                    "_site/**",
+                    "obj/**",
+                    "**/.*"
+                ]
+            }
+        ],
+        "resource": [
+            {
+                "files": [
+                    "images/**"
+                ],
+                "exclude": [
+                    "_site/**",
+                    "obj/**",
+                    "**/.*"
+                ]
+            }
+        ],
+        "overwrite": [
+            {
+                "files": [
+                    "apidoc/**.md"
+                ],
+                "exclude": [
+                    "_site/**",
+                    "obj/**",
+                    "**/.*"
+                ]
+            }
+        ],
+        "globalMetadataFiles": [],
+        "fileMetadataFiles": [],
+        "fileMetadata": {
+            "priority": {
+                "**.md": 2.5,
+                "spec/**.md": 3
+            },
+            "keywords": {
+                "Runtime/**/*": [
+                    "API",
+                    "Runtime"
+                ],
+                "Editor/**/*": [
+                    "API",
+                    "Editor"
+                ]
+            },
+            "_noindex": {
+                "README.md": true
+            }
+        },
+        "postProcessors": [
+            "ExtractSearchIndex"
+        ],
+        "markdownEngineName": "markdig",
+        "markdownEngineProperties": {
+            "alerts": {
+                "TODO": "alert alert-secondary"
+            }
+        },
+        "noLangKeyword": false,
+        "keepFileLink": false,
+        "cleanupCacheHistory": false,
+        "disableGitFeatures": false
+    }
+}
