@@ -50,10 +50,14 @@ jobs:
           site_favicon: 'https://avatars.githubusercontent.com/u/45192683'
           google_analytics: ''  # empty to disable
 
-          # main.js  see: https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
+          # advanced options
+          # https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
+
+          # main.js
+          # NOTE: double-quote (") cannot be used
           main_js: |
             export default {
-                defaultTheme: "light",
+                defaultTheme: 'light',
                 showLightbox: (img) => true,
                 iconLinks: [
                     {
@@ -79,7 +83,8 @@ jobs:
                 ],
             }
 
-          # main.css  see: https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
+          # main.css
+          # NOTE: double-quote (") cannot be used
           main_css: |
           
           

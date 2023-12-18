@@ -75,7 +75,7 @@ inputs:
 outputs:
   page_url:
     description: 'URL to deployed GitHub Pages'
-    value: 'https://github.com/sator-imaging'
+    value: ${{ steps.deployment.outputs.page_url }}
 
 
 runs:
@@ -200,11 +200,5 @@ runs:
         path: '.docfx/_site'
 
     - name: Deploy to GitHub Pages
-      ## moved ## id: deployment
+      id: deployment
       uses: actions/deploy-pages@v2
-
-
-    - name: Set deployed url
-      shell: bash
-      run: |
-        echo "page_url=https://${GITHUB_REPOSITORY_OWNER}.github.io/$(echo ${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/})/" >> $GITHUB_OUTPUT
