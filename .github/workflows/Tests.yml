@@ -34,13 +34,12 @@ jobs:
       - name: Checkout is required for testing
         uses: actions/checkout@v3
 
-      - uses: ./
+      - uses: ./   # replace to: sator-imaging/docfx-pages@v1
         with:
           # required
           app_name: 'Deploy Test'
           site_title: 'Deploy Test using sator-imaging/docfx-pages'
-          site_footer: |
-            <big>&times; Is HTML accepted?</big>
+          site_footer: '<big>&times; Is HTML accepted?</big>'
 
           # optional
           member_layout: 'samePage'

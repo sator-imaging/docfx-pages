@@ -169,7 +169,14 @@ runs:
           echo "${{ inputs.main_css }}" >> template/public/main.css
 
         cd ..
-        
+
+
+    # DEBUG
+    - name: DEBUG
+      shell: bash
+      run: |
+        cat .docfx/docfx.json
+
 
     - name: Run DocFX
       shell: bash
