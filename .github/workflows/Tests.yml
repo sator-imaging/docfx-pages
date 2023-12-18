@@ -37,6 +37,7 @@ jobs:
         uses: actions/checkout@v3
 
       - uses: ./   # replace to: sator-imaging/docfx-pages@v1
+        id: deployment
         with:
           # required options  NOTE: double-quote (") cannot be used
           app_name: 'Deploy Test'
@@ -44,15 +45,15 @@ jobs:
           site_footer: '<big>&times; Is HTML accepted?</big>'
 
           # optional
-          member_layout: 'samePage'
+          member_layout: 'separatePages'  # 'separatePages' or 'samePage'
           site_logo: 'https://avatars.githubusercontent.com/u/16752340'
           site_favicon: 'https://avatars.githubusercontent.com/u/45192683'
-          google_analytics: ''
+          google_analytics: ''  # empty to disable
 
-          # advanced options  NOTE: double-quote (") cannot be used
+          # main.js  see: https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
           main_js: |
             export default {
-                defaultTheme: 'light',
+                defaultTheme: "light",
                 showLightbox: (img) => true,
                 iconLinks: [
                     {
@@ -77,6 +78,8 @@ jobs:
                     },
                 ],
             }
+
+          # main.css  see: https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
           main_css: |
           
           

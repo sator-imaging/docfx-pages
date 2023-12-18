@@ -72,6 +72,12 @@ inputs:
     default:  ''
 
 
+outputs:
+  page_url:
+    description: 'URL to deployed GitHub Pages'
+    value: 'https://github.com/sator-imaging'
+
+
 runs:
   using: "composite"
   steps:
@@ -194,5 +200,11 @@ runs:
         path: '.docfx/_site'
 
     - name: Deploy to GitHub Pages
-      id: deployment
+      ## moved ## id: deployment
       uses: actions/deploy-pages@v2
+
+
+    - name: Set deployed url
+      shell: bash
+      run: |
+        echo "page_url=https://${GITHUB_REPOSITORY_OWNER}.github.io/$(echo ${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/})/" >> $GITHUB_OUTPUT
