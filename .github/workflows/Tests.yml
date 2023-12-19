@@ -34,10 +34,12 @@ jobs:
     #######  sator-imaging/docfx-pages  #######
     ###########################################
     steps:
-      - name: Checkout is required for testing
+
+      - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref }}
+          ref: 'releases/v1.0.0'  # Tests
+
 
       - uses: ./         # replace to: sator-imaging/docfx-pages@v1
         id: deployment   # required to show link in workflow graph in actions result page.
