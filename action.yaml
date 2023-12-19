@@ -105,6 +105,7 @@ runs:
       shell: bash
       run: |
         cp -n -r 'tmp-docfx-pages/.docfx' '.'
+        rm -rf    tmp-docfx-pages
 
     - name: Rename README and LICENSE
       shell: bash
