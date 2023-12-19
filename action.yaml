@@ -1,0 +1,97 @@
+name: 'docfx for GitHub Pages'
+description: 'Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessary file upload and complicated docfx setup.'
+author: '@sator-imaging'
+
+# Ref: https://haya14busa.github.io/github-action-brandings/
+branding:
+  icon: 'upload-cloud'
+  color: 'yellow'
+
+
+inputs:
+
+  # required options
+  app_name:
+    description: |
+      Text shown next to header logo.
+      Default 'docfx-pages'
+    default:  'docfx-pages'
+    required: true
+
+  site_title:
+    description: |
+      Website title used as suffix for HTML pages. ex) "HTML Page Title | <site title>"
+      Default 'DocFX for GitHub Pages'
+    default:  'DocFX for GitHub Pages'
+    required: true
+
+  site_footer:
+    description: |
+      Footer text for generated pages. HTML accepted.
+      Default '&copy; 2023 Sator Imaging'
+    default:  '&copy; 2023 Sator Imaging'
+    required: true
+
+  # optional
+  class_members:
+    description: |
+      Generate all-in-one class api document or separate each member into pages.
+      Accepts one of: 'separatePages' | 'samePage'
+      Default 'samePage'
+    default:  'samePage'
+
+  site_logo:
+    description: |
+      Website logo file path. Accepts full-qualified URI or relative path to '.docfx' folder.
+      Default 'images/wikimedia-commons/logo-csharp-recolor.svg'
+    default:  'images/wikimedia-commons/logo-csharp-recolor.svg'
+
+  site_favicon:
+    description: |
+      Favicon file path. Accepts full-qualified URI or relative path to '.docfx' folder.
+      Default 'images/wikimedia-commons/logo-csharp-recolor.svg'
+    default:  'images/wikimedia-commons/logo-csharp-recolor.svg'
+
+  google_analytics:
+    description: |
+      Google Analytics ID. Leave empty to disable this feature.
+      Default ''
+    default:  ''
+
+  # customize main.js/css, see docfx reference for detail
+  # https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
+  # note that these are added after builtin settings
+  main_js:
+    description: |
+      Default ''
+    default:  ''
+
+  main_css:
+    description: |
+      Default ''
+    default:  ''
+
+
+outputs:
+  page_url:
+    description: 'URL to deployed GitHub Pages'
+    value: ${{ steps.deployment.outputs.page_url }}
+
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: DEBUG
+      shell: bash
+      run: |
+        echo "github.ref: ${{ github.ref }}"
+        echo "github.action_ref: ${{ github.action_ref }}"
+        echo "github.workflow_ref: ${{ github.workflow_ref }}"
+        echo "github.base_ref: ${{ github.base_ref }}"
+        echo "github.head_ref: ${{ github.head_ref }}"
+        echo "GITHUB_REF : ${GITHUB_REF}"
+        echo "GITHUB_ACTION_REPOSITORY: ${GITHUB_ACTION_REPOSITORY}"
+        echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+        echo "GITHUB_ACTION_PATH: ${GITHUB_ACTION_PATH}"
+        echo "GITHUB_ACTION_PATH##*/: ${GITHUB_ACTION_PATH##*/}"
