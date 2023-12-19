@@ -89,6 +89,8 @@ runs:
       shell: bash
       run: |
         echo "github.ref: ${{ github.ref }}"
+        echo "github.action_ref: ${{ github.action_ref }}"
+
 
     - name: Dotnet Setup
       uses: actions/setup-dotnet@v3
