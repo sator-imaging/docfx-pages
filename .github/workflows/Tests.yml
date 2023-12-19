@@ -48,7 +48,7 @@ jobs:
 
       ######  main  ######
 
-      - uses: sator-imaging/docfx-pages@v1
+      - uses: sator-imaging/docfx-pages@v1.0.0
         id: deployment   # required to show url in actions result page.
         with:
           # required options - NOTE: double-quote (") cannot be used
