@@ -99,7 +99,7 @@ runs:
         sparse-checkout-cone-mode: true
         path: 'tmp-docfx-pages'
         # TODO: how to get specified version ('@*' at the end of 'uses' command)
-        ref: 'v1.0.0'
+        ref: 'v1'
 
     - name: Combine repository
       shell: bash
