@@ -1,5 +1,5 @@
 name: 'docfx for GitHub Pages'
-description: 'Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessary file upload and complicated docfx setup.'
+description: 'Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessary file upload and complicated `docfx` setup.'
 author: '@sator-imaging'
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
@@ -21,8 +21,8 @@ inputs:
   site_title:
     description: |
       Website title used as suffix for HTML pages. ex) "HTML Page Title | <site title>"
-      Default 'DocFX for GitHub Pages'
-    default:  'DocFX for GitHub Pages'
+      Default 'docfx for GitHub Pages'
+    default:  'docfx for GitHub Pages'
     required: true
 
   site_footer:
