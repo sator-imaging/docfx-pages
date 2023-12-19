@@ -6,6 +6,9 @@ apiRules:
   uidRegex: ^System\.Object
   type: Type
 - exclude:
+  uidRegex: ^System\.Attribute
+  type: Type
+- exclude:
   uidRegex: ^UnityEngine\.Object
   type: Type
 - exclude:
