@@ -94,9 +94,10 @@ runs:
         echo "github.base_ref: ${{ github.base_ref }}"
         echo "github.head_ref: ${{ github.head_ref }}"
         echo "GITHUB_REF : ${GITHUB_REF}"
-        echo "GITHUB_ACTION_PATH: ${GITHUB_ACTION_PATH}"
         echo "GITHUB_ACTION_REPOSITORY: ${GITHUB_ACTION_REPOSITORY}"
         echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+        echo "GITHUB_ACTION_PATH: ${GITHUB_ACTION_PATH}"
+        echo "GITHUB_ACTION_PATH##*/: ${GITHUB_ACTION_PATH##*/}"
 
 
     - name: Dotnet Setup
