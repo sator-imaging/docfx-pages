@@ -37,11 +37,9 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: 'releases/v1.0.0'  # Tests
 
 
-      - uses: ./         # replace to: sator-imaging/docfx-pages@v1
+      - uses: sator-imaging/docfx-pages@v1
         id: deployment   # required to show link in workflow graph in actions result page.
         with:
           # required options  NOTE: double-quote (") cannot be used
