@@ -75,7 +75,7 @@ jobs:
 
       ######  main  ######
 
-      - uses: sator-imaging/docfx-pages@v1.0.0
+      - uses: sator-imaging/docfx-pages@v1
         id: deployment   # required to show url in actions result page.
         with:
 
