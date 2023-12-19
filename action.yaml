@@ -113,7 +113,7 @@ runs:
         sparse-checkout: '.docfx'
         sparse-checkout-cone-mode: true
         path: 'tmp-docfx-pages'
-        ref: "${GITHUB_ACTION_PATH##*/}"
+        ref: ${GITHUB_ACTION_PATH##*/}
 
     - name: Combine repository
       shell: bash
