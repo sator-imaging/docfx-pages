@@ -1,4 +1,4 @@
-name: Tests
+name: docfx for GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -30,19 +30,28 @@ jobs:
     runs-on: ubuntu-latest
 
 
-    ###########################################
-    #######  sator-imaging/docfx-pages  #######
-    ###########################################
+    #########################################
+    ######  sator-imaging/docfx-pages  ######
+    #########################################
     steps:
 
+      # for extensibility, docfx-pages does NOT checkout your repository.
+      # so you need to checkout manually prior to sator-imaging/docfx-pages.
       - name: Checkout
         uses: actions/checkout@v3
 
 
+      # after checkout, you can checkout another repo, copy logo image or
+      # other assets into '.docfx' folder to setup own docfx environment.
+      # note that images must be copied into '.docfx/images' folder.
+
+
+      ######  main  ######
+
       - uses: sator-imaging/docfx-pages@v1
-        id: deployment   # required to show link in workflow graph in actions result page.
+        id: deployment   # required to show url in actions result page.
         with:
-          # required options  NOTE: double-quote (") cannot be used
+          # required options - NOTE: double-quote (") cannot be used
           app_name: 'Deploy Test'
           site_title: 'Deploy Test using sator-imaging/docfx-pages'
           site_footer: '<big>&times; Is HTML accepted?</big>'
@@ -51,7 +60,8 @@ jobs:
           class_members: 'separatePages'  # 'separatePages' or 'samePage'
           google_analytics: ''  # empty to disable
 
-          # paths must be relative from .docfx folder. url works but only in top page.
+          # paths must be relative from .docfx folder.
+          # note that url works but only in top page. see sample website for detail.
           site_logo: 'https://avatars.githubusercontent.com/u/16752340'     
           site_favicon: 'https://avatars.githubusercontent.com/u/45192683'
 
