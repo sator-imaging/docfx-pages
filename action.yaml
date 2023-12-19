@@ -82,8 +82,9 @@ runs:
   using: "composite"
   steps:
 
-    - name: Checkout
-      uses: actions/checkout@v3
+    # do not checkout caller's repository.
+    # it should be controlled by caller.
+
     - name: Dotnet Setup
       uses: actions/setup-dotnet@v3
       with:
@@ -97,6 +98,8 @@ runs:
         sparse-checkout: '.docfx'
         sparse-checkout-cone-mode: true
         path: 'tmp-docfx-pages'
+        # TODO: how to get specified version ('@*' at the end of 'uses' command)
+        ref: 'v1.0.0'
 
     - name: Combine repository
       shell: bash
