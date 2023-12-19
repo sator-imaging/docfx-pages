@@ -1,19 +1,21 @@
 using System;
 using System.ComponentModel;
 
-namespace SatorImaging.DocFXPages.Tests.Instances
+namespace SatorImaging.DocFXPages.Tests.Annotations
 {
-
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class MyAttribute : Attribute { }
 
     public interface IMarkerInterface { }
+}
 
+namespace SatorImaging.DocFXPages.Tests.Instances
+{
     /// <summary>
     /// Hi, `shown as inline code?`
-    /// I'm also appear in inheritance documents if &lt;inheritdoc/&gt; works.
+    /// I'm also appear in inheritance API documents if &lt;inheritdoc/&gt; works.
     /// </summary>
-    public class TestClass
+    public class TestClass : IMarkerInterface
     {
         /// <summary>Summary</summary>
         /// <remarks>Remarks</remarks>
@@ -25,6 +27,7 @@ namespace SatorImaging.DocFXPages.Tests.Instances
     }
 
     /// <inheritdoc/>
+    [MyAttribute]
     public sealed class SealedClass : TestClass
     {
         [Obsolete]
@@ -33,12 +36,12 @@ namespace SatorImaging.DocFXPages.Tests.Instances
         [Obsolete("Obsolete!")]
         public double ObsoleteField;
 
-        [Obsolete("<b>HTML bold tag can be used??</b> **Markdown bold syntax enabled??**")]
+        [Obsolete("HTML <b>bold</b> tag can be used??<br/>Markdown **bold** syntax enabled??")]
         public SealedClass() { }
         public SealedClass(float val) { }
     }
 
-    /// <summary>*Is this shown as italic??*</summary>
+    /// <summary>Is this *shown as italic??*</summary>
     [Obsolete("This class is deprecated!")]
     public class DeprecatedClass {}
 }
@@ -55,10 +58,13 @@ namespace SatorImaging.DocFXPages.Tests.Hidden
 
 namespace SatorImaging.DocFXPages.Tests
 {
-    /// <summary>~~Is this shown as strikethrough??~~</summary>
+    /// <summary>Is this ~~shown as strikethrough??~~</summary>
     public enum Enum
     {
         Default,
+        First = 100,
+        Second,
+        [Obsolete]
         Exceeded = 9999,
     }
 
@@ -68,14 +74,14 @@ namespace SatorImaging.DocFXPages.Tests
     /// // code block.
     /// UnityEngine.Debug.Log("Hello, world.");
     /// ```
-    /// markdown enabled?? <a href='https://www.sator-imaging.com/'>This is HTML Link Tag</a>
+    /// Markdown enabled?? <a href='https://www.sator-imaging.com/'>This is HTML Link Tag</a>
     /// </summary>
     public static class Program
     {
-        /// <summary>**Is this shown as bold??**</summary>
+        /// <summary>Is this **shown as bold??**</summary>
         /// <remarks>none</remarks>
-        /// <returns>void</returns>
+        /// <returns>int</returns>
         /// <param name="args">command line args</param>
-        public static void Main(string[] args) { }
+        public static int Main(string[] args) { }
     }
 }
