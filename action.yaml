@@ -1,6 +1,6 @@
-name: 'DocFX for GitHub Pages'
-description: 'GitHub Actions to deploy C# / Unity API reference to GitHub Pages.'
-author: 'Sator Imaging'
+name: 'docfx for GitHub Pages'
+description: 'Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessary file upload and complicated `docfx` setup.'
+author: '@sator-imaging'
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
@@ -21,8 +21,8 @@ inputs:
   site_title:
     description: |
       Website title used as suffix for HTML pages. ex) "HTML Page Title | <site title>"
-      Default 'DocFX for GitHub Pages'
-    default:  'DocFX for GitHub Pages'
+      Default 'docfx for GitHub Pages'
+    default:  'docfx for GitHub Pages'
     required: true
 
   site_footer:
