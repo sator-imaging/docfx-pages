@@ -48,7 +48,7 @@ jobs:
 
       ######  main  ######
 
-      - uses: sator-imaging/docfx-pages@v1.0.0
+      - uses: sator-imaging/docfx-pages@v1
         id: deployment   # required to show url in actions result page.
         with:
           # required options - NOTE: double-quote (") cannot be used
@@ -57,7 +57,7 @@ jobs:
           site_footer: '<big>&times; Is HTML accepted?</big>'
 
           # optional
-          class_members: 'separatePages'  # 'separatePages' or 'samePage'
+          class_members: 'samePage'  # 'separatePages' or 'samePage'
           google_analytics: ''  # empty to disable
 
           # paths must be relative from .docfx folder.
