@@ -113,8 +113,7 @@ runs:
         sparse-checkout: '.docfx'
         sparse-checkout-cone-mode: true
         path: 'tmp-docfx-pages'
-        # TODO: how to get specified version ('@*' at the end of 'uses' command)
-        ref: 'v1'
+        ref: "${GITHUB_ACTION_PATH##*/}"
 
     - name: Combine repository
       shell: bash
