@@ -85,6 +85,11 @@ runs:
     # do not checkout caller's repository.
     # it should be controlled by caller.
 
+    - name: DEBUG
+      shell: bash
+      run: |
+        echo "github.ref: ${{ github.ref }}"
+
     - name: Dotnet Setup
       uses: actions/setup-dotnet@v3
       with:
