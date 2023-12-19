@@ -61,13 +61,23 @@ namespace SatorImaging.DocFXPages.Tests
     namespace App
     {
         /// <summary>Is this ~~shown as strikethrough??~~</summary>
-        public enum Enum
+        public enum IntEnum : int
+        {
+            Default = -9999,
+            First = 100,
+            Second,
+            [Obsolete]
+            Exceeded = 9999,
+        }
+
+        /// <summary>Is this ~~shown as strikethrough??~~</summary>
+        public enum ULongEnum : ulong
         {
             Default,
             First = 100,
             Second,
             [Obsolete]
-            Exceeded = 9999,
+            Exceeded = 18446744073709551615,
         }
 
         /// <summary>
