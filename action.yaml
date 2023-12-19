@@ -93,10 +93,10 @@ runs:
         echo "github.workflow_ref: ${{ github.workflow_ref }}"
         echo "github.base_ref: ${{ github.base_ref }}"
         echo "github.head_ref: ${{ github.head_ref }}"
-        echo "GITHUB_REF : ${{ GITHUB_REF }}"
-        echo "GITHUB_ACTION_PATH: ${{ GITHUB_ACTION_PATH }}"
-        echo "GITHUB_ACTION_REPOSITORY: ${{ GITHUB_ACTION_REPOSITORY }}"
-        echo "GITHUB_WORKSPACE: ${{ GITHUB_WORKSPACE }}"
+        echo "GITHUB_REF : ${GITHUB_REF}"
+        echo "GITHUB_ACTION_PATH: ${GITHUB_ACTION_PATH}"
+        echo "GITHUB_ACTION_REPOSITORY: ${GITHUB_ACTION_REPOSITORY}"
+        echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
 
 
     - name: Dotnet Setup
