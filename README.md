@@ -32,6 +32,11 @@ on:
     branches:
       - 'main'
       ##- 'releases/**'
+  pull_request:
+    branches: 
+      - 'main'
+  release:
+    types: [published]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
