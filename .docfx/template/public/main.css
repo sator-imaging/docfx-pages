@@ -80,7 +80,8 @@ body[data-yaml-mime=ApiPage] div.affix .link-secondary {
 /** api page */
 
 h1.api>.badge,
-h2.api>.badge {
+h2.api>.badge,
+h3.api>.badge {
     font-size: 0.4em;
     line-height: 1em;
     font-weight: 300;
@@ -90,6 +91,10 @@ h2.api>.badge {
 
 h2.api {
     position: relative;
+}
+
+body[data-yaml-mime=ApiPage] div.content dt .badge {
+    vertical-align: unset !important;
 }
 
 
