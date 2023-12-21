@@ -64,7 +64,7 @@ jobs:
 
           # paths must be relative from .docfx folder.
           # note that url works but only in top page. see sample website for detail.
-          site_logo:    'images/unity/made-with-unity.svg'     
+          site_logo:    'https://avatars.githubusercontent.com/u/16752340'     
           site_favicon: 'https://avatars.githubusercontent.com/u/45192683'
 
           # advanced options

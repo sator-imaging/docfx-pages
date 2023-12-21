@@ -95,9 +95,9 @@ namespace SatorImaging.DocFXPages.Tests
         public class Program : Annotations.IEntry
         {
             /// <summary>Is this **shown as bold??**</summary>
-            /// <remarks>none</remarks>
-            /// <returns>int</returns>
-            /// <param name="args">command line args</param>
+            /// <remarks>No remarks</remarks>
+            /// <returns>Return code</returns>
+            /// <param name="args">Command line arguments</param>
             public static int Main(string[] args) { }
 
             public string AppName => "The Application";
