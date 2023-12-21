@@ -92,7 +92,7 @@ namespace SatorImaging.DocFXPages.Tests
         /// ```
         /// Markdown enabled?? <a href='https://www.sator-imaging.com/'>This is HTML Link Tag</a>
         /// </summary>
-        public class Program : IEntry
+        public class Program : Annotations.IEntry
         {
             /// <summary>Is this **shown as bold??**</summary>
             /// <remarks>none</remarks>
