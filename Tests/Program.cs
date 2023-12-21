@@ -9,6 +9,10 @@ namespace SatorImaging.DocFXPages.Tests
         public class MyAttribute : Attribute { }
 
         public interface IMarkerInterface { }
+
+        public interface IEntry {
+            public string AppName { get; }
+        }
     }
 
     namespace Instances
@@ -19,10 +23,10 @@ namespace SatorImaging.DocFXPages.Tests
         /// </summary>
         public class TestClass : Annotations.IMarkerInterface
         {
-            /// <summary>Summary</summary>
-            /// <remarks>Remarks</remarks>
+            /// <summary>The Summary</summary>
+            /// <remarks>The Remarks</remarks>
             public static string StaticStringField;
-            /// <remarks>Remarks</remarks>
+            /// <remarks>The Remarks</remarks>
             public float FloatField;
 
             public TestClass() { }
@@ -70,7 +74,7 @@ namespace SatorImaging.DocFXPages.Tests
             Exceeded = 9999,
         }
 
-        /// <summary>Is this ~~shown as strikethrough??~~</summary>
+        /// <summary>Is this <big>shown bigger??</big></summary>
         public enum ULongEnum : ulong
         {
             Default,
@@ -81,20 +85,22 @@ namespace SatorImaging.DocFXPages.Tests
         }
 
         /// <summary>
-        /// This is sealed class.<br/>
+        /// This is main entry class.<br/>
         /// ```csharp
         /// // code block.
         /// UnityEngine.Debug.Log("Hello, world.");
         /// ```
         /// Markdown enabled?? <a href='https://www.sator-imaging.com/'>This is HTML Link Tag</a>
         /// </summary>
-        public static class Program
+        public class Program : IEntry
         {
             /// <summary>Is this **shown as bold??**</summary>
             /// <remarks>none</remarks>
             /// <returns>int</returns>
             /// <param name="args">command line args</param>
             public static int Main(string[] args) { }
+
+            public string AppName => "The Application";
         }
     }
 }

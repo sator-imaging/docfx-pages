@@ -54,17 +54,17 @@ jobs:
         id: deployment   # required to show url in actions result page.
         with:
           # required options - NOTE: double-quote (") cannot be used
-          app_name: 'Deploy Test'
+          app_name:   'Deploy Test'
           site_title: 'Deploy Test using sator-imaging/docfx-pages'
-          site_footer: '<big>&times; Is HTML accepted?</big>'
+          site_footer: 'Is <big>HTML Tag</big> accepted? &times; <-- &amp;times;'
 
           # optional
-          class_members: 'samePage'  # 'separatePages' or 'samePage'
+          class_members:  'samePage'  # 'separatePages' or 'samePage'
           google_analytics: ''  # empty to disable
 
           # paths must be relative from .docfx folder.
           # note that url works but only in top page. see sample website for detail.
-          site_logo: 'https://avatars.githubusercontent.com/u/16752340'     
+          site_logo:    'images/unity/made-with-unity.svg'     
           site_favicon: 'https://avatars.githubusercontent.com/u/45192683'
 
           # advanced options
