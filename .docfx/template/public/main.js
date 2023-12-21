@@ -9,7 +9,7 @@ function initializePage(event) {
         }
 
         if (apiTitle.dataset?.commentid?.at(1) == ':') {
-            let pos = apiTitle.innerText.indexOf(' ');
+            let pos = apiTitle.innerText.lastIndexOf(' ');
             if (pos >= 0) {
                 badgeText = apiTitle.innerText.slice(0, pos);
                 apiTitle.innerText = apiTitle.innerText.slice(pos + 1) + ' ';

@@ -110,6 +110,15 @@ body[data-yaml-mime=ApiPage] div.content dt .badge {
 
 /** content */
 
+h1 code,
+h2 code {
+    font-size: 1.05em !important;
+}
+
+code {
+    font-size: 1em !important;
+}
+
 .alert {
     padding: 0.75rem 1.5rem;
 }
