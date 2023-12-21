@@ -31,13 +31,13 @@ nav.navbar a.nav-link {
 
 nav.navbar a.navbar-brand img {
     height: 34px;
-    margin: 8px 0.5em 8px 0.2em;
+    margin: 8px 0.8rem 8px 0.4rem;
     font-size: 12px;
 }
 
 nav.navbar a.navbar-brand img[src$="images/unity/made-with-unity.svg"] {
     height: 32px;
-    margin: 10px 0.5em 8px 0.3em;
+    margin: 10px 0.8rem 8px 0.5rem;
 }
 
 nav.navbar ul.dropdown-menu {
