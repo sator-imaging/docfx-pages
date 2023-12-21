@@ -99,10 +99,13 @@ runs:
         echo "GITHUB_ACTION_PATH: ${GITHUB_ACTION_PATH}"
         echo "GITHUB_ACTION_PATH##*/: ${GITHUB_ACTION_PATH##*/}"
 
-    - name: Get called version
+    - name: Set env variables
       shell: bash
       run: |
         echo "ACTION_VERSION=${GITHUB_ACTION_PATH##*/}" >> $GITHUB_ENV
+        echo "REPO_NAME=$(echo ${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/})" >> $GITHUB_ENV
+        echo ${{ env.ACTION_VERSION }}
+        echo ${{ env.REPO_NAME }}
 
 
     - name: Dotnet Setup
@@ -194,6 +197,7 @@ runs:
             "${{ inputs.site_logo }}" \
             "${{ inputs.site_favicon }}" \
             "${{ inputs.google_analytics }}" \
+            "https://${{ github.repository_owner }}.github.io/${{ env.REPO_NAME }}/" \
             > docfx.json
 
           echo "${{ inputs.main_js }}"  >> template/public/main.js

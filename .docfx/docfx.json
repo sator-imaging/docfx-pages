@@ -58,7 +58,7 @@
         ],
         "dest": "_site",
         "sitemap": {
-            "baseUrl": "If the value is not specified, sitemap.xml will NOT be generated.",
+            "baseUrl": "%s",
             "priority": 0.1,
             "changefreq": "monthly",
             "fileOptions": {
