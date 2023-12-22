@@ -58,6 +58,16 @@ nav.toc span.expand-stub {
     line-height: 1.2rem;
 }
 
+nav.toc ul>li>ul>li>ul>li>ul {
+    font-size: 0.95em;
+    line-height: 1.1em;
+}
+
+.toc span.name-only {
+    /* hard-coded in modern template */
+    font-size: 14px;
+}
+
 
 /** affix */
 
