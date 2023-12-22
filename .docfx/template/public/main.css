@@ -66,6 +66,7 @@ nav.toc ul>li>ul>li>ul>li>ul {
 .toc span.name-only {
     /* hard-coded in modern template */
     font-size: 14px;
+    font-weight: normal;
 }
 
 
