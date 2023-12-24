@@ -63,10 +63,19 @@ nav.toc ul>li>ul>li>ul>li>ul {
     line-height: 1.1em;
 }
 
-.toc span.name-only {
+nav.toc span.name-only {
     /* hard-coded in modern template */
     font-size: 14px;
     font-weight: normal;
+    margin: 0.4em 0px 0px;
+}
+
+nav.toc ul>li:first-child>span.name-only {
+    margin-top: 0px;
+}
+
+nav.toc ul>li>ul>li>ul>li>ul span.name-only {
+    margin: 0.8em 0px 0px 0px;
 }
 
 
