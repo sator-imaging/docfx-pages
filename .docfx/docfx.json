@@ -52,6 +52,8 @@
             "_disableTocFilter": false
         },
         "template": [
+            "common",
+            "default",
             "modern",
             "template"
         ],
