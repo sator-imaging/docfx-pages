@@ -209,7 +209,7 @@ runs:
     - name: TOC expansion
       shell: bash
       run: |
-        pushd .docfx/api
+        pushd .docfx/_site/api
           if test -f toc.json
             sed 's/                    "items"\: \[/                    "items"\: \[ "expanded"\: true\,/' toc.json
           fi
