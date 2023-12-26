@@ -7,11 +7,27 @@ Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessar
 | ![Light Theme](images/docfx-pages-light.png)  | ![Dark Theme](images/docfx-pages-dark.png)
 
 
-**Sample Outputs**
+
+## Usage
+
+```yaml
+- uses: sator-imaging/docfx-pages@v1
+  id: deployment   # required to show url in actions result page.
+  with:
+    # required options - NOTE: double-quote (") cannot be used
+    app_name:    'docfx-pages'
+    site_title:  'Deploy using sator-imaging/docfx-pages'
+    site_footer: '<em>HTML tags accepted</em>'
+    # optional parameters
+    class_members: ...
+```
+
+
+### Sample Outputs
 
 - Built with `class_members: 'separatePages'` → [Go 🧾](https://sator-imaging.github.io/Half-Ulid/api/SatorImaging.HUlid.html)
 - Built with `class_members: 'samePage'` → [Go 🧾](https://sator-imaging.github.io/docfx-pages/api/SatorImaging.DocFXPages.Tests.App.html)
-    - *Note:* this sample demonstrates wrong result when specify `site_logo` or `site_favidon` as full-qualified URL. (Logo image in header is missing)
+  - *Note:* this sample demonstrates wrong result when specify `site_logo` or `site_favidon` as full-qualified URL. (Logo image in header is missing. `docfx` supports only relative path.)
 
 
 
