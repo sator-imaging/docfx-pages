@@ -206,15 +206,6 @@ runs:
 
         cd ..
 
-    - name: TOC expansion
-      shell: bash
-      run: |
-        pushd .docfx/_site/api
-          if test -f toc.json
-            sed 's/                    "items"\: \[/                    "items"\: \[ "expanded"\: true\,/' toc.json
-          fi
-        popd
-
 
     # DEBUG
     - name: DEBUG
@@ -228,6 +219,17 @@ runs:
       run: |
         dotnet tool update -g docfx
         docfx .docfx/docfx.json
+
+
+    - name: TOC expansion
+      shell: bash
+      run: |
+        pushd .docfx/_site/api
+          if test -f toc.json
+            sed 's/                    "items"\: \[/                    "items"\: \[ "expanded"\: true\,/' toc.json
+          fi
+        popd
+
 
     - name: Setup Pages
       uses: actions/configure-pages@v3
