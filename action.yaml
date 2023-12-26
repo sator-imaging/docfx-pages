@@ -226,7 +226,7 @@ runs:
       run: |
         pushd .docfx/_site
           if test -f toc.json; then
-            sed -i 's/\.html"\,"items"\:\[\\{"name"\:/\.html"\,"expanded"\:true\,"items"\:\[\\{"name"\:/g' toc.json
+            sed -i 's/\.html"\,"items"\:\[{"name"\:/\.html"\,"expanded"\:true\,"items"\:\[{"name"\:/g' toc.json
             cat toc.json
           fi
         popd
