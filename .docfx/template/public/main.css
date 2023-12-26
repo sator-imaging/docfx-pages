@@ -45,6 +45,10 @@ nav.navbar ul.dropdown-menu {
     width: max-content;
 }
 
+nav.navbar ul.navbar-nav>li:first-child {
+    display: none;
+}
+
 
 /** left side toc */
 

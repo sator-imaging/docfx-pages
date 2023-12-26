@@ -168,12 +168,13 @@ runs:
           mv 'README.md' 'index.md'
         fi
 
-    # api/toc.yml makes breadcrumb menu weird. waiting for future update.
     - name: Generate toc.yml
       shell: bash
       run: |
         cd .docfx
           if ! test -f 'toc.yml'; then
+            echo '- name: Home' >> 'toc.yml'
+            echo '  href: index.html' >> 'toc.yml'
             echo '- name: API' >> 'toc.yml'
             echo '  href: api/toc.yml' >> 'toc.yml'
             echo '  expanded: true' >> 'toc.yml'
@@ -204,6 +205,15 @@ runs:
           echo "${{ inputs.main_css }}" >> template/public/main.css
 
         cd ..
+
+    - name: TOC expansion
+      shell: bash
+      run: |
+        pushd .docfx/api
+          if test -f toc.json
+            sed 's/                    "items"\: \[/                    "items"\: \[ "expanded"\: true\,/' toc.json
+          fi
+        popd
 
 
     # DEBUG

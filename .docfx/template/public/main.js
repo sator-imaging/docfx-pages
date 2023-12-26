@@ -47,16 +47,11 @@ function initializePage(event) {
                 affix.appendChild(badge);
             }
         }
-
-        // toc auto expand
-        for (const elm of document.querySelectorAll("nav.toc>*>ul>li>ul>li")) {
-            elm.classList.add("expanded");
-        }
     }, 256);
 }
 
-if (document.readyState == 'loading') {
-    window.addEventListener("DOMContentLoaded", ev => initializePage(ev));
-} else {
-    initializePage(undefined);
-}
+// if (document.readyState == 'loading') {
+//     window.addEventListener("DOMContentLoaded", ev => initializePage(ev));
+// } else {
+//     initializePage(undefined);
+// }
