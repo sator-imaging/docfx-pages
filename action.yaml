@@ -225,7 +225,7 @@ runs:
       shell: bash
       run: |
         pushd .docfx/_site/api
-          if test -f toc.json
+          if test -f toc.json; then
             sed 's/                    "items"\: \[/                    "items"\: \[ "expanded"\: true\,/' toc.json
           fi
         popd
