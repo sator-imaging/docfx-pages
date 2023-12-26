@@ -14,7 +14,7 @@ Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessar
 - uses: sator-imaging/docfx-pages@v1
   id: deployment   # required to show url in actions result page.
   with:
-    # required options - NOTE: double-quote (") cannot be used
+    # required parameters
     app_name:    'docfx-pages'
     site_title:  'Deploy using sator-imaging/docfx-pages'
     site_footer: '<em>HTML tags accepted</em>'
@@ -100,7 +100,8 @@ jobs:
         id: deployment   # required to show url in actions result page.
         with:
 
-          # required options - NOTE: double-quote (") cannot be used
+          # required options
+          # NOTE: double-quote (") cannot be used, backquote (`) must be escaped (\`).
           app_name:    'Deploy Test'
           site_title:  'Deploy Test using sator-imaging/docfx-pages'
           site_footer: '<big>&times; Is HTML accepted?</big>'
@@ -117,7 +118,7 @@ jobs:
           # advanced options
           # --> https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
           # main.js
-          # NOTE: double-quote (") cannot be used
+          # NOTE: double-quote (") cannot be used, backquote (`) must be escaped (\`).
           main_js: |
             export default {
                 defaultTheme: 'light',
@@ -132,7 +133,7 @@ jobs:
             }
 
           # main.css
-          # NOTE: double-quote (") cannot be used
+          # NOTE: double-quote (") cannot be used, backquote (`) must be escaped (\`).
           main_css: |
 
 ```
