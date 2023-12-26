@@ -56,7 +56,7 @@ jobs:
           # required options - NOTE: double-quote (") cannot be used
           app_name:   'Deploy Test'
           site_title: 'Deploy Test using sator-imaging/docfx-pages'
-          site_footer: 'Is <big>HTML Tag</big> accepted? &times; <-- HTML symbol `&amp;times;`'
+          site_footer: 'Is <big>HTML Tag</big> accepted? &copy; <-- HTML symbol \`&amp;copy;\`'
 
           # optional
           class_members:  'samePage'  # 'separatePages' or 'samePage'
