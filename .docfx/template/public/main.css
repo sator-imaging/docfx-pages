@@ -91,6 +91,7 @@ body[data-yaml-mime=ApiPage] div.affix .badge {
 
 body[data-yaml-mime=ApiPage] div.affix .link-body-emphasis {
     font-size: 1.1em;
+    line-height: 1em;
 }
 
 body[data-yaml-mime=ApiPage] div.affix .link-secondary {
