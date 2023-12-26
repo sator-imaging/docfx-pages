@@ -147,7 +147,7 @@ code {
     margin-bottom: 0.0rem;
 }
 
-body[data-yaml-mime=ApiPage] .anchorjs-link {
+.anchorjs-link {
     font-weight: 200;
 }
 
