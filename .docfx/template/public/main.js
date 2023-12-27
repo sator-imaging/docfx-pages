@@ -65,26 +65,26 @@ function initializePage(event) {
 
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
-        console.log('api reference generator');
+        console.info('api reference generator');
 
         const tocRequest = new XMLHttpRequest();
         tocRequest.open('GET', '../api/toc.json');  // TODO: better way to find api/toc.json
         tocRequest.onload = function () {
             if (this.status != 200) {
-                console.log('api reference generator: 200');
+                console.error('api reference generator: url not found');
                 return;
             }
 
             const tocData = JSON.parse(this.responseText);
             if (!tocData.items) {
-                console.log('api reference generator: no toc');
+                console.error('api reference generator: no toc');
                 return;
             }
 
             const title = document.querySelector('article>h1');
             const article = title?.parentNode;
             if (!article) {
-                console.log('api reference generator: no article');
+                console.error('api reference generator: no article element');
                 return;
             }
 
@@ -95,7 +95,7 @@ function initializePage(event) {
             const nsContent = document.createElement('p');
             article.appendChild(nsContent);
 
-            console.log('api reference generator: build namespace list');
+            console.info('api reference generator: build namespace list');
             for (const ns of tocData.items) {
                 const div = document.createElement('div');
                 const anchor = document.createElement('a');
@@ -106,15 +106,20 @@ function initializePage(event) {
                 nsContent.appendChild(div);
             }
 
-            console.log('api reference generator: build namespace contents');
+            console.info('api reference generator: build namespace contents');
             for (const ns of tocData.items) {
                 if (!ns.items) {
                     continue;
                 }
 
                 const nsShort = document.createElement('h2');
-                nsShort.innerText = new String(ns.name).search(/[^\.]+$/);
+                const nsFullName = new String(ns.name);
+                nsShort.innerText = nsFullName.substring(nsFullName.search(/[^\.]+$/));
                 article.appendChild(nsShort);
+
+                const nsDesc = document.createElement('p');
+                nsDesc.innerText = nsFullName;
+                article.appendChild(nsDesc);
 
                 const dl = document.createElement('dl');
                 article.appendChild(dl);
@@ -134,7 +139,7 @@ function initializePage(event) {
                         continue;
                     }
 
-                    console.log('api reference generator: build namespace content item');
+                    console.info('api reference generator: build namespace content item');
                     const div = document.createElement('div');
                     const anchor = document.createElement('a');
                     anchor.innerText = obj.name;
