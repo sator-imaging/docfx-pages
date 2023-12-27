@@ -62,7 +62,84 @@ function initializePage(event) {
             apiTitle.appendChild(badge);
         }
     }
+
+    // api reference generator
+    if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
+        const tocRequest = new XMLHttpRequest();
+        tocRequest.open('GET', '../api/toc.json');
+        tocRequest.onload = function () {
+            if (this.status != 200) {
+                return;
+            }
+
+            tocData = JSON.parse(this.responseText);
+            if (!tocData.items) {
+                return;
+            }
+
+            const title = document.querySelector('article>h1');
+            const article = title.parentNode;
+            if (!article) {
+                return;
+            }
+
+            const nsTitle = document.createElement('h3');
+            nsTitle.innerText = 'Namespaces';
+            article.appendChild(nsTitle);
+
+            const nsContent = document.createElement('p');
+            article.appendChild(nsContent);
+
+            for (const ns of tocData.items) {
+                const div = document.createElement('div');
+                const anchor = document.createElement('a');
+                anchor.innerText = ns.name;
+                anchor.href = ns.href;
+
+                div.appendChild(anchor);
+                nsContent.appendChild(div);
+            }
+
+            for (const ns of tocData.items) {
+                if (!ns.items) {
+                    continue;
+                }
+
+                const nsShort = document.createElement('h2');
+                nsShort.innerText = ns.name;
+                article.appendChild(nsShort);
+
+                const dl = document.createElement('dl');
+                article.appendChild(dl);
+
+                let dd = undefined;
+                for (const obj of ns.items) {
+                    if (!obj.href) {
+                        const dt = document.createElement('dt');
+                        dt.innerText = obj.name;
+                        dd = document.createElement('dd');
+                        dl.appendChild(dt);
+                        dl.appendChild(dd);
+                        continue;
+                    }
+
+                    if (!dd) {
+                        continue;
+                    }
+
+                    const div = document.createElement('div');
+                    const anchor = document.createElement('a');
+                    anchor.innerText = obj.name;
+                    anchor.href = obj.href;
+                    div.appendChild(anchor);
+                    dd.appendChild(div);
+                }
+            }
+        }
+    }
+
 }
+
 
 if (document.readyState == 'loading') {
     window.addEventListener("DOMContentLoaded", ev => initializePage(ev));

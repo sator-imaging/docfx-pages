@@ -168,6 +168,16 @@ runs:
           mv 'README.md' 'index.md'
         fi
 
+    - name: Generate api/index.md
+      shell: bash
+      run: |
+        mkdir -p api
+        pushd api
+          if ! test -f index.md; then
+            echo "# API Reference" > index.md
+          fi
+        popd
+
     - name: Generate toc.yml
       shell: bash
       run: |
@@ -177,7 +187,7 @@ runs:
             echo '  href: index.html' >> 'toc.yml'
             echo '- name: API' >> 'toc.yml'
             echo '  href: api/toc.yml' >> 'toc.yml'
-            echo '  topicHref: index.html' >> 'toc.yml'
+            echo '  topicHref: api/index.html' >> 'toc.yml'
             echo '  expanded: true' >> 'toc.yml'
             if test -f '../LICENSE.md'; then
               echo '- name: License' >> 'toc.yml'
