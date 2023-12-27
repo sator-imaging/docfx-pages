@@ -150,11 +150,15 @@ function initializePage(event) {
                     dd.appendChild(div);
                 }
             }
+        }
 
-            // breadcrumb is dynamically created. delay required.
-            document.body.dataset.yamlMime = 'ApiPage';
+        tocRequest.send();
+
+        // breadcrumb is dynamically created. delay required.
+        document.body.dataset.yamlMime = 'ApiPage';
+        const updateBreadcrumb = function () {
             const breadcrumb = document.querySelector('nav .breadcrumb');
-            if (breadcrumb) {
+            if (breadcrumb && breadcrumb.childNodes.length == 1) {
                 const li = document.createElement('li');
                 const anchor = document.createElement('a');
                 anchor.innerText = 'API';
@@ -162,9 +166,10 @@ function initializePage(event) {
                 li.appendChild(anchor);
                 breadcrumb.appendChild(li);
             }
-        }
-
-        tocRequest.send();
+        };
+        setTimeout(updateBreadcrumb, 64);
+        setTimeout(updateBreadcrumb, 128);
+        setTimeout(updateBreadcrumb, 1024);
     }
 
 }
