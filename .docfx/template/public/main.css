@@ -83,6 +83,21 @@ nav.toc ul>li:first-child>span.name-only {
 }
 
 
+/** breadcrumb */
+
+body[data-yaml-mime=ApiPage] .breadcrumb>li:first-child {
+    display: none;
+}
+
+body[data-yaml-mime=ApiPage] .breadcrumb>li:nth-child(2) {
+    padding-left: unset;
+}
+
+body[data-yaml-mime=ApiPage] .breadcrumb>li:nth-child(2)::before {
+    content: none;
+}
+
+
 /** affix */
 
 body[data-yaml-mime=ApiPage] div.affix .badge {
