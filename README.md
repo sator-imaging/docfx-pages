@@ -185,11 +185,16 @@ then, set options in your GitHub Actions. Note that paths must be relative from 
 
 
 
+&nbsp;  
+&nbsp;
+
 ## Devnote
+
+### Tests
 
 Due to GitHub Pages limitation, deploy action must be run on main branch.
 
-Development branch has setted up to invoke main branch action by updating `test` tag. To do so, run the following command on development branch:
+Development branch has setted up to invoke main branch action indirectly by updating `test` tag. To do so, run the following command on dev branch to run tests.
 
 - `git pull; git tag -f test; git push --tags -f`
 
