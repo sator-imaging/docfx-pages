@@ -33,25 +33,40 @@ function initializePage(event) {
         }
     }
 
-    setTimeout(() => {
-        // badge for affix
-        for (const affix of document.querySelectorAll('body[data-yaml-mime=ApiPage] div.affix .link-body-emphasis')) {
-            if (affix.innerText.endsWith(' Deprecated')) {
-                affix.innerText = affix.innerText.replace(/ Deprecated$/, '') + ' ';
+    // affix is loaded on become visible
+    const affixContainer = document.querySelector('body[data-yaml-mime=ApiPage] div.affix');
+    const affixObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.intersectionRatio == 0)
+                return;
 
-                let badge = document.createElement('span');
-                badge.innerText = '✖️';
-                badge.classList.add("badge");
-                badge.classList.add("text-bg-danger");
-                badge.classList.add("rounded-pill");
-                affix.appendChild(badge);
+            // badge for affix
+            for (const affix of document.querySelectorAll('body[data-yaml-mime=ApiPage] div.affix .link-body-emphasis')) {
+                if (affix.innerText.endsWith(' Deprecated')) {
+                    affix.innerText = affix.innerText.replace(/ Deprecated$/, '') + ' ';
+
+                    let badge = document.createElement('span');
+                    badge.innerText = '✖️';
+                    badge.classList.add("badge");
+                    badge.classList.add("text-bg-danger");
+                    badge.classList.add("rounded-pill");
+                    affix.appendChild(badge);
+                }
             }
-        }
-    }, 256);
+
+            observer.unobserve(affixContainer);
+        });
+    },
+        {
+            root: document.documentElement,
+        });
+
+    affixObserver.observe(affixContainer);
 }
 
-// if (document.readyState == 'loading') {
-//     window.addEventListener("DOMContentLoaded", ev => initializePage(ev));
-// } else {
-//     initializePage(undefined);
-// }
+
+if (document.readyState == 'loading') {
+    window.addEventListener("DOMContentLoaded", ev => initializePage(ev));
+} else {
+    initializePage(undefined);
+}
