@@ -112,13 +112,15 @@ function initializePage(event) {
                     continue;
                 }
 
-                const nsShort = document.createElement('h2');
                 const nsFullName = new String(ns.name);
+                const nsShort = document.createElement('h2');
                 nsShort.innerText = nsFullName.substring(nsFullName.search(/[^\.]+$/));
                 article.appendChild(nsShort);
 
                 const nsDesc = document.createElement('p');
-                nsDesc.innerText = nsFullName;
+                const nsCode = document.createElement('code');
+                nsCode.innerText = nsFullName;
+                nsDesc.appendChild(nsCode);
                 article.appendChild(nsDesc);
 
                 const dl = document.createElement('dl');
