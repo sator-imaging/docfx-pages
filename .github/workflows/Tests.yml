@@ -2,9 +2,11 @@ name: docfx for GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
-  ##push:
-  ##  branches:
-  ##    - 'releases/**'
+  push:
+    ##branches:
+    ##  - 'releases/**'
+    tags:
+      - test
   release:
     types: [published]
     
@@ -50,7 +52,7 @@ jobs:
 
       ######  main  ######
 
-      - uses: sator-imaging/docfx-pages@v1
+      - uses: sator-imaging/docfx-pages@test
         id: deployment   # required to show url in actions result page.
         with:
           # required options - NOTE: double-quote (") cannot be used
