@@ -1,0 +1,7 @@
+# name is hard-coded in main branch workflow
+name: 'Run Tests on main branch'
+
+on:
+  push:
+    tags:
+      - test
