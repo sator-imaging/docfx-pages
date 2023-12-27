@@ -187,6 +187,13 @@ then, set options in your GitHub Actions. Note that paths must be relative from 
 
 ## Devnote
 
+Due to GitHub Pages limitation, deploy action must be run on main branch.
+
+Development branch has setted up to invoke main branch action by updating `test` tag. To do so, run the following command on development branch:
+
+- `git pull; git tag -f test; git push --tags -f`
+
+
 ### TODO
 
 - add `docfx_metadata`, `docfx_build` and `docfx_filter` options for easy customization.
