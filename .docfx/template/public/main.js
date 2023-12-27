@@ -88,12 +88,15 @@ function initializePage(event) {
                 return;
             }
 
+            const nsDL = document.createElement('dl');
+            const nsDT = document.createElement('dt');
+            const nsDD = document.createElement('dd');
             const nsTitle = document.createElement('h3');
             nsTitle.innerText = 'Namespaces';
-            article.appendChild(nsTitle);
-
-            const nsContent = document.createElement('p');
-            article.appendChild(nsContent);
+            nsDT.appendChild(nsTitle);
+            nsDL.appendChild(nsDT);
+            nsDL.appendChild(nsDD);
+            article.appendChild(nsDL);
 
             console.info('api reference generator: build namespace list');
             for (const ns of tocData.items) {
@@ -103,7 +106,7 @@ function initializePage(event) {
                 anchor.href = ns.href;
 
                 div.appendChild(anchor);
-                nsContent.appendChild(div);
+                nsDD.appendChild(div);
             }
 
             console.info('api reference generator: build namespace contents');
