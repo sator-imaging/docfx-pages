@@ -153,6 +153,17 @@ function initializePage(event) {
         }
 
         tocRequest.send();
+
+        document.body.dataset.yamlMime = 'ApiPage'
+        const breadcrumb = document.querySelector('nav .breadcrumb');
+        if (breadcrumb) {
+            const li = document.createElement('li');
+            const anchor = document.createElement('a');
+            anchor.innerText = 'API';
+            anchor.href = 'index.html';
+            li.appendChild(anchor);
+            breadcrumb.appendChild(li);
+        }
     }
 
 }
