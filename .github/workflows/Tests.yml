@@ -2,13 +2,11 @@ name: docfx for GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
-  push:
-    ##branches:
-    ##  - 'releases/**'
-    tags:
-      - test
-  release:
-    types: [published]
+  workflow_run:
+    workflows:
+      - 'Run Tests on main branch'
+    types:
+      - completed
     
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
