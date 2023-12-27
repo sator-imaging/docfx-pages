@@ -144,6 +144,8 @@ function initializePage(event) {
                 }
             }
         }
+
+        tocRequest.send();
     }
 
 }
