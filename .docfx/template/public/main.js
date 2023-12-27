@@ -23,7 +23,7 @@ function initializeAffix() {
 }
 
 window.addEventListener("resize", initializeAffix);
-initializeAffix();
+setTimeout(initializeAffix, 256);  // need delay for affix async load
 
 
 function initializePage(event) {
