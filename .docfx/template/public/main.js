@@ -2,7 +2,7 @@ function initializeAffix() {
     console.log("initializeAffix()");
 
     const affixContainer = document.querySelector('div.affix');
-    if (!affixContainer || affixContainer.style.display == 'none')
+    if (!affixContainer || (affixContainer.offsetWidth == 0 && affixContainer.offsetHeight == 0))
         return;
 
     // badge for affix
