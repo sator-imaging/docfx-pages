@@ -66,7 +66,7 @@ function initializePage(event) {
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
         const tocRequest = new XMLHttpRequest();
-        tocRequest.open('GET', '../api/toc.json');
+        tocRequest.open('GET', '../toc.json');  // TODO: better way to find api/toc.json
         tocRequest.onload = function () {
             if (this.status != 200) {
                 return;
@@ -78,7 +78,7 @@ function initializePage(event) {
             }
 
             const title = document.querySelector('article>h1');
-            const article = title.parentNode;
+            const article = title?.parentNode;
             if (!article) {
                 return;
             }
@@ -106,7 +106,7 @@ function initializePage(event) {
                 }
 
                 const nsShort = document.createElement('h2');
-                nsShort.innerText = ns.name;
+                nsShort.innerText = new String(ns.name).search(/[\.]+$/);
                 article.appendChild(nsShort);
 
                 const dl = document.createElement('dl');
