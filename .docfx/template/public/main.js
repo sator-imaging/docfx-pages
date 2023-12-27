@@ -1,3 +1,30 @@
+function initializeAffix() {
+    // affix is loaded on become visible
+    const affixContainer = document.querySelector('body[data-yaml-mime=ApiPage] div.affix');
+    if (!affixContainer)
+        return;
+
+    // badge for affix
+    for (const affix of document.querySelectorAll('body[data-yaml-mime=ApiPage] div.affix .link-body-emphasis')) {
+        if (affix.innerText.endsWith(' Deprecated')) {
+            affix.innerText = affix.innerText.replace(/ Deprecated$/, '') + ' ';
+
+            let badge = document.createElement('span');
+            badge.innerText = '✖️';
+            badge.classList.add("badge");
+            badge.classList.add("text-bg-danger");
+            badge.classList.add("rounded-pill");
+            affix.appendChild(badge);
+        }
+    }
+
+    window.removeEventListener("resize", initializeAffix);
+}
+
+window.addEventListener("resize", initializeAffix);
+initializeAffix();
+
+
 function initializePage(event) {
     // badge for api heading
     for (const apiTitle of document.querySelectorAll("h1.api")) {
@@ -32,38 +59,7 @@ function initializePage(event) {
             apiTitle.appendChild(badge);
         }
     }
-
-    // affix is loaded on become visible
-    const affixContainer = document.querySelector('body[data-yaml-mime=ApiPage] div.affix');
-    const affixObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.intersectionRatio == 0)
-                return;
-
-            // badge for affix
-            for (const affix of document.querySelectorAll('body[data-yaml-mime=ApiPage] div.affix .link-body-emphasis')) {
-                if (affix.innerText.endsWith(' Deprecated')) {
-                    affix.innerText = affix.innerText.replace(/ Deprecated$/, '') + ' ';
-
-                    let badge = document.createElement('span');
-                    badge.innerText = '✖️';
-                    badge.classList.add("badge");
-                    badge.classList.add("text-bg-danger");
-                    badge.classList.add("rounded-pill");
-                    affix.appendChild(badge);
-                }
-            }
-
-            observer.unobserve(affixContainer);
-        });
-    },
-        {
-            root: document.documentElement,
-        });
-
-    affixObserver.observe(affixContainer);
 }
-
 
 if (document.readyState == 'loading') {
     window.addEventListener("DOMContentLoaded", ev => initializePage(ev));
