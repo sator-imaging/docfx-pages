@@ -5,3 +5,9 @@ on:
   push:
     tags:
       - test
+
+jobs:
+  trigger_main_brunch:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Run Tests on main branch'
