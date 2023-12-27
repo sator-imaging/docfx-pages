@@ -218,7 +218,11 @@ runs:
       shell: bash
       run: |
         dotnet tool update -g docfx
-        docfx .docfx/docfx.json
+        pushd .docfx
+          docfx template export modern
+          docfx docfx.json -t default,_exported_templates/modern,template
+          ls _exported_templates/modern/**
+        popd
 
 
     - name: TOC expansion
