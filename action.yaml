@@ -219,11 +219,7 @@ runs:
       run: |
         dotnet tool update -g docfx
         pushd .docfx
-          docfx template export modern
-          docfx docfx.json -t default,_exported_templates/modern,template
-          cp template/partials/classSubtitle.tmpl.partial _exported_templates/modern/partials
-          cp template/partials/namespaceSubtitle.tmpl.partial _exported_templates/modern/partials
-          ls _exported_templates/modern/**
+          docfx docfx.json
         popd
 
 
