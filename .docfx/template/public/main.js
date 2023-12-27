@@ -154,7 +154,7 @@ function initializePage(event) {
 
         tocRequest.send();
 
-        document.body.dataset.yamlMime = 'ApiPage'
+        document.body.dataset.yamlMime = 'ApiPage';
         const breadcrumb = document.querySelector('nav .breadcrumb');
         if (breadcrumb) {
             const li = document.createElement('li');
