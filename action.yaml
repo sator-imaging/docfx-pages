@@ -173,7 +173,7 @@ runs:
       run: |
         cd .docfx
           if ! test -f 'toc.yml'; then
-            echo '- name: Home' >> 'toc.yml'
+            echo '- name: Introduction' >> 'toc.yml'
             echo '  href: index.html' >> 'toc.yml'
             echo '- name: API' >> 'toc.yml'
             echo '  href: api/toc.yml' >> 'toc.yml'
