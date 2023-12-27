@@ -1,9 +1,8 @@
 function initializeAffix() {
     console.log("initializeAffix()");
 
-    // affix is loaded on become visible
     const affixContainer = document.querySelector('body[data-yaml-mime=ApiPage] div.affix');
-    if (!affixContainer)
+    if (affixContainer?.style?.display == 'none')
         return;
 
     // badge for affix
