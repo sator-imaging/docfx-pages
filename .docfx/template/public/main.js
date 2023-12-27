@@ -1,6 +1,4 @@
 function initializeAffix() {
-    console.log("initializeAffix()");
-
     const affixContainer = document.querySelector('div.affix');
     if (!affixContainer || (affixContainer.offsetWidth == 0 && affixContainer.offsetHeight == 0))
         return;
@@ -23,7 +21,11 @@ function initializeAffix() {
 }
 
 window.addEventListener("resize", initializeAffix);
-setTimeout(initializeAffix, 256);  // need delay for affix async load
+// need delay for affix async load
+// run 3 different delays, no way to await unknown async jobs. this works enough.
+setTimeout(initializeAffix, 64);
+setTimeout(initializeAffix, 128);
+setTimeout(initializeAffix, 1024);
 
 
 function initializePage(event) {
