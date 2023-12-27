@@ -65,21 +65,26 @@ function initializePage(event) {
 
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
+        console.log('api reference generator');
+
         const tocRequest = new XMLHttpRequest();
         tocRequest.open('GET', '../toc.json');  // TODO: better way to find api/toc.json
         tocRequest.onload = function () {
             if (this.status != 200) {
+                console.log('api reference generator: 200');
                 return;
             }
 
             tocData = JSON.parse(this.responseText);
             if (!tocData.items) {
+                console.log('api reference generator: no toc');
                 return;
             }
 
             const title = document.querySelector('article>h1');
             const article = title?.parentNode;
             if (!article) {
+                console.log('api reference generator: no article');
                 return;
             }
 
@@ -90,6 +95,7 @@ function initializePage(event) {
             const nsContent = document.createElement('p');
             article.appendChild(nsContent);
 
+            console.log('api reference generator: build namespace list');
             for (const ns of tocData.items) {
                 const div = document.createElement('div');
                 const anchor = document.createElement('a');
@@ -100,6 +106,7 @@ function initializePage(event) {
                 nsContent.appendChild(div);
             }
 
+            console.log('api reference generator: build namespace contents');
             for (const ns of tocData.items) {
                 if (!ns.items) {
                     continue;
@@ -127,6 +134,7 @@ function initializePage(event) {
                         continue;
                     }
 
+                    console.log('api reference generator: build namespace content item');
                     const div = document.createElement('div');
                     const anchor = document.createElement('a');
                     anchor.innerText = obj.name;
