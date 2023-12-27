@@ -106,7 +106,7 @@ function initializePage(event) {
                 }
 
                 const nsShort = document.createElement('h2');
-                nsShort.innerText = new String(ns.name).search(/[\.]+$/);
+                nsShort.innerText = new String(ns.name).search(/[^\.]+$/);
                 article.appendChild(nsShort);
 
                 const dl = document.createElement('dl');
