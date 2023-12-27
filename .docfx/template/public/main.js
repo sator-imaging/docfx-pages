@@ -75,7 +75,7 @@ function initializePage(event) {
                 return;
             }
 
-            tocData = JSON.parse(this.responseText);
+            const tocData = JSON.parse(this.responseText);
             if (!tocData.items) {
                 console.log('api reference generator: no toc');
                 return;
