@@ -177,6 +177,7 @@ runs:
             echo '  href: index.html' >> 'toc.yml'
             echo '- name: API' >> 'toc.yml'
             echo '  href: api/toc.yml' >> 'toc.yml'
+            echo '  topicHref: index.html' >> 'toc.yml'
             echo '  expanded: true' >> 'toc.yml'
             if test -f '../LICENSE.md'; then
               echo '- name: License' >> 'toc.yml'
