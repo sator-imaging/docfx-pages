@@ -68,7 +68,7 @@ function initializePage(event) {
         console.log('api reference generator');
 
         const tocRequest = new XMLHttpRequest();
-        tocRequest.open('GET', '../toc.json');  // TODO: better way to find api/toc.json
+        tocRequest.open('GET', '../api/toc.json');  // TODO: better way to find api/toc.json
         tocRequest.onload = function () {
             if (this.status != 200) {
                 console.log('api reference generator: 200');
