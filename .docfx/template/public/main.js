@@ -154,18 +154,22 @@ function initializePage(event) {
 
         tocRequest.send();
 
-        // breadcrumb is dynamically created. delay required.
         document.body.dataset.yamlMime = 'ApiPage';
+
+        // breadcrumb is dynamically created. delay required.
         const updateBreadcrumb = function () {
             const breadcrumb = document.querySelector('nav .breadcrumb');
-            if (breadcrumb && breadcrumb.childNodes.length == 1) {
-                const li = document.createElement('li');
-                const anchor = document.createElement('a');
-                anchor.innerText = 'API';
-                anchor.href = 'index.html';
-                li.appendChild(anchor);
-                breadcrumb.appendChild(li);
+            if (!breadcrumb || breadcrumb.childElementCount == 0 || breadcrumb.childElementCount > 1) {
+                return;
             }
+
+            console.info('api reference generator: update breadcrumb')
+            const li = document.createElement('li');
+            const anchor = document.createElement('a');
+            anchor.innerText = 'API';
+            anchor.href = 'index.html';
+            li.appendChild(anchor);
+            breadcrumb.appendChild(li);
         };
         setTimeout(updateBreadcrumb, 64);
         setTimeout(updateBreadcrumb, 128);
