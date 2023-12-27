@@ -1,0 +1,89 @@
+name: Test on `test` Tag
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    tags:
+      - test
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+
+    #########################################
+    ######  sator-imaging/docfx-pages  ######
+    #########################################
+    steps:
+
+      # for extensibility, docfx-pages does NOT checkout your repository.
+      # so you need to checkout manually prior to sator-imaging/docfx-pages.
+      - name: Checkout
+        uses: actions/checkout@v3
+
+
+      # after checkout, you can checkout another repo, copy logo image or
+      # other assets into '.docfx' folder to setup own docfx environment.
+      # note that images must be copied into '.docfx/images' folder.
+
+
+      ######  main  ######
+
+      - uses: sator-imaging/docfx-pages@test
+        id: deployment   # required to show url in actions result page.
+        with:
+          # required options - NOTE: double-quote (") cannot be used
+          app_name:   'Deploy Test'
+          site_title: 'Deploy Test using sator-imaging/docfx-pages'
+          site_footer: 'Is <big>HTML Tag</big> accepted? &copy; <-- HTML symbol \`&amp;copy;\`'
+
+          # optional
+          class_members:  'samePage'  # 'separatePages' or 'samePage'
+          google_analytics: ''  # empty to disable
+
+          # paths must be relative from .docfx folder.
+          # note that url works but only in top page. see sample website for detail.
+          site_logo:    'https://avatars.githubusercontent.com/u/16752340'     
+          site_favicon: 'https://avatars.githubusercontent.com/u/45192683'
+
+          # advanced options
+          # --> https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
+          # main.js
+          # NOTE: double-quote (") cannot be used
+          main_js: |
+            export default {
+                defaultTheme: 'light',
+                showLightbox: (img) => true,
+                iconLinks: [
+                    {
+                        icon: 'github',
+                        href: 'https://github.com/sator-imaging',
+                        title: 'GitHub'
+                    },
+                ],
+            }
+
+          # main.css
+          # NOTE: double-quote (") cannot be used
+          main_css: |
+          
+          
