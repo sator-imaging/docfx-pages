@@ -86,9 +86,6 @@ function initializePage(event) {
             }
 
             const nsDL = document.createElement('dl');
-            const nsHeading = document.createElement('dt');
-            nsHeading.innerHTML = '<h3>Namespaces</h3>';
-            nsDL.appendChild(nsHeading);
             article.appendChild(nsDL);
 
             //console.info('api reference generator: build namespace contents');
@@ -115,7 +112,7 @@ function initializePage(event) {
                 let nsDD = nsDL.querySelector('#' + nsParentID);
                 if (!nsDD) {
                     const nsDT = document.createElement('dt');
-                    nsDT.innerText = nsParentName;
+                    nsDT.innerHTML = '<h3>' + nsParentName + '</h3>';
                     nsDD = document.createElement('dd');
                     nsDD.id = nsParentID;
                     nsDL.appendChild(nsDT);
