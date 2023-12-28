@@ -240,7 +240,6 @@ runs:
         pushd .docfx/_site
           if test -f toc.json; then
             sed 's/\.html"\,"items"\:\[{"name"\:/\.html"\,"expanded"\:true\,"items"\:\[{"name"\:/g' -i toc.json
-            sed 's/"includedFrom"\:/"__disabled__includedFrom"\:/g' -i toc.json
             cat toc.json
           fi
         popd

@@ -62,7 +62,7 @@ function initializePage(event) {
 
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
-        console.info('api reference generator');
+        //console.info('api reference generator');
 
         const tocRequest = new XMLHttpRequest();
         tocRequest.open('GET', '../api/toc.json');  // TODO: better way to find api/toc.json
@@ -95,23 +95,32 @@ function initializePage(event) {
             nsDL.appendChild(nsDD);
             article.appendChild(nsDL);
 
-            console.info('api reference generator: build namespace contents');
+            //console.info('api reference generator: build namespace contents');
             for (const ns of tocData.items) {
                 if (!ns.items) {
                     continue;
                 }
 
                 const nsFullName = new String(ns.name);
-                const nsID = nsFullName.replace('.', '-');
+                const nsID = nsFullName.replaceAll('.', '-').toLowerCase();
 
+                //console.info('api reference generator: update namespace list');
+                const nsDiv = document.createElement('div');
+                const nsAnchor = document.createElement('a');
+                nsAnchor.innerText = ns.name;
+                nsAnchor.href = '#' + nsID;
+                nsDiv.appendChild(nsAnchor);
+                nsDD.appendChild(nsDiv);
+
+                //console.info('api reference generator: add namespace heading');
                 const nsShort = document.createElement('h2');
                 nsShort.innerText = nsFullName.substring(nsFullName.search(/[^\.]+$/)) + ' ';
                 nsShort.id = nsID;
                 nsShort.classList.add('section', 'api');
-                const badge = document.createElement('span');
-                badge.innerText = 'Namespace';
-                badge.classList.add('badge', 'rounded-pill', 'bg-info');
-                nsShort.appendChild(badge);
+                const nsBadge = document.createElement('span');
+                nsBadge.innerText = 'Namespace';
+                nsBadge.classList.add('badge', 'rounded-pill', 'bg-info');
+                nsShort.appendChild(nsBadge);
                 article.appendChild(nsShort);
 
                 const nsDesc = document.createElement('p');
@@ -120,40 +129,26 @@ function initializePage(event) {
                 nsDesc.appendChild(nsCode);
                 article.appendChild(nsDesc);
 
-                const dl = document.createElement('dl');
-                article.appendChild(dl);
+                const objDL = document.createElement('dl');
+                article.appendChild(objDL);
+                const objDT = document.createElement('dt');
+                objDT.innerText = obj.name;
+                const objDD = document.createElement('dd');
+                objDL.appendChild(objDT);
+                objDL.appendChild(objDD);
 
-                let dd = undefined;
                 for (const obj of ns.items) {
                     if (!obj.href) {
-                        console.info('api reference generator: update namespace list');
-                        const div = document.createElement('div');
-                        const anchor = document.createElement('a');
-                        anchor.innerText = ns.name;
-                        anchor.href = '#' + nsID;
-                        div.appendChild(anchor);
-                        nsDD.appendChild(div);
-
-                        console.info('api reference generator: add namespace heading');
-                        const dt = document.createElement('dt');
-                        dt.innerText = obj.name;
-                        dd = document.createElement('dd');
-                        dl.appendChild(dt);
-                        dl.appendChild(dd);
                         continue;
                     }
 
-                    if (!dd) {
-                        continue;
-                    }
-
-                    console.info('api reference generator: add namespace content');
+                    //console.info('api reference generator: add namespace content');
                     const div = document.createElement('div');
                     const anchor = document.createElement('a');
                     anchor.innerText = obj.name;
                     anchor.href = obj.href;
                     div.appendChild(anchor);
-                    dd.appendChild(div);
+                    objDD.appendChild(div);
                 }
             }
         }
@@ -169,7 +164,7 @@ function initializePage(event) {
                 return;
             }
 
-            console.info('api reference generator: update breadcrumb')
+            //console.info('api reference generator: update breadcrumb')
             const li = document.createElement('li');
             const anchor = document.createElement('a');
             anchor.innerText = 'API';
