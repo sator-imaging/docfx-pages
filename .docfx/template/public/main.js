@@ -86,13 +86,9 @@ function initializePage(event) {
             }
 
             const nsDL = document.createElement('dl');
-            const nsDT = document.createElement('dt');
-            const nsDD = document.createElement('dd');
-            const nsTitle = document.createElement('h3');
-            nsTitle.innerText = 'Namespaces';
-            nsDT.appendChild(nsTitle);
-            nsDL.appendChild(nsDT);
-            nsDL.appendChild(nsDD);
+            const nsHeading = document.createElement('dt');
+            nsHeading.innerHTML = '<h3>Namespaces</h3>';
+            nsDL.appendChild(nsHeading);
             article.appendChild(nsDL);
 
             //console.info('api reference generator: build namespace contents');
@@ -102,19 +98,37 @@ function initializePage(event) {
                 }
 
                 const nsFullName = new String(ns.name);
+                let nsParentName = '';
+                let nsShortName = '';
+                const nsPos = nsFullName.lastIndexOf('.');
+                if (nsPos >= 0) {
+                    nsParentName = nsFullName.slice(0, nsPos);
+                    nsShortName = nsFullName.substring(nsPos + 1);
+                }
+                const nsParentID = nsParentName.replaceAll('.', '-').toLowerCase();
                 const nsID = nsFullName.replaceAll('.', '-').toLowerCase();
+                nsParentName = nsParentName.replaceAll('.', ' > ');
+
+                let nsDD = nsDL.querySelector('#' + nsParentID);
+                if (!nsDD) {
+                    const nsDT = document.createElement('dt');
+                    nsDT.innerText = nsParentName;
+                    nsDD = document.createElement('dd');
+                    nsDL.appendChild(nsDT);
+                    nsDL.appendChild(nsDD);
+                }
 
                 //console.info('api reference generator: update namespace list');
                 const nsDiv = document.createElement('div');
                 const nsAnchor = document.createElement('a');
-                nsAnchor.innerText = ns.name;
+                nsAnchor.innerText = nsShortName;
                 nsAnchor.href = '#' + nsID;
                 nsDiv.appendChild(nsAnchor);
                 nsDD.appendChild(nsDiv);
 
                 //console.info('api reference generator: add namespace heading');
                 const nsShort = document.createElement('h2');
-                nsShort.innerText = nsFullName.substring(nsFullName.search(/[^\.]+$/)) + ' ';
+                nsShort.innerText = nsShortName + ' ';
                 nsShort.id = nsID;
                 nsShort.classList.add('section', 'api');
                 const nsBadge = document.createElement('span');
@@ -123,9 +137,10 @@ function initializePage(event) {
                 nsShort.appendChild(nsBadge);
                 article.appendChild(nsShort);
 
-                const nsDesc = document.createElement('p');
+                const nsDesc = document.createElement('pre');
                 const nsCode = document.createElement('code');
-                nsCode.innerText = nsFullName;
+                nsCode.classList.add('hljs', 'lang-csharp', 'language-csharp');
+                nsCode.innerHTML = '<span class="hljs-keyword">namespace</span> ' + nsFullName;
                 nsDesc.appendChild(nsCode);
                 article.appendChild(nsDesc);
 
@@ -182,6 +197,7 @@ function initializePage(event) {
         setTimeout(updateBreadcrumb, 128);
         setTimeout(updateBreadcrumb, 1024);
     }
+    // end of api reference generator
 
 }
 
