@@ -10,9 +10,7 @@ function initializeAffix() {
 
             let badge = document.createElement('span');
             badge.innerText = '✖️';
-            badge.classList.add("badge");
-            badge.classList.add("text-bg-danger");
-            badge.classList.add("rounded-pill");
+            badge.classList.add("badge", "rounded-pill", "text-bg-danger");
             affix.appendChild(badge);
         }
     }
@@ -52,13 +50,12 @@ function initializePage(event) {
         if (badgeText) {
             let badge = document.createElement('span');
             badge.innerText = badgeText;
-            badge.classList.add("badge");
+            badge.classList.add("badge", "rounded-pill");
             if (isDeprecated) {
                 badge.classList.add("text-bg-danger");
             } else {
                 badge.classList.add("bg-info");
             }
-            badge.classList.add("rounded-pill");
             apiTitle.appendChild(badge);
         }
     }
@@ -98,17 +95,6 @@ function initializePage(event) {
             nsDL.appendChild(nsDD);
             article.appendChild(nsDL);
 
-            console.info('api reference generator: build namespace list');
-            for (const ns of tocData.items) {
-                const div = document.createElement('div');
-                const anchor = document.createElement('a');
-                anchor.innerText = ns.name;
-                anchor.href = ns.href;
-
-                div.appendChild(anchor);
-                nsDD.appendChild(div);
-            }
-
             console.info('api reference generator: build namespace contents');
             for (const ns of tocData.items) {
                 if (!ns.items) {
@@ -116,8 +102,16 @@ function initializePage(event) {
                 }
 
                 const nsFullName = new String(ns.name);
+                const nsID = nsFullName.replace('.', '-');
+
                 const nsShort = document.createElement('h2');
-                nsShort.innerText = nsFullName.substring(nsFullName.search(/[^\.]+$/));
+                nsShort.innerText = nsFullName.substring(nsFullName.search(/[^\.]+$/)) + ' ';
+                nsShort.id = nsID;
+                nsShort.classList.add('section', 'api');
+                const badge = document.createElement('span');
+                badge.innerText = 'Namespace';
+                badge.classList.add('badge', 'rounded-pill', 'bg-info');
+                nsShort.appendChild(badge);
                 article.appendChild(nsShort);
 
                 const nsDesc = document.createElement('p');
@@ -132,6 +126,15 @@ function initializePage(event) {
                 let dd = undefined;
                 for (const obj of ns.items) {
                     if (!obj.href) {
+                        console.info('api reference generator: update namespace list');
+                        const div = document.createElement('div');
+                        const anchor = document.createElement('a');
+                        anchor.innerText = ns.name;
+                        anchor.href = '#' + nsID;
+                        div.appendChild(anchor);
+                        nsDD.appendChild(div);
+
+                        console.info('api reference generator: add namespace heading');
                         const dt = document.createElement('dt');
                         dt.innerText = obj.name;
                         dd = document.createElement('dd');
@@ -144,7 +147,7 @@ function initializePage(event) {
                         continue;
                     }
 
-                    console.info('api reference generator: build namespace content item');
+                    console.info('api reference generator: add namespace content');
                     const div = document.createElement('div');
                     const anchor = document.createElement('a');
                     anchor.innerText = obj.name;
