@@ -132,14 +132,20 @@ function initializePage(event) {
                 const objDL = document.createElement('dl');
                 article.appendChild(objDL);
 
+                let members = undefined;
                 for (const obj of ns.items) {
                     if (!obj.href) {
                         const category = document.createElement('dt');
                         category.innerText = obj.name;
-                        const members = document.createElement('dd');
+
+                        members = document.createElement('dd');
                         objDL.appendChild(category);
                         objDL.appendChild(members);
-                                continue;
+                        continue;
+                    }
+
+                    if (!members) {
+                        continue;
                     }
 
                     //console.info('api reference generator: add namespace content');
