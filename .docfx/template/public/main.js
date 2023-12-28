@@ -97,7 +97,10 @@ function initializePage(event) {
                     continue;
                 }
 
-                const nsFullName = new String(ns.name);
+                let nsFullName = new String(ns.name);
+                if (!nsFullName) {
+                    nsFullName = 'Global';
+                }
                 let nsParentName = '';
                 let nsShortName = '';
                 const nsPos = nsFullName.lastIndexOf('.');
