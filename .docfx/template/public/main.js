@@ -131,15 +131,15 @@ function initializePage(event) {
 
                 const objDL = document.createElement('dl');
                 article.appendChild(objDL);
-                const objDT = document.createElement('dt');
-                objDT.innerText = obj.name;
-                const objDD = document.createElement('dd');
-                objDL.appendChild(objDT);
-                objDL.appendChild(objDD);
 
                 for (const obj of ns.items) {
                     if (!obj.href) {
-                        continue;
+                        const category = document.createElement('dt');
+                        category.innerText = obj.name;
+                        const members = document.createElement('dd');
+                        objDL.appendChild(category);
+                        objDL.appendChild(members);
+                                continue;
                     }
 
                     //console.info('api reference generator: add namespace content');
@@ -148,7 +148,7 @@ function initializePage(event) {
                     anchor.innerText = obj.name;
                     anchor.href = obj.href;
                     div.appendChild(anchor);
-                    objDD.appendChild(div);
+                    members.appendChild(div);
                 }
             }
         }
