@@ -114,6 +114,7 @@ function initializePage(event) {
                     const nsDT = document.createElement('dt');
                     nsDT.innerText = nsParentName;
                     nsDD = document.createElement('dd');
+                    nsDD.id = nsParentID;
                     nsDL.appendChild(nsDT);
                     nsDL.appendChild(nsDD);
                 }
