@@ -37,7 +37,10 @@ Just enable GitHub Pages in repository setting and paste the code below.
 
 ![Repo Settings](images/repo-settings.png)
 
-<p><details lang="en" open><summary>GitHub Actions source code</summary>
+
+### GitHub Actions Source Code
+
+<details>
 
 ```yaml
 name: docfx for GitHub Pages
@@ -138,18 +141,7 @@ jobs:
 
 ```
 
-<!------- End of Details EN Tag -------></details></p>
-
-
-
-## Builtin Assets
-
-- `images/wikimedia-commons/logo-csharp-recolor.svg`
-    - C# logo file for `site_logo` and `site_favicon`
-    - ![C# Logo](https://raw.githubusercontent.com/sator-imaging/docfx-pages/releases/v1.0.0/.docfx/images/wikimedia-commons/logo-csharp-recolor.svg)
-- `images/unity/made-with-unity.svg`
-    - Theme-aware SVG file for `site_logo`
-    - ![Made with Unity](https://raw.githubusercontent.com/sator-imaging/docfx-pages/releases/v1.0.0/.docfx/images/unity/made-with-unity.svg)
+</details>
 
 
 
@@ -176,6 +168,17 @@ then, set options in your GitHub Actions. Note that paths must be relative from 
 
 > [!TIP]
 > You can prepare `.docfx` contents in your GitHub Actions instead of duplicating/uploading files in repository.
+
+
+
+## Builtin Assets
+
+- `images/wikimedia-commons/logo-csharp-recolor.svg`
+    - C# logo file for `site_logo` and `site_favicon`
+    - ![C# Logo](https://raw.githubusercontent.com/sator-imaging/docfx-pages/releases/v1.0.0/.docfx/images/wikimedia-commons/logo-csharp-recolor.svg)
+- `images/unity/made-with-unity.svg`
+    - Theme-aware SVG file for `site_logo`
+    - ![Made with Unity](https://raw.githubusercontent.com/sator-imaging/docfx-pages/releases/v1.0.0/.docfx/images/unity/made-with-unity.svg)
 
 
 
