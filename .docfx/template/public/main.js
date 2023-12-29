@@ -62,13 +62,13 @@ function initializePage(event) {
 
     // inherited members list is too long. hide it by default.
     for (const inheritedMembers of document.querySelectorAll("#inherited-members")) {
-        const list = inheritedMembers.nextSibling();
+        const list = inheritedMembers.nextSibling;
         if (!list?.classList?.contains('typelist'))
             continue;
 
         const details = document.createElement('details');
         inheritedMembers.parentNode.insertBefore(details, list);
-        dettails.appendChild(list);
+        details.appendChild(list);
     }
 
     // api reference generator

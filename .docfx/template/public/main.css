@@ -147,6 +147,10 @@ body[data-yaml-mime=ApiPage] div.content dt .badge {
     font-weight: normal;
 }
 
+body[data-yaml-mime=ApiPage] article dl.typelist>dd>div {
+    display: block;
+}
+
 
 /** content */
 
