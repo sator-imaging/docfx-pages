@@ -61,15 +61,21 @@ function initializePage(event) {
     }
 
     // inherited members list is too long. hide it by default.
-    for (const inheritedMembers of document.querySelectorAll("#inherited-members")) {
-        const list = inheritedMembers.nextSibling;
-        if (!list?.classList?.contains('typelist'))
-            continue;
+    const hideInheritedMembers = function () {
+        for (const inheritedMembers of document.querySelectorAll("#inherited-members")) {
+            const list = inheritedMembers.nextSibling;
+            if (!list?.classList?.contains('typelist'))
+                continue;
 
-        const details = document.createElement('details');
-        inheritedMembers.parentNode.insertBefore(details, list);
-        details.appendChild(list);
-    }
+            const details = document.createElement('details');
+            inheritedMembers.parentNode.insertBefore(details, list);
+            details.appendChild(list);
+        }
+    };
+    // need delay
+    setTimeout(hideInheritedMembers, 64);
+    setTimeout(hideInheritedMembers, 128);
+    setTimeout(hideInheritedMembers, 1024);
 
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
