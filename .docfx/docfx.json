@@ -108,7 +108,8 @@
             {
                 "src": "../",
                 "files": [
-                    "images/**"
+                    "images/**",
+                    ".images/**"
                 ],
                 "exclude": [
                     "_site/**",
