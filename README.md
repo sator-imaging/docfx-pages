@@ -91,7 +91,7 @@ jobs:
 
       # after checkout, you can checkout another repo, copy logo image or
       # other assets into '.docfx' folder to setup own docfx environment.
-      # note that images must be copied into '.docfx/images' folder.
+      # note that images must be copied into '.docfx/images', 'images' or '.images'.
 
 
       ######  main  ######
@@ -172,6 +172,9 @@ then, set options in your GitHub Actions. Note that paths must be relative from 
 ```
 
 > [!NOTE]
+> Default resource folders: `.docfx/images`, `images`, or `.images`
+
+> [!TIP]
 > You can prepare `.docfx` contents in your GitHub Actions instead of duplicating/uploading files in repository.
 
 
