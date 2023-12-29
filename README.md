@@ -40,7 +40,7 @@ Just enable GitHub Pages in repository setting and paste the code below.
 
 ### GitHub Actions Source Code
 
-<details>
+<p><details>
 
 ```yaml
 name: docfx for GitHub Pages
@@ -141,7 +141,7 @@ jobs:
 
 ```
 
-</details>
+</details></p>
 
 
 
