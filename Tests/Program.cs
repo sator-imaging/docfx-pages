@@ -5,6 +5,9 @@ namespace SatorImaging.DocFXPages.Tests
 {
     namespace Annotations
     {
+        /// <example>
+        /// What's shown by &lt;example&gt; tag??
+        /// </example>
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
         public class MyAttribute : Attribute { }
 
