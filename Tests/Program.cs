@@ -8,6 +8,8 @@ namespace SatorImaging.DocFXPages.Tests
         /// <example>
         /// What's shown by &lt;example&gt; tag??
         /// </example>
+        /// <see href="https://github.com/sator-imaging/docfx-pages"/>
+        /// <seealso href="https://github.com/sator-imaging/docfx-pages"/>
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
         public class MyAttribute : Attribute { }
 
