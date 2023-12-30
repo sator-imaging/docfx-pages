@@ -151,9 +151,9 @@ function initializePage(event) {
                 let affixUL = affixDiv?.querySelector('#' + nsParentID);
                 if (!affixUL && affixDiv) {
                     affixUL = document.createElement('ul');
+                    affixUL.id = nsParentID;
                     const affixGroup = document.createElement('li');
                     affixGroup.innerHTML = '<span class="link-secondary">' + nsParentName + '</span>'
-                    affixGroup.id = nsParentID;
                     affixUL.appendChild(affixGroup);
                     affixDiv.appendChild(affixUL);
                 }
