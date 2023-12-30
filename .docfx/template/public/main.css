@@ -41,8 +41,12 @@ nav.navbar a.navbar-brand img[src$="images/unity/made-with-unity.svg"] {
 }
 
 nav.navbar ul.dropdown-menu {
-    padding: 2px 12px;
+    padding: 8px 12px;
     width: max-content;
+}
+
+nav.navbar ul.dropdown-menu .nav-link {
+    padding: 2px;
 }
 
 nav.navbar ul.navbar-nav>li:first-child {

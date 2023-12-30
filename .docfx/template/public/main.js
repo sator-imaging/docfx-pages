@@ -60,8 +60,9 @@ function initializePage(event) {
         }
     }
 
-    // inherited members list is too long. hide it by default.
-    const hideInheritedMembers = function () {
+    // TODO: do this by customizing template/partials.
+    const stylingByScript = function () {
+        // inherited members list is too long. hide it by default.
         for (const inheritedMembers of document.querySelectorAll("#inherited-members")) {
             const list = inheritedMembers.nextSibling;
             if (!list?.classList?.contains('typelist'))
@@ -71,11 +72,24 @@ function initializePage(event) {
             inheritedMembers.parentNode.insertBefore(details, list);
             details.appendChild(list);
         }
+
+        // disable navbar submenu.
+        for (const dropdown of document.querySelectorAll('.navbar .nav-item>.dropdown-toggle')) {
+            dropdown.dataset.bsToggle = undefined;
+            dropdown.classList.remove('dropdown-toggle');
+            dropdown.href = location.pathname;
+            const pos = dropdown.href.indexOf('/', 1);
+            if (pos >= 0) {
+                dropdown.href = dropdown.href.slice(0, pos);
+            }
+            dropdown.href.trimEnd('/');
+            dropdown.href += '/api/index.html';
+        }
     };
     // need delay
-    setTimeout(hideInheritedMembers, 64);
-    setTimeout(hideInheritedMembers, 128);
-    setTimeout(hideInheritedMembers, 1024);
+    setTimeout(stylingByScript, 64);
+    setTimeout(stylingByScript, 128);
+    setTimeout(stylingByScript, 1024);
 
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
