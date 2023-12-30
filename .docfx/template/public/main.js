@@ -137,8 +137,8 @@ function initializePage(event) {
                 if (!nsFullName) {
                     nsFullName = 'Global';
                 }
-                let nsParentName = '';
-                let nsShortName = '';
+                let nsParentName = 'Global';
+                let nsShortName = 'Global';
                 const nsPos = nsFullName.lastIndexOf('.');
                 if (nsPos >= 0) {
                     nsParentName = nsFullName.slice(0, nsPos);
