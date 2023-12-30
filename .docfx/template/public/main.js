@@ -77,13 +77,13 @@ function initializePage(event) {
         for (const dropdown of document.querySelectorAll('.navbar .nav-item>.dropdown-toggle')) {
             dropdown.dataset.bsToggle = undefined;
             dropdown.classList.remove('dropdown-toggle');
-            dropdown.href = location.pathname;
-            const pos = dropdown.href.indexOf('/', 1);
+            let href = location.pathname;
+            const pos = href.indexOf('/', 1);
             if (pos >= 0) {
-                dropdown.href = dropdown.href.slice(0, pos);
+                href = href.slice(0, pos);
             }
-            dropdown.href.trimEnd('/');
-            dropdown.href += '/api/index.html';
+            href = href.trimEnd('/');
+            dropdown.href = href + '/api/index.html';
         }
     };
     // need delay
