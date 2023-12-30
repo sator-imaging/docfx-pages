@@ -4,7 +4,7 @@ function initializeAffix() {
         return;
 
     // badge for affix
-    for (const affix of document.querySelectorAll('body[data-yaml-mime=ApiPage] div.affix .link-body-emphasis')) {
+    for (const affix of document.querySelectorAll('body[data-yaml-mime=ApiPage] div.affix .link-secondary')) {
         if (affix.innerText.endsWith(' Deprecated')) {
             affix.innerText = affix.innerText.replace(/ Deprecated$/, '') + ' ';
 
@@ -18,12 +18,12 @@ function initializeAffix() {
     window.removeEventListener("resize", initializeAffix);
 }
 
+window.addEventListener("resize", initializeAffix);
 // need delay for affix async load
 // run 3 different delays, no way to await unknown async jobs. this works enough.
 setTimeout(initializeAffix, 64);
 setTimeout(initializeAffix, 128);
 setTimeout(initializeAffix, 1024);
-setTimeout(() => window.addEventListener("resize", initializeAffix), 1024);
 
 
 function initializePage(event) {
