@@ -18,12 +18,12 @@ function initializeAffix() {
     window.removeEventListener("resize", initializeAffix);
 }
 
-window.addEventListener("resize", initializeAffix);
 // need delay for affix async load
 // run 3 different delays, no way to await unknown async jobs. this works enough.
 setTimeout(initializeAffix, 64);
 setTimeout(initializeAffix, 128);
 setTimeout(initializeAffix, 1024);
+setTimeout(() => window.addEventListener("resize", initializeAffix), 1024);
 
 
 function initializePage(event) {
