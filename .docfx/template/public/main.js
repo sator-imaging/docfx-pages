@@ -4,7 +4,7 @@ function initializeAffix() {
         return;
 
     // badge for affix
-    for (const affix of document.querySelectorAll('body[data-yaml-mime=ApiPage] div.affix .link-secondary')) {
+    for (const affix of document.querySelectorAll('body[data-yaml-mime=ApiPage] div.affix a')) {
         if (affix.innerText.endsWith(' Deprecated')) {
             affix.innerText = affix.innerText.replace(/ Deprecated$/, '') + ' ';
 
@@ -75,7 +75,7 @@ function initializePage(event) {
 
         // disable navbar submenu.
         for (const dropdown of document.querySelectorAll('.navbar .nav-item>.dropdown-toggle')) {
-            dropdown.dataset.bsToggle = undefined;
+            dropdown.dataset.bsToggle = '';
             dropdown.classList.remove('dropdown-toggle');
             let href = location.pathname;
             const pos = href.indexOf('/', 1);
@@ -119,6 +119,14 @@ function initializePage(event) {
             const nsDL = document.createElement('dl');
             article.appendChild(nsDL);
 
+            const affixDiv = document.querySelector('#affix');
+            if (affixDiv) {
+                const affixHeading = document.createElement('h5');
+                affixHeading.innerText = 'Namespaces';
+                affixHeading.classList.add('border-bottom');
+                affixDiv.appendChild(affixHeading);
+            }
+
             //console.info('api reference generator: build namespace contents');
             for (const ns of tocData.items) {
                 if (!ns.items) {
@@ -139,6 +147,21 @@ function initializePage(event) {
                 const nsParentID = nsParentName.replaceAll('.', '-').toLowerCase();
                 const nsID = nsFullName.replaceAll('.', '-').toLowerCase();
                 nsParentName = nsParentName.replaceAll('.', ' > ');
+
+                let affixUL = affixDiv?.querySelector('#' + nsParentID);
+                if (!affixUL && affixDiv) {
+                    affixUL = document.createElement('ul');
+                    const affixGroup = document.createElement('li');
+                    affixGroup.innerHTML = '<span class="link-secondary">' + nsParentName + '</span>'
+                    affixGroup.id = nsParentID;
+                    affixUL.appendChild(affixGroup);
+                    affixDiv.appendChild(affixUL);
+                }
+                if (affixUL) {
+                    const affixLink = document.createElement('li');
+                    affixLink.innerHTML = '<a class="link-body-emphasis" href="#' + nsID + '">' + nsShortName + '</a>';
+                    affixUL.appendChild(affixLink);
+                }
 
                 let nsDD = nsDL.querySelector('#' + nsParentID);
                 if (!nsDD) {
