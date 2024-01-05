@@ -177,7 +177,7 @@ function initializePage(event) {
                 const nsDiv = document.createElement('div');
                 const nsAnchor = document.createElement('a');
                 nsAnchor.innerText = nsShortName;
-                nsAnchor.href = '#' + nsID;
+                nsAnchor.href = ns.href ?? '#' + nsID;
                 nsDiv.appendChild(nsAnchor);
                 nsDD.appendChild(nsDiv);
 
