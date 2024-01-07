@@ -27,6 +27,7 @@
             "disableGitFeatures": false,
             "disableDefaultFilter": false,
             "shouldSkipMarkup": false,
+            "globalNamespaceId": "Global",
             "properties": {
                 "DefineConstants": "%s",
                 "TargetFramework": "netstandard2.0"
