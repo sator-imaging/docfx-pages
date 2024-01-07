@@ -132,13 +132,13 @@ runs:
     - name: Rename README and LICENSE
       shell: bash
       run: |
-        if test -f README; then
-          if ! test -f README.md; then
+        if [[ test -f README ]]; then
+          if ! [[ test -f README.md ]]; then
             mv README README.md
           fi
         fi
-        if test -f LICENSE; then
-          if ! test -f LICENSE.md; then
+        if [[ test -f LICENSE ]]; then
+          if ! [[ test -f LICENSE.md ]]; then
             mv LICENSE LICENSE.md
           fi
         fi
@@ -146,13 +146,13 @@ runs:
     - name: Fix document title if required
       shell: bash
       run: |
-        if test -f README.md; then
-          if ! [ "$(head -1 README.md | sed -n '/^# /p;q')" ]; then
+        if [[ test -f README.md ]]; then
+          if ! [[ $(head -1 README.md | sed -n -E '/^# /p') ]]; then
             echo "# $(cat README.md)" > README.md
           fi
         fi
-        if test -f LICENSE.md; then
-          if ! [ "$(head -1 LICENSE.md | sed -n '/^# /p;q')" ]; then
+        if [[ test -f LICENSE.md ]]; then
+          if ! [[ $(head -1 LICENSE.md | sed -n -E '/^# /p') ]]; then
             echo "# $(cat LICENSE.md)" > LICENSE.md
           fi
         fi
@@ -160,11 +160,11 @@ runs:
     - name: Generate README.md and index.md
       shell: bash
       run: |
-        if ! test -f 'README.md'; then
+        if ! [[ test -f 'README.md' ]]; then
           echo "# $(echo ${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/})" > README.md
           echo "${{ github.server_url }}/${{ github.repository }}" >> README.md
         fi
-        if ! test -f 'index.md'; then
+        if ! [[ test -f 'index.md' ]]; then
           mv 'README.md' 'index.md'
         fi
 
@@ -173,23 +173,81 @@ runs:
       run: |
         mkdir -p api
         pushd api
-          if ! test -f index.md; then
+          if ! [[ test -f index.md ]]; then
             echo "# API Reference" > index.md
           fi
         popd
 
-    - name: Generate toc.yml
+
+    - name: HeaderDoc extraction and Generate toc.yml
       shell: bash
       run: |
+        TOC=''
+        HDOC_DIR_NAME='HeaderDocs'
+        HDOC_DIR=".docfx/${HDOC_DIR_NAME}"
+
+        pushd '.'
+          DIR=.
+          LEN=2  # DIR.length + 1 (slash)
+          
+          for f in $(find $DIR -name '*.cs'); do
+            if [[ -f $f ]]; then
+              if ! [[ $(head -1 $f | sed -n -E '/^\/\*+/p') ]]; then
+                echo -e "NO HEADER DOC \t ${f:$LEN} ($f)"
+                continue
+              fi
+
+              # filename=$(basename -- "$f")
+              # extension="${filename##*.}"
+              # filename="${filename%.*}"
+
+              HDOC=$(sed -n -E '
+                /^\/\*+/{
+                  :a;
+                  N;
+                  /[\r\n][[:blank:]]?\*+\//!ba;
+                  s/([\r\n]*)[[:blank:]]?[\*\/]+[[:blank:]]*/\1/g;
+                  s/^[\r\n[:blank:]]+//;
+                  s/[\r\n[:blank:]]+$//;
+                  s/ \r?\n/\n/g;
+                  s/\r?\n/  \n/g;
+                  p;
+                }' $f )
+
+              if [[ $HDOC ]]; then
+                mkdir -p "$HDOC_DIR"
+                if ! [[ $(sed -n -E '/^# /p' <<< "$HDOC") ]]; then
+                  HDOC="# $HDOC"
+                fi
+                MD_FILE="${HDOC_DIR}/${f}.md"
+                echo "$MD_FILE"
+                printf "$HDOC" > "$MD_FILE"
+
+                TOC="${TOC}  - href: ${HDOC_DIR_NAME}/${f:$LEN}.md\n"
+              fi
+
+            fi
+          done
+        popd
+
         cd .docfx
-          if ! test -f 'toc.yml'; then
-            echo '- name: Introduction' >> 'toc.yml'
-            echo '  href: index.html' >> 'toc.yml'
+          if ! [[ test -f 'toc.yml' ]]; then
+            if [[ $TOC ]]; then
+              echo "- name: Docs" >> 'toc.yml'
+              echo "  expanded: true" >> 'toc.yml'
+              echo "  items:" >> 'toc.yml'
+              echo "  - name: Introduction" >> 'toc.yml'
+              echo "    href: README.md" >> 'toc.yml'
+              echo "${TOC}" >> 'toc.yml'
+            else
+              echo "- name: Introduction" >> 'toc.yml'
+              echo "  href: README.md" >> 'toc.yml'
+            fi
             echo '- name: API' >> 'toc.yml'
             echo '  href: api/toc.yml' >> 'toc.yml'
             echo '  topicHref: api/index.html' >> 'toc.yml'
             echo '  expanded: true' >> 'toc.yml'
-            if test -f '../LICENSE.md'; then
+            if [[ test -f '../LICENSE.md' ]]; then
               echo '- name: License' >> 'toc.yml'
               echo '  href: LICENSE.html' >> 'toc.yml'
             fi
@@ -238,7 +296,7 @@ runs:
       shell: bash
       run: |
         pushd .docfx/_site
-          if test -f toc.json; then
+          if [[ test -f toc.json ]]; then
             sed 's/toc.yml"\,"items"\:\[{/toc.yml"\,"items"\:\[{"expanded"\:true\,/g' -i toc.json
             sed 's/html"}\]}\,{/html"}\]}\,{"expanded"\:true\,/g' -i toc.json
             cat toc.json
