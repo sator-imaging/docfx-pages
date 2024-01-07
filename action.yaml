@@ -221,6 +221,14 @@ runs:
                 MD_DIR=$(dirname "$MD_FILE")
                 mkdir -p "$MD_DIR"
 
+                REPO_PATH="https://github.com/$(echo ${GITHUB_REPOSITORY})/${f:$LEN}"
+                HDOC=$(sed \
+                  -e '2i\ ' \
+                  -e "2i <a href='${REPO_PATH}'><i class="bi bi-code-slash"></i></a>" \
+                  -e "2i ${REPO_PATH}" \
+                  -e '2i\ ' \
+                  <<< "$HDOC")
+
                 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
                 echo "$MD_FILE"
                 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -243,7 +251,6 @@ runs:
               echo "  items:" >> 'toc.yml'
               echo "  - name: Introduction" >> 'toc.yml'
               echo "    href: index.html" >> 'toc.yml'
-              echo "  - name: HeaderDocs" >> 'toc.yml'
               echo "${TOC}" >> 'toc.yml'
             else
               echo "- name: Introduction" >> 'toc.yml'
