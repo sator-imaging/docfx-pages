@@ -88,7 +88,7 @@ function initializePage(event) {
 
         // toc bottom link
         const tocBottomID = 'stmg-toc-bottom';
-        let tocBottom = document.querySelector('#' + tocBottomID);
+        let tocBottom = document.getElementById(tocBottomID);
         if (!tocBottom) {
             for (const navToc of document.querySelectorAll("nav#toc")) {
                 tocBottom = document.createElement('div');
@@ -163,7 +163,7 @@ function initializePage(event) {
                 const nsID = nsFullName.replaceAll('.', '-').toLowerCase();
                 nsParentName = nsParentName.replaceAll('.', ' > ');
 
-                let affixUL = affixDiv?.querySelector('#' + nsParentID);
+                let affixUL = affixDiv?.getElementById(nsParentID);
                 if (!affixUL && affixDiv) {
                     affixUL = document.createElement('ul');
                     affixUL.id = nsParentID;
@@ -178,7 +178,7 @@ function initializePage(event) {
                     affixUL.appendChild(affixLink);
                 }
 
-                let nsDD = nsDL.querySelector('#' + nsParentID);
+                let nsDD = nsDL.getElementById(nsParentID);
                 if (!nsDD) {
                     const nsDT = document.createElement('dt');
                     nsDT.innerHTML = '<h3>' + nsParentName + '</h3>';
@@ -192,7 +192,7 @@ function initializePage(event) {
                 const nsDiv = document.createElement('div');
                 const nsAnchor = document.createElement('a');
                 nsAnchor.innerText = nsShortName;
-                nsAnchor.href = ns.href ?? '#' + nsID;
+                nsAnchor.href = ns.href ?? ('#' + nsID);
                 nsDiv.appendChild(nsAnchor);
                 nsDD.appendChild(nsDiv);
 
