@@ -250,10 +250,10 @@ runs:
           if ! [[ -f 'toc.yml' ]]; then
             if [[ $TOC ]]; then
 
-              echo "# HeaderDoc Index" >> hdocs.html
-              echo "Here is list of `HeaderDoc` automatically generated from the source code comment." >> hdocs.html
-              echo "" >> hdocs.html
-              echo "${HDOC_INDEX}" >> hdocs.html
+              echo "# HeaderDoc Index" >> hdocs.md
+              echo "Here is list of `HeaderDoc` automatically generated from the source code comment." >> hdocs.md
+              echo "" >> hdocs.md
+              echo "${HDOC_INDEX}" >> hdocs.md
 
               echo "- name: Docs" >> 'toc.yml'
               ## echo "  expanded: true" >> 'toc.yml'
