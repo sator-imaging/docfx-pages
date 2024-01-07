@@ -174,11 +174,11 @@ runs:
           mv 'README.md' 'index.md'
         fi
 
-    - name: Generate api/index.md
+    - name: Generate .docfx/api/index.md
       shell: bash
       run: |
-        mkdir -p api
-        pushd api
+        mkdir -p .docfx/api
+        pushd .docfx/api
           if ! [[ -f index.md ]]; then
             echo "# API Reference" > index.md
           fi
