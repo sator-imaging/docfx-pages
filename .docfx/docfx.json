@@ -12,8 +12,8 @@
                     "src": "../",
                     "files": [
                         "**/*.csproj",
-                        "**/*.dll__disabled",
-                        "**/*.cs__disabled"
+                        "**/*.dll",
+                        "**/*.cs"
                     ],
                     "exclude": [
                         "**/.*",

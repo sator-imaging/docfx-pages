@@ -305,19 +305,6 @@ runs:
 
         cd ..
 
-    - name: Generate .csproj
-      shell: bash
-      run: |
-        CSPROJ=''
-
-        for f in $(find . -name '*.cs'); do
-          printf -v CSPROJ "${CSPROJ}    <Compile Include=\"${f}\" />"
-        done
-
-        printf "$(cat .docfx/__define__.csproj)" \
-          "${CSPROJ}" \
-          > A.csproj
-
 
     # DEBUG
     - name: DEBUG
@@ -326,8 +313,15 @@ runs:
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         cat .docfx/docfx.json
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        cat A.csproj
-        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
+
+    ###  see define_symbols.txt header for detail  ###
+    - name: Insert define symbols into all the .cs files... hehe.
+      shell: bash
+      run: |
+        for f in $(find . -name '*.cs'); do
+          sed -e "1i $(cat .docfx/define_symbols.txt)" -i "$f"
+        done
 
 
     - name: Run DocFX
