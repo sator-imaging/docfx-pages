@@ -30,6 +30,16 @@ Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessar
   - *Note:* this sample demonstrates wrong result when specify `site_logo` or `site_favidon` as full-qualified URL. (Logo image in header is missing. `docfx` supports only relative path.)
 
 
+### Automatic `HeaderDoc` Extraction
+
+Block comment at the beginning of source code will be extracted as a Markdown document automatically and listed in table of contents.
+
+- `HeaderDoc` Page
+  - https://sator-imaging.github.io/docfx-pages/HeaderDocs/Tests/Program.cs.html
+- C# Source Code
+  - https://github.com/sator-imaging/docfx-pages/blob/main/Tests/Program.cs
+
+
 
 ## Getting Started
 

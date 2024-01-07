@@ -7,9 +7,9 @@ If no HeaderDoc closer found, whole document is ignored.
 
 > [!NOTE]
 > HeaderDoc closer must be placed in separated line and it must be starting with `*`
-> followed by `/`, no space between `*` and `/`. you can insert additional single space
+> followed by `/`, no space between `*` and `/`. You can insert additional single space
 > before asterisk. When 2 or more spaces exists, it is not treated as HeaderDoc closer.  
-> * actual closer cannot included in HeaderDoc due to compile error.
+> ** actual closer cannot included in HeaderDoc due to compile error.
 
 
 Heading
