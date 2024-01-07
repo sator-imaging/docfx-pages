@@ -325,6 +325,7 @@ runs:
       run: |
         for f in $(find . -name '*.cs'); do
           sed -e "1i $(cat .docfx/define_symbols.txt)" -i "$f"
+          cat "$f"
         done
 
 
