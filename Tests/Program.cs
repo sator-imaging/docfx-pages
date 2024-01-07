@@ -28,6 +28,14 @@ Markdown sub heading 2.
 ### One Last Heading
 Markdown triple # heading.
 
+
+ * List test in *-starting line. spaces must be preserved.
+ * - 1st
+ *     - 2nd
+ * - 3rd
+ *     - 4th
+ *         - 5th
+
 End of document.
 
  */
