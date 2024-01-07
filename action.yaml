@@ -253,7 +253,10 @@ runs:
         popd
 
         for f in $(find . -name '*.md'); do
-          printf -v TOC_LINKS "${TOC_LINKS}  - href: ${f:$LEN}.md\n"
+          if [[ $f == *index.md || $f == LICENSE.md || $f == ${HDOC_DIR_NAME}/* ]]; then
+            continue
+          fi
+          printf -v TOC_LINKS "${TOC_LINKS}  - href: ${f:$LEN}\n"
         done
 
         cd .docfx
