@@ -324,7 +324,10 @@ runs:
       shell: bash
       run: |
         for f in $(find . -name '*.cs'); do
-          cat .docfx/define_symbols.txt | cat - "$f" > "$f"
+          cat .docfx/define_symbols.txt | cat - "$f" > "__stmg__"
+          rm -f "$f"
+          mv "__stmg__" "$f"
+          cat "$f"
         done
 
 
