@@ -211,6 +211,7 @@ runs:
                   s/[[:blank:]\r\n]+$//;
                   s/ \r?\n/\n/g;
                   s/\r?\n/  \n/g;
+                  s/^#+[[:blank:]]*//;
                   s/^/# /;
                   p;
                 }' $f )
@@ -242,6 +243,7 @@ runs:
               echo "  items:" >> 'toc.yml'
               echo "  - name: Introduction" >> 'toc.yml'
               echo "    href: index.html" >> 'toc.yml'
+              echo "  - name: HeaderDocs" >> 'toc.yml'
               echo "${TOC}" >> 'toc.yml'
             else
               echo "- name: Introduction" >> 'toc.yml'
