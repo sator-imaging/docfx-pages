@@ -207,8 +207,8 @@ runs:
                   N;
                   /[\r\n][[:blank:]]?\*+\//!ba;
                   s/^\/\*+[[:blank:]\r\n]+//;
-                  s/[[:blank:]\r\n]+$//;
                   s/([\r\n]+)[[:blank:]]?[\*\/]+[[:blank:]]*/\1/g;
+                  s/[[:blank:]\r\n]+$//;
                   s/ \r?\n/\n/g;
                   s/\r?\n/  \n/g;
                   s/^/# /;
