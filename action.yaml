@@ -305,6 +305,19 @@ runs:
 
         cd ..
 
+    - name: Generate .csproj
+      shell: bash
+      run: |
+        CSPROJ=''
+
+        for f in $(find . -name '*.cs'); do
+          printf -v CSPROJ "${CSPROJ}    <Compile Include=\"${f}\" />"
+        done
+
+        printf "$(cat .docfx/__define__.csproj)" \
+          "${CSPROJ}" \
+          > A.csproj
+
 
     # DEBUG
     - name: DEBUG
@@ -312,6 +325,8 @@ runs:
       run: |
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         cat .docfx/docfx.json
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        cat A.csproj
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 
