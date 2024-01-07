@@ -251,13 +251,13 @@ runs:
             if [[ $TOC ]]; then
 
               echo "# HeaderDoc Index" >> hdocs.md
-              echo "Here is list of `HeaderDoc` automatically generated from the source code comment." >> hdocs.md
+              echo "Here is list of \`HeaderDoc\` automatically generated from the source code comment." >> hdocs.md
               echo "" >> hdocs.md
               echo "${HDOC_INDEX}" >> hdocs.md
 
               echo "- name: Docs" >> 'toc.yml'
               ## echo "  expanded: true" >> 'toc.yml'
-              echo "  topicHref: hdocs.html" >> 'toc.yml'
+              echo "  href: hdocs.html" >> 'toc.yml'
               echo "  items:" >> 'toc.yml'
               echo "  - name: Introduction" >> 'toc.yml'
               echo "    href: index.html" >> 'toc.yml'
