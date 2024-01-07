@@ -1,3 +1,27 @@
+/** docfx-pages Header Comment Extraction
+ ** Written in KDoc Style
+
+Header comment must be at beginning of file and starting with `/*` or `/**`.
+If no ending `&ast;/` or ` &ast;/` (single space before asterisk) found,
+whole header comment is ignored.
+
+Heading
+=======
+Markdown heading.
+
+# Another Heading
+Markdown heading 2.
+
+Sub Heading
+-----------
+Markdown sub heading.
+
+# Another Sub Section
+Markdown sub heading 2.
+
+
+ */
+
 using System;
 using System.ComponentModel;
 

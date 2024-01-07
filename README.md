@@ -17,7 +17,7 @@ Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessar
     # required parameters
     app_name:    'docfx-pages'
     site_title:  'Deploy using sator-imaging/docfx-pages'
-    site_footer: '<em>HTML tags accepted</em>'
+    site_footer: 'Copyright &copy; <em><big>HTML</big> Tags</em>'
     # optional parameters
     class_members: ...
 ```
