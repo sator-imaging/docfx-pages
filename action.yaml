@@ -132,13 +132,13 @@ runs:
     - name: Rename README and LICENSE
       shell: bash
       run: |
-        if [[ test -f README ]]; then
-          if ! [[ test -f README.md ]]; then
+        if [[ -f README ]]; then
+          if ! [[ -f README.md ]]; then
             mv README README.md
           fi
         fi
-        if [[ test -f LICENSE ]]; then
-          if ! [[ test -f LICENSE.md ]]; then
+        if [[ -f LICENSE ]]; then
+          if ! [[ -f LICENSE.md ]]; then
             mv LICENSE LICENSE.md
           fi
         fi
@@ -147,12 +147,12 @@ runs:
       shell: bash
       run: |
         if [[ test -f README.md ]]; then
-          if [[ "$(head -1 README.md | sed -n -E '/^# /p')" != "" ]]; then
+          if [[ $(head -1 README.md | sed -n -E '/^# /p') ]]; then
             echo "# $(cat README.md)" > README.md
           fi
         fi
         if [[ test -f LICENSE.md ]]; then
-          if [[ "$(head -1 LICENSE.md | sed -n -E '/^# /p')" != "" ]]; then
+          if [[ $(head -1 LICENSE.md | sed -n -E '/^# /p') ]]; then
             echo "# $(cat LICENSE.md)" > LICENSE.md
           fi
         fi
