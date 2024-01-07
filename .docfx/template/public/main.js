@@ -163,7 +163,7 @@ function initializePage(event) {
                 const nsID = nsFullName.replaceAll('.', '-').toLowerCase();
                 nsParentName = nsParentName.replaceAll('.', ' > ');
 
-                let affixUL = affixDiv?.getElementById(nsParentID);
+                let affixUL = affixDiv?.querySelector('#' + nsParentID);
                 if (!affixUL && affixDiv) {
                     affixUL = document.createElement('ul');
                     affixUL.id = nsParentID;
@@ -178,7 +178,7 @@ function initializePage(event) {
                     affixUL.appendChild(affixLink);
                 }
 
-                let nsDD = nsDL.getElementById(nsParentID);
+                let nsDD = nsDL.querySelector('#' + nsParentID);
                 if (!nsDD) {
                     const nsDT = document.createElement('dt');
                     nsDT.innerHTML = '<h3>' + nsParentName + '</h3>';
