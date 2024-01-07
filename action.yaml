@@ -225,7 +225,7 @@ runs:
                 mkdir -p "$MD_DIR"
                 
                 printf "$HDOC" > "$MD_FILE"
-                TOC="${TOC}  - href: ${HDOC_DIR_NAME}/${f:$LEN}.html\n"
+                printf -v TOC "${TOC}  - href: ${HDOC_DIR_NAME}/${f:$LEN}.md\n"
               fi
 
             fi
@@ -239,11 +239,11 @@ runs:
               echo "  expanded: true" >> 'toc.yml'
               echo "  items:" >> 'toc.yml'
               echo "  - name: Introduction" >> 'toc.yml'
-              echo "    href: README.html" >> 'toc.yml'
+              echo "    href: index.html" >> 'toc.yml'
               echo "${TOC}" >> 'toc.yml'
             else
               echo "- name: Introduction" >> 'toc.yml'
-              echo "  href: README.html" >> 'toc.yml'
+              echo "  href: index.html" >> 'toc.yml'
             fi
             echo '- name: API' >> 'toc.yml'
             echo '  href: api/toc.yml' >> 'toc.yml'
