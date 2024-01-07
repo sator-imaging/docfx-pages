@@ -253,9 +253,11 @@ runs:
         popd
 
         for f in $(find . -name '*.md'); do
-          if [[ $f == *index.md || $f == LICENSE.md || $f == .docfx/* ]]; then
+          echo "AUTO MD COLLECTOR: $f"
+          if [[ "$f" == *index.md || "$f" == LICENSE.md || "$f" == .docfx/* ]]; then
             continue
           fi
+          echo "FILE COLLECTED: $f"
           printf -v TOC_LINKS "${TOC_LINKS}  - href: ../${f:$LEN}\n"
         done
 
