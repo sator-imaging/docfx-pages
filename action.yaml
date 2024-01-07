@@ -224,8 +224,9 @@ runs:
                 REPO_PATH="https://github.com/$(echo ${GITHUB_REPOSITORY})/tree/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}/${f:$LEN}"
                 HDOC=$(sed \
                   -e '2i\ ' \
-                  -e "2i <a href='${REPO_PATH}'><i class='bi bi-code-slash align-text-top'></i></a>" \
-                  -e "2i <code>${f:$LEN}</code> <a href='${REPO_PATH}'>Source</a>" \
+                  -e "2i <i class='bi bi-code-slash align-text-top'></i>" \
+                  -e "2i <code>${f:$LEN}</code> &nbsp;" \
+                  -e "2i <a href='${REPO_PATH}' class='small'>HeaderDoc Source Code</a>" \
                   -e '2i\ ' \
                   <<< "$HDOC")
 
