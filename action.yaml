@@ -226,7 +226,7 @@ runs:
                   -e '2i\ ' \
                   -e "2i <i class='bi bi-code-slash align-text-top'></i>" \
                   -e "2i <code>${f:$LEN}</code> &nbsp;" \
-                  -e "2i <a href='${REPO_PATH}' class='small'>HeaderDoc Source Code</a>" \
+                  -e "2i <a href='${REPO_PATH}' class='small'>HeaderDoc</a>" \
                   -e '2i\ ' \
                   <<< "$HDOC")
 
