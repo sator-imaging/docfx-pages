@@ -254,6 +254,13 @@ function initializePage(event) {
     }
     // end of api reference generator
 
+    // toc bottom link
+    for (const navToc of document.querySelectorAll("nav#toc")) {
+        const tocBottom = document.createElement('div');
+        tocBottom.classList.add('mb-1', 'small');
+        tocBottom.innerHTML = 'Go <a href="https://github.com/sator-imaging/docfx-pages">docfx-pages</a>';
+        navToc.appendChild(tocBottom);
+    }
 }
 
 
