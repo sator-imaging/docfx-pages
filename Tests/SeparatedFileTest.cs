@@ -9,3 +9,8 @@ namespace SatorImaging.DocFXPages.Tests.SeparatedFile
         public static void StaticHello() { }
     }
 }
+
+public interface IGlobal { }
+public enum GlobalEnum { }
+public class GlobalClass{ }
+public struct GlobalStruct { }
