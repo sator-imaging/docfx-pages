@@ -99,7 +99,7 @@ function initializePage(event) {
             tocBottom = document.createElement('div');
             tocBottom.id = tocBottomID;
             tocBottom.classList.add('mb-1', 'small');
-            tocBottom.innerHTML = 'Go <a href="https://github.com/sator-imaging/docfx-pages">docfx-pages</a>';
+            tocBottom.innerHTML = 'See <a href="https://github.com/marketplace/actions/docfx-for-github-pages">docfx-pages</a>';
             // additional delay to prevent inserted before toc list
             setTimeout(() => navToc.appendChild(tocBottom), 1024);
             tocBottom.style.order = 310;  // always last by css style
