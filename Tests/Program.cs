@@ -3,13 +3,12 @@
  ** Generic block comment style is also allowed.
 
 HeaderDoc must be placed at beginning of file and starting with `/*` or `/**`.
-If no HeaderDoc closer found, whole document is ignored.
+If no HeaderDoc closer (<code>*<span>/</span></code>) found, whole document is ignored.
 
 > [!NOTE]
-> HeaderDoc closer must be placed in separated line and it must be starting with `*`
-> followed by `/`, no space between `*` and `/`. You can insert additional single space
-> before asterisk. When 2 or more spaces exists, it is not treated as HeaderDoc closer.  
-> ** actual closer cannot included in HeaderDoc due to compile error.
+> HeaderDoc closer must be placed in separated line and starting with `*` followed by `/`,
+> no space between `*` and `/` is allowed. You can insert additional single space before
+> asterisk. When 2 or more spaces exists, it is not treated as HeaderDoc closer.
 
 
 Heading
