@@ -122,8 +122,9 @@ jobs:
           site_footer: '<big>&times; Is HTML accepted?</big>'
 
           # optional
-          class_members:    'separatePages'  # 'separatePages' or 'samePage'
-          google_analytics: ''               # empty to disable
+          class_members: 'separatePages'  # 'separatePages' or 'samePage'
+          google_analytics: ''  # empty to disable
+          define_symbols: ''  # additional preprocessor symbols separated by ';'
 
           # paths must be relative from .docfx folder.
           # note that url works but only in top page. see sample website for detail.
