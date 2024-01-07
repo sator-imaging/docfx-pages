@@ -85,6 +85,14 @@ function initializePage(event) {
             href = href.trimEnd('/');
             dropdown.href = href + '/api/index.html';
         }
+
+        // toc bottom link
+        for (const navToc of document.querySelectorAll("nav#toc")) {
+            const tocBottom = document.createElement('div');
+            tocBottom.classList.add('mb-1', 'small');
+            tocBottom.innerHTML = 'Go <a href="https://github.com/sator-imaging/docfx-pages">docfx-pages</a>';
+            navToc.appendChild(tocBottom);
+        }
     };
     // need delay
     setTimeout(stylingByScript, 64);
@@ -253,14 +261,6 @@ function initializePage(event) {
         setTimeout(updateBreadcrumb, 1024);
     }
     // end of api reference generator
-
-    // toc bottom link
-    for (const navToc of document.querySelectorAll("nav#toc")) {
-        const tocBottom = document.createElement('div');
-        tocBottom.classList.add('mb-1', 'small');
-        tocBottom.innerHTML = 'Go <a href="https://github.com/sator-imaging/docfx-pages">docfx-pages</a>';
-        navToc.appendChild(tocBottom);
-    }
 }
 
 
