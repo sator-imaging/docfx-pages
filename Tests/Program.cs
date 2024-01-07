@@ -1,14 +1,15 @@
-/** docfx-pages Automatic HeaderDoc Extraction
- ** Written in KDoc Style
- ** Generic block comment style is also allowed
+/** Automatic HeaderDoc Extraction
+ ** This document is written in KDoc Style.
+ ** Generic block comment style is also allowed.
 
-Header comment must be at beginning of file and starting with `/*` or `/**`.
-If no HeaderDoc closer found, whole comment is ignored.
+HeaderDoc must be placed at beginning of file and starting with `/*` or `/**`.
+If no HeaderDoc closer found, whole document is ignored.
 
 > [!NOTE]
-> HeaderDoc closer must be placed in separated line. It must be `*` followed by `/`,
-> no-space between `*` and `/` and only single space is allowed before asterisk.  
-> (actual closer cannot included in HeaderDoc due to compile error)
+> HeaderDoc closer must be placed in separated line and it must be starting with `*`
+> followed by `/`, no space between `*` and `/`. you can insert additional single space
+> before asterisk. When 2 or more spaces exists, it is not treated as HeaderDoc closer.  
+> * actual closer cannot included in HeaderDoc due to compile error.
 
 
 Heading
