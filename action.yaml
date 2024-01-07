@@ -147,13 +147,13 @@ runs:
       shell: bash
       run: |
         if [[ -f README.md ]]; then
-          if [[ $(head -1 README.md | sed -n -E '/^# /p') ]]; then
-            echo "# $(cat README.md)" > README.md
+          if ! [[ $(head -1 README.md | sed -n -E '/^# /p') ]]; then
+            printf "# $(cat README.md)" > README.md
           fi
         fi
         if [[ -f LICENSE.md ]]; then
-          if [[ $(head -1 LICENSE.md | sed -n -E '/^# /p') ]]; then
-            echo "# $(cat LICENSE.md)" > LICENSE.md
+          if ! [[ $(head -1 LICENSE.md | sed -n -E '/^# /p') ]]; then
+            printf "# $(cat LICENSE.md)" > LICENSE.md
           fi
         fi
 
@@ -218,6 +218,7 @@ runs:
                 if ! [[ $(sed -n -E '/^# /p' <<< "$HDOC") ]]; then
                   HDOC="# $HDOC"
                 fi
+                printf "$HDOC"
 
                 MD_FILE="${HDOC_DIR}/${f:$LEN}.md"
                 echo "$MD_FILE"
