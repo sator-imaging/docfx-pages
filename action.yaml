@@ -221,10 +221,10 @@ runs:
                 MD_DIR=$(dirname "$MD_FILE")
                 mkdir -p "$MD_DIR"
 
-                REPO_PATH="https://github.com/$(echo ${GITHUB_REPOSITORY})/${f:$LEN}"
+                REPO_PATH="https://github.com/$(echo ${GITHUB_REPOSITORY})/tree/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}/${f:$LEN}"
                 HDOC=$(sed \
                   -e '2i\ ' \
-                  -e "2i <a href='${REPO_PATH}'><i class='bi bi-code-slash'></i></a>" \
+                  -e "2i <a href='${REPO_PATH}'><i class='bi bi-code-slash align-text-top'></i></a>" \
                   -e "2i ${REPO_PATH}" \
                   -e '2i\ ' \
                   <<< "$HDOC")
