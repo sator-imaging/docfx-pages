@@ -224,7 +224,7 @@ runs:
                 REPO_PATH="https://github.com/$(echo ${GITHUB_REPOSITORY})/${f:$LEN}"
                 HDOC=$(sed \
                   -e '2i\ ' \
-                  -e "2i <a href='${REPO_PATH}'><i class="bi bi-code-slash"></i></a>" \
+                  -e "2i <a href='${REPO_PATH}'><i class='bi bi-code-slash'></i></a>" \
                   -e "2i ${REPO_PATH}" \
                   -e '2i\ ' \
                   <<< "$HDOC")
