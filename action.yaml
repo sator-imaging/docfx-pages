@@ -148,12 +148,12 @@ runs:
       run: |
         if [[ -f README.md ]]; then
           if ! [[ $(head -1 README.md | sed -n -E '/^# /p') ]]; then
-            printf "# $(cat README.md)" > README.md
+            echo "# $(cat README.md)" > README.md
           fi
         fi
         if [[ -f LICENSE.md ]]; then
           if ! [[ $(head -1 LICENSE.md | sed -n -E '/^# /p') ]]; then
-            printf "# $(cat LICENSE.md)" > LICENSE.md
+            echo "# $(cat LICENSE.md)" > LICENSE.md
           fi
         fi
 
@@ -215,17 +215,17 @@ runs:
                 }' $f )
 
               if [[ $HDOC ]]; then
-                if ! [[ $(sed -n -E '/^# /p' <<< "$HDOC") ]]; then
+                if ! [[ $(sed -n -E '/^# /p' <<< $HDOC) ]]; then
                   HDOC="# $HDOC"
                 fi
-                printf "$HDOC"
+                echo "$HDOC"
 
                 MD_FILE="${HDOC_DIR}/${f:$LEN}.md"
                 echo "$MD_FILE"
                 MD_DIR=$(dirname "$MD_FILE")
                 mkdir -p "$MD_DIR"
                 
-                printf "$HDOC" > "$MD_FILE"
+                echo "$HDOC" > "$MD_FILE"
                 printf -v TOC "${TOC}  - href: ${HDOC_DIR_NAME}/${f:$LEN}.md\n"
               fi
 
