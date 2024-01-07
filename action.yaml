@@ -320,8 +320,8 @@ runs:
       run: |
         pushd .docfx/_site
           if [[ -f toc.json ]]; then
-            sed 's/toc.yml"\,"items"\:\[{/toc.yml"\,"items"\:\[{"expanded"\:true\,/g' -i toc.json
-            sed 's/html"}\]}\,{/html"}\]}\,{"expanded"\:true\,/g' -i toc.json
+            ## sed 's/toc.yml"\,"items"\:\[{/toc.yml"\,"items"\:\[{"expanded"\:true\,/g' -i toc.json
+            ## sed 's/html"}\]}\,{/html"}\]}\,{"expanded"\:true\,/g' -i toc.json
             cat toc.json
           fi
         popd
