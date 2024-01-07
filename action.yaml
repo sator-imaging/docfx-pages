@@ -146,12 +146,12 @@ runs:
     - name: Fix document title if required
       shell: bash
       run: |
-        if [[ test -f README.md ]]; then
+        if [[ -f README.md ]]; then
           if [[ $(head -1 README.md | sed -n -E '/^# /p') ]]; then
             echo "# $(cat README.md)" > README.md
           fi
         fi
-        if [[ test -f LICENSE.md ]]; then
+        if [[ -f LICENSE.md ]]; then
           if [[ $(head -1 LICENSE.md | sed -n -E '/^# /p') ]]; then
             echo "# $(cat LICENSE.md)" > LICENSE.md
           fi
@@ -160,11 +160,11 @@ runs:
     - name: Generate README.md and index.md
       shell: bash
       run: |
-        if ! [[ test -f 'README.md' ]]; then
+        if ! [[ -f 'README.md' ]]; then
           echo "# $(echo ${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/})" > README.md
           echo "${{ github.server_url }}/${{ github.repository }}" >> README.md
         fi
-        if ! [[ test -f 'index.md' ]]; then
+        if ! [[ -f 'index.md' ]]; then
           mv 'README.md' 'index.md'
         fi
 
@@ -173,7 +173,7 @@ runs:
       run: |
         mkdir -p api
         pushd api
-          if ! [[ test -f index.md ]]; then
+          if ! [[ -f index.md ]]; then
             echo "# API Reference" > index.md
           fi
         popd
@@ -231,7 +231,7 @@ runs:
         popd
 
         cd .docfx
-          if ! [[ test -f 'toc.yml' ]]; then
+          if ! [[ -f 'toc.yml' ]]; then
             if [[ $TOC ]]; then
               echo "- name: Docs" >> 'toc.yml'
               echo "  expanded: true" >> 'toc.yml'
@@ -247,7 +247,7 @@ runs:
             echo '  href: api/toc.yml' >> 'toc.yml'
             echo '  topicHref: api/index.html' >> 'toc.yml'
             echo '  expanded: true' >> 'toc.yml'
-            if [[ test -f '../LICENSE.md' ]]; then
+            if [[ -f '../LICENSE.md' ]]; then
               echo '- name: License' >> 'toc.yml'
               echo '  href: LICENSE.html' >> 'toc.yml'
             fi
@@ -296,7 +296,7 @@ runs:
       shell: bash
       run: |
         pushd .docfx/_site
-          if [[ test -f toc.json ]]; then
+          if [[ -f toc.json ]]; then
             sed 's/toc.yml"\,"items"\:\[{/toc.yml"\,"items"\:\[{"expanded"\:true\,/g' -i toc.json
             sed 's/html"}\]}\,{/html"}\]}\,{"expanded"\:true\,/g' -i toc.json
             cat toc.json
