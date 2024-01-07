@@ -325,9 +325,8 @@ runs:
       run: |
         for f in $(find . -name '*.cs'); do
           cat .docfx/define_symbols.txt | cat - "$f" > "__stmg__"
-          rm -f "$f"
-          mv "__stmg__" "$f"
-          cat "$f"
+          mv -f "__stmg__" "$f"
+          ## cat "$f"
         done
 
 
