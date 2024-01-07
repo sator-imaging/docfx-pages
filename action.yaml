@@ -33,6 +33,12 @@ inputs:
     required: true
 
   # optional
+  define_symbols:
+    description: |
+      Define additional preprocessor symbols. (separate symbols by ';')
+      Default ''
+    default:  ''
+
   class_members:
     description: |
       Generate all-in-one class api document or separate each member into pages.
@@ -284,6 +290,7 @@ runs:
 
           printf "$(cat docfx.json)" \
             "${{ inputs.class_members }}" \
+            "${{ inputs.define_symbols }}" \
             "${{ inputs.app_name }}" \
             "${{ inputs.site_title }}" \
             "${{ inputs.site_footer }}" \
