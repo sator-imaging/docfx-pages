@@ -6,6 +6,7 @@
             "EnumSortOrder": "declaringOrder",
             "includeExplicitInterfaceImplementations": true,
             "memberLayout": "%s",
+            "allowCompilationErrors": true,
             "src": [
                 {
                     "src": "../",
