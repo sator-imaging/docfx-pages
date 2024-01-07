@@ -219,10 +219,13 @@ runs:
                 if ! [[ $(sed -n -E '/^# /p' <<< "$HDOC") ]]; then
                   HDOC="# $HDOC"
                 fi
-                MD_FILE="${HDOC_DIR}/${f}.md"
-                echo "$MD_FILE"
-                printf "$HDOC" > "$MD_FILE"
 
+                MD_FILE="${HDOC_DIR}/${f:$LEN}.md"
+                echo "$MD_FILE"
+                MD_DIR=$(dirname "$MD_FILE")
+                mkdir -p "$MD_DIR"
+                
+                printf "$HDOC" > "$MD_FILE"
                 TOC="${TOC}  - href: ${HDOC_DIR_NAME}/${f:$LEN}.md\n"
               fi
 
