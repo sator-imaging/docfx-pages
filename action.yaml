@@ -212,7 +212,7 @@ runs:
                 /^\/\*+/{
                   :a;
                   N;
-                  /[\r\n][[:blank:]]?\*+\//!ba;
+                  /[\r\n][[:blank:]]?\*\//!ba;
                   s/^\/\*+[[:blank:]\r\n\*]+//;
                   s/([\r\n]+)[[:blank:]]?[\*\/]+[[:blank:]]?/\1/g;
                   s/[[:blank:]\r\n]+$//;
@@ -254,7 +254,7 @@ runs:
 
         for f in $(find . -name '*.md'); do
           echo "AUTO MD COLLECTOR: $f"
-          if [[ "$f" == *index.md || "$f" == ./LICENSE.md || "$f" == ./.docfx/* ]]; then
+          if [[ "$f" == ./index.md || "$f" == ./LICENSE.md || "$f" == ./.docfx/* ]]; then
             continue
           fi
           echo "FILE COLLECTED: $f"
