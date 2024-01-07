@@ -251,7 +251,7 @@ runs:
             if [[ $TOC ]]; then
 
               echo "# HeaderDoc Index" >> hdocs.html
-              echo "Here is list of `HeaderDoc` automatically generated from the source code comment." >> 'hdocs.html
+              echo "Here is list of `HeaderDoc` automatically generated from the source code comment." >> hdocs.html
               echo "" >> hdocs.html
               echo "${HDOC_INDEX}" >> hdocs.html
 
