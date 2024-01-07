@@ -183,6 +183,7 @@ runs:
       shell: bash
       run: |
         TOC=''
+        HDOC_INDEX=''
         HDOC_DIR_NAME='HeaderDocs'
         HDOC_DIR=".docfx/${HDOC_DIR_NAME}"
 
@@ -238,6 +239,7 @@ runs:
 
                 echo "$HDOC" > "$MD_FILE"
                 printf -v TOC "${TOC}  - href: ${HDOC_DIR_NAME}/${f:$LEN}.md\n"
+                printf -v HDOC_INDEX "${HDOC_INDEX}<a href='${HDOC_DIR_NAME}/${f:$LEN}.html'>${f:$LEN}</a>  \n"
               fi
 
             fi
@@ -247,8 +249,15 @@ runs:
         cd .docfx
           if ! [[ -f 'toc.yml' ]]; then
             if [[ $TOC ]]; then
+
+              echo "# HeaderDoc Index" >> hdocs.html
+              echo "Here is list of `HeaderDoc` automatically generated from the source code comment." >> 'hdocs.html
+              echo "" >> hdocs.html
+              echo "${HDOC_INDEX}" >> hdocs.html
+
               echo "- name: Docs" >> 'toc.yml'
-              echo "  expanded: true" >> 'toc.yml'
+              ## echo "  expanded: true" >> 'toc.yml'
+              echo "  topicHref: hdocs.html" >> 'toc.yml'
               echo "  items:" >> 'toc.yml'
               echo "  - name: Introduction" >> 'toc.yml'
               echo "    href: index.html" >> 'toc.yml'
