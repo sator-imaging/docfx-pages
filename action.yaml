@@ -43,8 +43,8 @@ inputs:
     description: |
       Generate all-in-one class api document or separate each member into pages.
       Accepts one of: 'separatePages' | 'samePage'
-      Default 'samePage'
-    default:  'samePage'
+      Default 'separatePages'
+    default:  'separatePages'
 
   site_logo:
     description: |
