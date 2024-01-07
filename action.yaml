@@ -206,18 +206,16 @@ runs:
                   :a;
                   N;
                   /[\r\n][[:blank:]]?\*+\//!ba;
-                  s/([\r\n]*)[[:blank:]]?[\*\/]+[[:blank:]]*/\1/g;
-                  s/^[\r\n[:blank:]]+//;
-                  s/[\r\n[:blank:]]+$//;
+                  s/^\/\*+[[:blank:]\r\n]+//;
+                  s/[[:blank:]\r\n]+$//;
+                  s/([\r\n]+)[[:blank:]]?[\*\/]+[[:blank:]]*/\1/g;
                   s/ \r?\n/\n/g;
                   s/\r?\n/  \n/g;
+                  s/^/# /;
                   p;
                 }' $f )
 
               if [[ $HDOC ]]; then
-                if ! [[ $(sed -n -E '/^# /p' <<< $HDOC) ]]; then
-                  HDOC="# $HDOC"
-                fi
                 echo "$HDOC"
 
                 MD_FILE="${HDOC_DIR}/${f:$LEN}.md"
