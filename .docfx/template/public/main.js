@@ -98,6 +98,19 @@ function initializePage(event) {
             href = href.trimEnd('/');
             dropdown.href = href + '/api/index.html';
         }
+
+        // reorder API page content
+        if (document.body.dataset.yamlMime == 'ApiPage') {
+            const pin = document.getElementById('inheritance');
+            const defCodeBlock = pin?.previousSibling;
+            let summaryBlock = defCodeBlock?.previousSibling;
+            if (summaryBlock instanceof Text) {
+                summaryBlock = defCodeBlock?.previousSibling;
+            }
+            if (summaryBlock?.tagName == 'P') {
+                defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
+            }
+        }
     };
     // need delay
     setTimeout(stylingByScript, 64);
@@ -116,20 +129,6 @@ function initializePage(event) {
             // additional delay to prevent inserted before toc list
             setTimeout(() => navToc.appendChild(tocBottom), 1024);
             tocBottom.style.order = 310;  // always last by css style
-        }
-    }
-
-    // reorder API page content
-    // TODO: should be done by editing template
-    if (document.body.dataset.yamlMime == 'ApiPage') {
-        const pin = document.getElementById('inheritance');
-        const defCodeBlock = pin?.previousSibling;
-        let summaryBlock = defCodeBlock?.previousSibling;
-        if (summaryBlock instanceof Text) {
-            summaryBlock = defCodeBlock?.previousSibling;
-        }
-        if (summaryBlock?.tagName == 'P') {
-            defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
         }
     }
 
