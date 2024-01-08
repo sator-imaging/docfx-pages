@@ -110,6 +110,7 @@ function initializePage(event) {
             if (summaryBlock?.tagName == 'P') {
                 defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
             }
+            console.log('DONE: reorder API page content');
         }
     };
     // need delay
