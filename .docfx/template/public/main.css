@@ -155,12 +155,14 @@ body[data-yaml-mime=ApiPage] article details dl.typelist>dd>div {
     display: block;
 }
 
-body[data-yaml-mime=ApiPage] article div.facts:nth-child(2) {
+
+body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts,
+body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+div.facts {
     margin-top: 0px;
 }
 
-body[data-yaml-mime=ApiPage] article pre:nth-child(4) {
-    margin-top: 2rem;
+body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts+pre {
+    margin-top: -1rem;
 }
 
 
