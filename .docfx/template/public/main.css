@@ -156,6 +156,12 @@ body[data-yaml-mime=ApiPage] article details dl.typelist>dd>div {
 }
 
 
+/** api page header */
+
+body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert {
+    margin-bottom: 0.5rem;
+}
+
 body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts,
 body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+div.facts {
     margin-top: 0px;
