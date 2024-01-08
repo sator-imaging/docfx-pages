@@ -119,6 +119,17 @@ function initializePage(event) {
         }
     }
 
+    // reorder API page content
+    // TODO: should be done by editing template
+    if (document.body.dataset.yamlMime == 'ApiPage') {
+        const pin = document.getElementById('inheritance');
+        const defCodeBlock = pin?.previousSibling;
+        const summaryBlock = defCodeBlock?.previousSibling;
+        if (summaryBlock?.tagName == 'P') {
+            defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
+        }
+    }
+
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
         //console.info('api reference generator');
