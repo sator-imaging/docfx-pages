@@ -22,7 +22,7 @@
                     ]
                 }
             ],
-            "outputFormat": "apiPage",
+            "outputFormat_DISABLED": "apiPage",
             "dest": "api",
             "disableGitFeatures": false,
             "disableDefaultFilter": false,
