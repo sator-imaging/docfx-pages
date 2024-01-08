@@ -109,10 +109,15 @@ function initializePage(event) {
                 if (defCodeBlock?.tagName == 'PRE') {
                     defCodeBlock.id = defCodeBlockID;
 
-                    let summaryBlock = defCodeBlock?.previousSibling;
-                    if (summaryBlock instanceof Text) {
-                        summaryBlock = summaryBlock.previousSibling;
+                    let summaryBlock = document.querySelector('article h1.api:first-child+div.facts');
+                    if (!summaryBlock) {
+                        summaryBlock = document.querySelector('article h1.api:first-child+div.alert+div.facts');
                     }
+                    summaryBlock = summaryBlock?.nextSibling;
+                    if (summaryBlock instanceof Text) {
+                        summaryBlock = summaryBlock.nextSibling;
+                    }
+
                     if (summaryBlock?.tagName == 'P') {
                         defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
                     }
