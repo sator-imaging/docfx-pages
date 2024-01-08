@@ -105,12 +105,11 @@ function initializePage(event) {
             const defCodeBlock = pin?.previousSibling;
             let summaryBlock = defCodeBlock?.previousSibling;
             if (summaryBlock instanceof Text) {
-                summaryBlock = defCodeBlock?.previousSibling;
+                summaryBlock = summaryBlock.previousSibling;
             }
             if (summaryBlock?.tagName == 'P') {
                 defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
             }
-            console.log('DONE: reorder API page content');
         }
     };
     // need delay
