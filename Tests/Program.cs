@@ -43,7 +43,7 @@ End of document.
 using System;
 using System.ComponentModel;
 
-namespace SatorImaging.DocFXPages.Tests
+namespace DocFXPages.Tests
 {
     namespace Annotations
     {
