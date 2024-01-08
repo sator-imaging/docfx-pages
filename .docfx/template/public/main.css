@@ -168,8 +168,8 @@ body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+div.facts {
     margin-bottom: 0;
 }
 
-body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts+p,
-body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+div.facts+p {
+body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts+pre+p,
+body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+pre+div.facts+p {
     margin-top: 1.6rem;
 }
 
