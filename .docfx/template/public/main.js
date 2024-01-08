@@ -101,14 +101,22 @@ function initializePage(event) {
 
         // reorder API page content
         if (document.body.dataset.yamlMime == 'ApiPage') {
-            const pin = document.getElementById('inheritance');
-            const defCodeBlock = pin?.previousSibling;
-            let summaryBlock = defCodeBlock?.previousSibling;
-            if (summaryBlock instanceof Text) {
-                summaryBlock = summaryBlock.previousSibling;
-            }
-            if (summaryBlock?.tagName == 'P') {
-                defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
+            const defCodeBlockID = 'stmg-def-code';
+            let defCodeBlock = document.getElementById(defCodeBlockID);
+            if (!defCodeBlock) {
+                const pin = document.getElementById('inheritance');
+                defCodeBlock = pin?.previousSibling;
+                if (defCodeBlock?.tagName == 'PRE') {
+                    defCodeBlock.id = defCodeBlockID;
+
+                    let summaryBlock = defCodeBlock?.previousSibling;
+                    if (summaryBlock instanceof Text) {
+                        summaryBlock = summaryBlock.previousSibling;
+                    }
+                    if (summaryBlock?.tagName == 'P') {
+                        defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
+                    }
+                }
             }
         }
     };

@@ -75,15 +75,15 @@ nav.toc span.name-only {
     /* hard-coded in modern template */
     font-size: 14px;
     font-weight: normal;
-    margin: 0.0em 0px 0px;
+    margin: 0 0 0;
 }
 
 nav.toc ul>li>ul>li>ul>li>ul span.name-only {
-    margin: 0.8em 0px 0px 0px;
+    margin: 0.8em 0 0 0;
 }
 
 nav.toc ul>li:first-child>span.name-only {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 
@@ -129,7 +129,7 @@ h2.api>.badge {
     font-size: 0.4em;
     line-height: 1em;
     font-weight: 300;
-    letter-spacing: 0px;
+    letter-spacing: 0;
     vertical-align: super !important;
 }
 
@@ -141,7 +141,7 @@ h3.api>.badge {
     font-size: 0.5em;
     line-height: 1em;
     font-weight: normal;
-    letter-spacing: 0px;
+    letter-spacing: 0;
     vertical-align: super !important;
 }
 
@@ -164,11 +164,13 @@ body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert {
 
 body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts,
 body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+div.facts {
-    margin-top: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts+pre {
-    margin-top: -1rem;
+body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts+p,
+body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+div.facts+p {
+    margin-top: 1.6rem;
 }
 
 
@@ -176,7 +178,7 @@ body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts+pre {
 
 article ul>li>p,
 article ol>li>p {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 article ul>li:last-child,
@@ -201,7 +203,7 @@ code {
 }
 
 .alert>*:last-child {
-    margin-bottom: 0.0rem;
+    margin-bottom: 0;
 }
 
 .anchorjs-link {
