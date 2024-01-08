@@ -124,7 +124,10 @@ function initializePage(event) {
     if (document.body.dataset.yamlMime == 'ApiPage') {
         const pin = document.getElementById('inheritance');
         const defCodeBlock = pin?.previousSibling;
-        const summaryBlock = defCodeBlock?.previousSibling;
+        let summaryBlock = defCodeBlock?.previousSibling;
+        if (summaryBlock instanceof Text) {
+            summaryBlock = defCodeBlock?.previousSibling;
+        }
         if (summaryBlock?.tagName == 'P') {
             defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
         }
