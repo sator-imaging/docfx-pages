@@ -109,7 +109,7 @@ function initializePage(event) {
     // fix source code link. see define_symbols.txt for detail
     const fixViewSourceLink = function () {
         for (const link of document.querySelectorAll("a.header-action[title='View source']")) {
-            var p = link.href.search(/[0-9]/);
+            var p = link.href.search(/[0-9]+$/);
             if (p < 0) continue;
             link.href = link.href.substring(0, p) + (parseInt(link.href.substring(p)) - 86);
         }
