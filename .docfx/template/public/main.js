@@ -106,6 +106,17 @@ function initializePage(event) {
         }
     }
 
+    // fix source code link. see define_symbols.txt for detail
+    const fixViewSourceLink = function () {
+        for (const link of document.querySelectorAll("a.header-action[title='View source']")) {
+            var p = link.href.search(/[0-9]/);
+            if (p < 0) continue;
+            link.href = link.href.substring(0, p) + (parseInt(link.href.substring(p)) - 86);
+        }
+    };
+    // delay once
+    setTimeout(fixViewSourceLink, 1024);
+
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
         //console.info('api reference generator');

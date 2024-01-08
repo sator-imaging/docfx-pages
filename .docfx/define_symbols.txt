@@ -1,3 +1,6 @@
+// NOTE: C# directive `#line 1` won't fix link anchor in API reference.
+//       so need to fix anchor by javascript (main.js)
+
 // docfx doesn't support `metadata.properties.DefineConstants` setting in json
 // when generating api reference from .cs files directly.
 //   https://github.com/dotnet/docfx/issues/8028#issuecomment-1873120274
