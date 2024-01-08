@@ -1,3 +1,9 @@
+// docfx doesn't support `metadata.properties.DefineConstants` setting in json
+// when generating api reference from .cs files directly.
+//   https://github.com/dotnet/docfx/issues/8028#issuecomment-1873120274
+// had tried to build csproj on the fly, but it is so hard, so that simply, add
+// the following code into all the .cs files to enable Unity's builtin symbols.
+
 #define UNITY_STANDALONE_OSX
 #define UNITY_STANDALONE_WIN
 #define UNITY_STANDALONE_LINUX
@@ -71,3 +77,7 @@
 #define UNITY_2021_3_OR_NEWER
 #define UNITY_2022_3_OR_NEWER
 #define UNITY_2023_3_OR_NEWER
+
+// NOTE: this will reset the source code line number counting.
+//       if removed, API reference links to wrong line number in source code.
+#line 1
