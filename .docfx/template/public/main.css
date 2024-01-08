@@ -156,6 +156,19 @@ body[data-yaml-mime=ApiPage] article details dl.typelist>dd>div {
 }
 
 
+/** article */
+
+article ul>li>p,
+article ol>li>p {
+    margin-bottom: 0px;
+}
+
+article ul>li:last-child,
+article ol>li:last-child {
+    margin-bottom: 0.25em;
+}
+
+
 /** content */
 
 h1 code,
