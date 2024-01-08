@@ -75,16 +75,16 @@ function initializePage(event) {
 
     // TODO: do this by customizing template/partials.
     const stylingByScript = function () {
-        // inherited members list is too long. hide it by default.
-        for (const inheritedMembers of document.querySelectorAll("#inherited-members")) {
-            const list = inheritedMembers.nextSibling;
-            if (!list?.classList?.contains('typelist'))
-                continue;
+        // // inherited members list is too long. hide it by default.
+        // for (const inheritedMembers of document.querySelectorAll("#inherited-members")) {
+        //     const list = inheritedMembers.nextSibling;
+        //     if (!list?.classList?.contains('typelist'))
+        //         continue;
 
-            const details = document.createElement('details');
-            inheritedMembers.parentNode.insertBefore(details, list);
-            details.appendChild(list);
-        }
+        //     const details = document.createElement('details');
+        //     inheritedMembers.parentNode.insertBefore(details, list);
+        //     details.appendChild(list);
+        // }
 
         // disable navbar submenu.
         for (const dropdown of document.querySelectorAll('.navbar .nav-item>.dropdown-toggle')) {
@@ -99,31 +99,31 @@ function initializePage(event) {
             dropdown.href = href + '/api/index.html';
         }
 
-        // reorder API page content
-        if (document.body.dataset.yamlMime == 'ApiPage') {
-            const defCodeBlockID = 'stmg-def-code';
-            let defCodeBlock = document.getElementById(defCodeBlockID);
-            if (!defCodeBlock) {
-                const pin = document.getElementById('inheritance');
-                defCodeBlock = pin?.previousSibling;
-                if (defCodeBlock?.tagName == 'PRE') {
-                    defCodeBlock.id = defCodeBlockID;
+        // // reorder API page content
+        // if (document.body.dataset.yamlMime == 'ApiPage') {
+        //     const defCodeBlockID = 'stmg-def-code';
+        //     let defCodeBlock = document.getElementById(defCodeBlockID);
+        //     if (!defCodeBlock) {
+        //         const pin = document.getElementById('inheritance');
+        //         defCodeBlock = pin?.previousSibling;
+        //         if (defCodeBlock?.tagName == 'PRE') {
+        //             defCodeBlock.id = defCodeBlockID;
 
-                    let summaryBlock = document.querySelector('article h1.api:first-child+div.facts');
-                    if (!summaryBlock) {
-                        summaryBlock = document.querySelector('article h1.api:first-child+div.alert+div.facts');
-                    }
-                    summaryBlock = summaryBlock?.nextSibling;
-                    if (summaryBlock instanceof Text) {
-                        summaryBlock = summaryBlock.nextSibling;
-                    }
+        //             let summaryBlock = document.querySelector('article h1.api:first-child+div.facts');
+        //             if (!summaryBlock) {
+        //                 summaryBlock = document.querySelector('article h1.api:first-child+div.alert+div.facts');
+        //             }
+        //             summaryBlock = summaryBlock?.nextSibling;
+        //             if (summaryBlock instanceof Text) {
+        //                 summaryBlock = summaryBlock.nextSibling;
+        //             }
 
-                    if (summaryBlock?.tagName == 'P') {
-                        defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
-                    }
-                }
-            }
-        }
+        //             if (summaryBlock?.tagName == 'P') {
+        //                 defCodeBlock.parentNode.insertBefore(defCodeBlock, summaryBlock);
+        //             }
+        //         }
+        //     }
+        // }
     };
     // need delay
     setTimeout(stylingByScript, 64);
