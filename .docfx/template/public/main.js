@@ -27,6 +27,19 @@ setTimeout(initializeAffix, 1024);
 
 
 function initializePage(event) {
+    // fix source code link. see define_symbols.txt for detail
+    const fixViewSourceLink = function () {
+        for (const link of document.querySelectorAll("a.header-action[title='View source']")) {
+            var p = link.href.search(/[0-9]+$/);
+            if (p < 0) continue;
+            link.href
+                = link.href.substring(0, p)
+                + (parseInt(link.href.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
+        }
+    };
+    // delay once
+    setTimeout(fixViewSourceLink, 1024);
+
     // badge for api heading
     for (const apiTitle of document.querySelectorAll("h1.api")) {
         let badgeText = undefined;
@@ -105,17 +118,6 @@ function initializePage(event) {
             tocBottom.style.order = 310;  // always last by css style
         }
     }
-
-    // fix source code link. see define_symbols.txt for detail
-    const fixViewSourceLink = function () {
-        for (const link of document.querySelectorAll("a.header-action[title='View source']")) {
-            var p = link.href.search(/[0-9]+$/);
-            if (p < 0) continue;
-            link.href = link.href.substring(0, p) + (parseInt(link.href.substring(p)) - 86);
-        }
-    };
-    // delay once
-    setTimeout(fixViewSourceLink, 1024);
 
     // api reference generator
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
