@@ -313,6 +313,8 @@ runs:
             "__nothing__" \
             "${{ inputs.class_members }}" \
             "${{ inputs.define_symbols }}" \
+            \
+            \
             > docfx-metadata-mref.json
 
           printf "$(cat docfx-metadata.json)" \
@@ -320,6 +322,8 @@ runs:
             "apiPage" \
             "${{ inputs.class_members }}" \
             "${{ inputs.define_symbols }}" \
+            \
+            \
             > docfx-metadata-api.json
 
           printf "$(cat docfx-build.json)" \
@@ -330,6 +334,7 @@ runs:
             "${{ inputs.site_favicon }}" \
             "${{ inputs.google_analytics }}" \
             "https://${{ github.repository_owner }}.github.io/${{ env.REPO_NAME }}/" \
+            \
             > docfx-build.json
 
           echo "${{ inputs.main_js }}"  >> template/public/main.js
@@ -362,22 +367,20 @@ runs:
 
           # 1st pass
           docfx docfx-metadata-api.json
-          docfx docfx-build.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat api/toc.json
+          cat _site/api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           jq -n -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
-            api/toc.json \
+            _site/api/toc.json \
             > api/toc_api.json
 
           # 2nd pass
           docfx docfx-metadata-mref.json
-          docfx docfx-build.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat api/toc.json
+          cat site/api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           jq -n -c '[ .items[] | select(.name == "") | .name = "global::" ]' \
-            api/toc.json \
+            site/api/toc.json \
             > api/toc_global.json
 
           # merge toc
