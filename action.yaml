@@ -292,28 +292,6 @@ runs:
           fi
         cd ..
 
-    - name: Generate docfx config
-      shell: bash
-      run: |
-        cd .docfx
-
-          printf "$(cat docfx.json)" \
-            "${{ inputs.class_members }}" \
-            "${{ inputs.define_symbols }}" \
-            "${{ inputs.app_name }}" \
-            "${{ inputs.site_title }}" \
-            "${{ inputs.site_footer }}" \
-            "${{ inputs.site_logo }}" \
-            "${{ inputs.site_favicon }}" \
-            "${{ inputs.google_analytics }}" \
-            "https://${{ github.repository_owner }}.github.io/${{ env.REPO_NAME }}/" \
-            > docfx.json
-
-          echo "${{ inputs.main_js }}"  >> template/public/main.js
-          echo "${{ inputs.main_css }}" >> template/public/main.css
-
-        cd ..
-
 
     # DEBUG
     - name: DEBUG
@@ -336,14 +314,84 @@ runs:
         done
 
 
+    - name: Generate docfx config
+      shell: bash
+      run: |
+        cd .docfx
+
+          printf "$(cat docfx-metadata.json)" \
+            "__placeholder__" \
+            "__nothing__" \
+            "${{ inputs.class_members }}" \
+            "${{ inputs.define_symbols }}" \
+            > docfx-metadata-mref.json
+
+          printf "$(cat docfx-metadata.json)" \
+            "outputFormat" \
+            "apiPage" \
+            "${{ inputs.class_members }}" \
+            "${{ inputs.define_symbols }}" \
+            > docfx-metadata-api.json
+
+          printf "$(cat docfx-build.json)" \
+            "${{ inputs.app_name }}" \
+            "${{ inputs.site_title }}" \
+            "${{ inputs.site_footer }}" \
+            "${{ inputs.site_logo }}" \
+            "${{ inputs.site_favicon }}" \
+            "${{ inputs.google_analytics }}" \
+            "https://${{ github.repository_owner }}.github.io/${{ env.REPO_NAME }}/" \
+            > docfx-build.json
+
+          echo "${{ inputs.main_js }}"  >> template/public/main.js
+          echo "${{ inputs.main_css }}" >> template/public/main.css
+
+        cd ..
+
+
+    # two pass processing
     - name: Run DocFX
       shell: bash
       run: |
-        dotnet tool update -g docfx
-        pushd .docfx
-          docfx docfx.json
-        popd
+        ##dotnet tool update -g docfx
+        dotnet tool install --global docfx --version 2.74.1
 
+        pushd .docfx
+
+          ##docfx docfx.json
+
+          # 1st pass
+          docfx docfx-metadata-api.json
+          jq -n -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
+            api/toc.json \
+            > api/toc_api.json
+
+          # 2nd pass
+          docfx docfx-metadata-mref.json
+          jq -n -c '[ .items[] | select(.name == "") | .name = "global::" ]' \
+            api/toc.json \
+            > api/toc_global.json
+
+          # merge toc
+          jq -n -c '.items | add' \
+            api/toc_global.json \
+            api/toc_api.json \
+            | jq ".order = 100 | .pdf = false | .memberLayout = \"${{ inputs.class_members }}\"" \
+            > api/toc.json
+
+          # api/toc.json to api/index.md
+          jq -n -c '[ .items[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else .name end ]' \
+            api/toc.json \
+            | jq -r '.[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string | "## \(.shortName) <span class=\"\">Namespace</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
+            | cat "# API Reference" - \
+            > api/index.md
+
+          cat api/index.md
+
+          # build
+          docfx docfx-build.json
+
+        popd
 
     - name: TOC expansion
       shell: bash

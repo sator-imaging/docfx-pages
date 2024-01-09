@@ -41,6 +41,7 @@ function initializePage(event) {
     setTimeout(fixViewSourceLink, 1024);
 
     // badge for api heading
+    /*
     for (const apiTitle of document.querySelectorAll("h1.api")) {
         let badgeText = undefined;
         let isDeprecated = false;
@@ -72,6 +73,7 @@ function initializePage(event) {
             apiTitle.appendChild(badge);
         }
     }
+    */
 
     // TODO: do this by customizing template/partials.
     const stylingByScript = function () {
@@ -127,7 +129,7 @@ function initializePage(event) {
                 }
             }
         }
-        * /
+        */
     };
     // need delay
     setTimeout(stylingByScript, 64);
@@ -135,10 +137,10 @@ function initializePage(event) {
     setTimeout(stylingByScript, 1024);
 
     // toc bottom link
+    /*
     const tocBottomID = 'stmg-toc-bottom';
     let tocBottom = document.getElementById(tocBottomID);
     if (!tocBottom) {
-        /*
         for (const navToc of document.querySelectorAll("nav#toc")) {
             tocBottom = document.createElement('div');
             tocBottom.id = tocBottomID;
@@ -148,10 +150,11 @@ function initializePage(event) {
             setTimeout(() => navToc.appendChild(tocBottom), 1024);
             tocBottom.style.order = 310;  // always last by css style
         }
-        */
     }
+    */
 
     // api reference generator
+    /*
     if (location.pathname.endsWith('/api/index.html') || location.pathname.endsWith('/api/')) {
         //console.info('api reference generator');
 
@@ -312,6 +315,7 @@ function initializePage(event) {
         setTimeout(updateBreadcrumb, 128);
         setTimeout(updateBreadcrumb, 1024);
     }
+    */
     // end of api reference generator
 }
 

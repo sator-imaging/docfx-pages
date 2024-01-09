@@ -3,7 +3,7 @@
 {{!Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license.}}
 
 <h1 id="{{id}}" data-uid="{{uid}}" class="text-break">
-  {{>partials/title}}
+  {{>partials/titleBadge}}
   {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
 </h1>
 
