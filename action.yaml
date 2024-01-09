@@ -367,13 +367,13 @@ runs:
 
           # 1st pass
           docfx docfx-metadata-api.json
-          jq -n -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
+          jq -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
             _site/api/toc.json \
             > toc_api.json
 
           # 2nd pass
           docfx docfx-metadata-mref.json
-          jq -n -c '[ .items[] | select(.name == "") | .name = "global::" ]' \
+          jq -c '[ .items[] | select(.name == "") | .name = "global::" ]' \
             _site/api/toc.json \
             > toc_global.json
 
@@ -385,7 +385,7 @@ runs:
 
           # merge toc
           # https://gist.github.com/AlexRamey/7cf83f4618075dc17054d0c88182bbbc
-          jq -n -c --slurpfile global toc_global.json --slurpfile api toc_api.json '$global[0] + $api[0]' \
+          jq -c --slurpfile global toc_global.json --slurpfile api toc_api.json '$global[0] + $api[0]' \
             | jq -c ".order = 100 | .pdf = false | .memberLayout = \"${{ inputs.class_members }}\"" \
             > api/toc.json
 
@@ -394,7 +394,7 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # api/toc.json to api/index.md
-          jq -n -c '[ .items[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else .name end ]' \
+          jq -c '[ .items[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else .name end ]' \
             api/toc.json \
             | jq -r '.[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string | "## \(.shortName) <span class=\"\">Namespace</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
             | cat "# API Reference" - \
