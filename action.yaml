@@ -385,19 +385,19 @@ runs:
 
           # merge toc
           # https://www.tohoho-web.com/ex/jq.html#opt-slurpfile
-          jq -n -c --slurpfile global toc_global.json --slurpfile api toc_api.json '$global[0] + $api[0]' \
+          jq -n -c --slurpfile global toc_global.json --slurpfile api toc_api.json '{ items: $global[0] + $api[0] }' \
             ##| jq -c ".order = 100 | .pdf = false | .memberLayout = \"${{ inputs.class_members }}\"" \
             > api/toc.json
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          jq -c '[ .[] | .items ]' api/toc.json
+          jq -c '[ items.[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else "\(.name)" end ]' api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # api/toc.json to api/index.md
           echo "# API Reference" > api/index.md
-          jq -c '[ .[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else "\(.name)" end ]' \
+          jq -c '[ items.[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else "\(.name)" end ]' \
             api/toc.json \
             | jq -r '.[] | "## \(.shortName) <span class=\"\">Namespace</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
             >> api/index.md
