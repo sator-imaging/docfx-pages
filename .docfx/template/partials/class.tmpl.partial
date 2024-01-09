@@ -1,3 +1,5 @@
+{{!STMG  insert comment where modified}}
+
 {{!Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license.}}
 
 {{>partials/class.header}}
@@ -19,13 +21,17 @@
   {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
 </h3>
 
-<div class="markdown level1 summary">{{{summary}}}</div>
-<div class="markdown level1 conceptual">{{{conceptual}}}</div>
-
+{{!STMG  swap order: summary and syntax code}}
 {{#syntax}}
 <div class="codewrapper">
   <pre><code class="lang-csharp hljs">{{syntax.content.0.value}}</code></pre>
 </div>
+{{/syntax}}
+
+<div class="markdown level1 summary">{{{summary}}}</div>
+<div class="markdown level1 conceptual">{{{conceptual}}}</div>
+
+{{#syntax}}
 
 {{#syntax.parameters.0}}
 <h4 class="section">{{__global.parameters}}</h4>

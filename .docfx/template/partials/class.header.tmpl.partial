@@ -1,3 +1,5 @@
+{{!STMG  insert comment where modified}}
+
 {{!Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license.}}
 
 <h1 id="{{id}}" data-uid="{{uid}}" class="text-break">
@@ -10,14 +12,15 @@
   {{#assemblies.0}}<dl><dt>{{__global.assembly}}</dt><dd>{{assemblies.0}}.dll</dd></dl>{{/assemblies.0}}
 </div>
 
-<div class="markdown summary">{{{summary}}}</div>
-<div class="markdown conceptual">{{{conceptual}}}</div>
-
+{{!STMG  swap order: summary and syntax code}}
 {{#syntax.content.0.value}}
 <div class="codewrapper">
   <pre><code class="lang-csharp hljs">{{syntax.content.0.value}}</code></pre>
 </div>
 {{/syntax.content.0.value}}
+
+<div class="markdown summary">{{{summary}}}</div>
+<div class="markdown conceptual">{{{conceptual}}}</div>
 
 {{#syntax.parameters.0}}
 <h4 class="section">{{__global.parameters}}</h4>
@@ -95,10 +98,12 @@
 {{/derivedClasses.0}}
 {{/inClass}}
 
+{{!STMG  details tag added}}
 {{#inheritedMembers.0}}
 <dl class="typelist derived">
   <dt>{{__global.inheritedMembers}}</dt>
   <dd>
+    <details>
 {{/inheritedMembers.0}}
 {{#inheritedMembers}}
   <div>
@@ -111,6 +116,8 @@
   </div>
 {{/inheritedMembers}}
 {{#inheritedMembers.0}}
+    </details>
+  </dd>
 </dl>
 {{/inheritedMembers.0}}
 

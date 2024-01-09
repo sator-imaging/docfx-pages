@@ -89,35 +89,35 @@ nav.toc ul>li:first-child>span.name-only {
 
 /** breadcrumb */
 
-body[data-yaml-mime=ApiPage] .breadcrumb>li:first-child {
+body[data-yaml-mime=ManagedReference] .breadcrumb>li:first-child {
     display: none;
 }
 
-body[data-yaml-mime=ApiPage] .breadcrumb>li:nth-child(2) {
+body[data-yaml-mime=ManagedReference] .breadcrumb>li:nth-child(2) {
     padding-left: unset;
 }
 
-body[data-yaml-mime=ApiPage] .breadcrumb>li:nth-child(2)::before {
+body[data-yaml-mime=ManagedReference] .breadcrumb>li:nth-child(2)::before {
     content: none;
 }
 
 
 /** affix */
 
-body[data-yaml-mime=ApiPage] div.affix .badge {
+body[data-yaml-mime=ManagedReference] div.affix .badge {
     vertical-align: super;
 }
 
-body[data-yaml-mime=ApiPage] div.affix .link-body-emphasis {
+body[data-yaml-mime=ManagedReference] div.affix .link-body-emphasis {
     font-size: 1.1em;
     line-height: 1em;
 }
 
-body[data-yaml-mime=ApiPage] div.affix .link-secondary {
+body[data-yaml-mime=ManagedReference] div.affix .link-secondary {
     font-size: 0.9em;
 }
 
-[data-bs-theme=light] body[data-yaml-mime=ApiPage] div.affix .link-secondary {
+[data-bs-theme=light] body[data-yaml-mime=ManagedReference] div.affix .link-secondary {
     opacity: 0.75;
 }
 
@@ -145,31 +145,31 @@ h3.api>.badge {
     vertical-align: super !important;
 }
 
-body[data-yaml-mime=ApiPage] div.content dt .badge {
+body[data-yaml-mime=ManagedReference] article dt .badge {
     vertical-align: text-top !important;
     font-size: 0.75em !important;
     font-weight: normal;
 }
 
-body[data-yaml-mime=ApiPage] article details dl.typelist>dd>div {
+body[data-yaml-mime=ManagedReference] article details dl.typelist>dd>div {
     display: block;
 }
 
 
 /** api page header */
 
-body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert {
+body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.alert {
     margin-bottom: 0.5rem;
 }
 
-body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts,
-body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+div.facts {
+body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.facts,
+body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.alert+div.facts {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-body[data-yaml-mime=ApiPage] article h1.api:first-child+div.facts+pre+p,
-body[data-yaml-mime=ApiPage] article h1.api:first-child+div.alert+div.facts+pre+p {
+body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.facts+pre+p,
+body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.alert+div.facts+pre+p {
     margin-top: 1.6rem;
 }
 
@@ -226,6 +226,6 @@ h2 {
 }
 
 h3,
-body[data-yaml-mime=ApiPage] article h3[data-uid] {
+body[data-yaml-mime=ManagedReference] article h3[data-uid] {
     font-weight: 200;
 }
