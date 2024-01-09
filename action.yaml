@@ -363,8 +363,8 @@ runs:
           # 1st pass
           docfx docfx-metadata-api.json
           cp api/toc.yml toc-api.yml
-          rmdir -rf api
-          docfx build -o:api -t default,modern,template
+          rm -rf api
+          docfx build -o:api -t:default,modern,template
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
