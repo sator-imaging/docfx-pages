@@ -367,13 +367,13 @@ runs:
 
           # 1st pass
           docfx docfx-metadata-api.json
-          jq -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
+          jq -c '[ .items[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string ]' \
             _site/api/toc.json \
             > toc_api.json
 
           # 2nd pass
           docfx docfx-metadata-mref.json
-          jq -c '[ .items[] | select(.name == "") | .name = "global::" ]' \
+          jq -c '[ .items[] | select(.name == "") | .name = "global::" | .shortName = .name ]' \
             _site/api/toc.json \
             > toc_global.json
 
@@ -395,9 +395,9 @@ runs:
 
           # api/toc.json to api/index.md
           echo "# API Reference" > api/index.md
-          jq -c '[ .items[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else .name end ]' \
+          jq -c '[ .[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else .name end ]' \
             api/toc.json \
-            | jq -r '.[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string | "## \(.shortName) <span class=\"\">Namespace</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
+            | jq -r '.[] | "## \(.shortName) <span class=\"\">Namespace</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
             >> api/index.md
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
