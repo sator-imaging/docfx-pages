@@ -370,7 +370,7 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat _site/api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          jq -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
+          jq -n -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
             _site/api/toc.json \
             > api/toc_api.json
 
@@ -379,14 +379,13 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat _site/api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          jq -c '[ .items[] | select(.name == "") | .name = "global::" ]' \
+          jq -n -c '[ .items[] | select(.name == "") | .name = "global::" ]' \
             _site/api/toc.json \
             > api/toc_global.json
 
           # merge toc
-          jq -c '.items | add' \
-            api/toc_global.json \
-            api/toc_api.json \
+          # https://gist.github.com/AlexRamey/7cf83f4618075dc17054d0c88182bbbc
+          jq -n -c --slurpfile global api/toc_global.json --slurpfile api api/toc_api.json '$global[0] + $api[0]' \
             | jq -c ".order = 100 | .pdf = false | .memberLayout = \"${{ inputs.class_members }}\"" \
             > api/toc.json
 
@@ -395,7 +394,7 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # api/toc.json to api/index.md
-          jq -c '[ .items[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else .name end ]' \
+          jq -n -c '[ .items[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else .name end ]' \
             api/toc.json \
             | jq -r '.[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string | "## \(.shortName) <span class=\"\">Namespace</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
             | cat "# API Reference" - \
