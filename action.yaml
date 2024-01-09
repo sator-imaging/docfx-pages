@@ -384,9 +384,9 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # merge toc
-          # https://gist.github.com/AlexRamey/7cf83f4618075dc17054d0c88182bbbc
+          # https://www.tohoho-web.com/ex/jq.html#opt-slurpfile
           jq -n -c --slurpfile global toc_global.json --slurpfile api toc_api.json '$global + $api' \
-            | jq -c ".order = 100 | .pdf = false | .memberLayout = \"${{ inputs.class_members }}\"" \
+            ##| jq -c ".order = 100 | .pdf = false | .memberLayout = \"${{ inputs.class_members }}\"" \
             > api/toc.json
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
