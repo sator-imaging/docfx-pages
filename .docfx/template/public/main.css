@@ -151,10 +151,6 @@ body[data-yaml-mime=ManagedReference] article dt .badge {
     font-weight: normal;
 }
 
-body[data-yaml-mime=ManagedReference] article details dl.typelist>dd>div {
-    display: block;
-}
-
 
 /** api page header */
 
