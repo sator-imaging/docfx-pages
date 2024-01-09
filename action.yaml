@@ -397,6 +397,7 @@ runs:
           echo "# API Reference" > api/index.md
           jq -c '[ .[] | .items[]? |= if .href then "- [\(.name)](\(.href))" else .name end ]' \
             api/toc.json \
+            > api/index.md
             ##| jq -r '.[] | "## \(.shortName) <span class=\"\">Namespace</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
             ##>> api/index.md
 
