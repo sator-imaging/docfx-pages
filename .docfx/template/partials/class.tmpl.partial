@@ -19,8 +19,8 @@
   {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
 </h3>
 
-<div class="markdown level1 conceptual">{{{conceptual}}}</div>
 <div class="markdown level1 summary">{{{summary}}}</div>
+<div class="markdown level1 conceptual">{{{conceptual}}}</div>
 
 {{#syntax}}
 <div class="codewrapper">

@@ -10,8 +10,8 @@
   {{#assemblies.0}}<dl><dt>{{__global.assembly}}</dt><dd>{{assemblies.0}}.dll</dd></dl>{{/assemblies.0}}
 </div>
 
-<div class="markdown conceptual">{{{conceptual}}}</div>
 <div class="markdown summary">{{{summary}}}</div>
+<div class="markdown conceptual">{{{conceptual}}}</div>
 
 {{#syntax.content.0.value}}
 <div class="codewrapper">
@@ -53,19 +53,17 @@
 
 {{#inClass}}
 {{#inheritance.0}}
-<details>
-  <dl class="typelist inheritance">
-    <dt>{{__global.inheritance}}</dt>
-    <dd>
+<dl class="typelist inheritance">
+  <dt>{{__global.inheritance}}</dt>
+  <dd>
 {{/inheritance.0}}
 {{#inheritance}}
     <div>{{{specName.0.value}}}</div>
 {{/inheritance}}
     <div><span class="xref">{{name.0.value}}</span></div>
 {{#inheritance.0}}
-    </dd>
-  </dl>
-</details>
+  </dd>
+</dl>
 {{/inheritance.0}}
 {{/inClass}}
 
