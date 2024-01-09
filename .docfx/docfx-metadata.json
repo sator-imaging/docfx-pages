@@ -36,7 +36,7 @@
     ],
     "build": {
         "globalMetadata": {
-            "_enableSearch": false
+            "_enableSearch": true
         },
         "template": [
             "default",
