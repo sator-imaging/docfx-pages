@@ -362,8 +362,11 @@ runs:
 
           # 1st pass
           docfx docfx-metadata-api.json
+          cp api/toc.yml toc-api.yml
+          rmdir -rf api
+          docfx build -o:api -t default,modern,template
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat api/toc.yml
+          cat api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           jq -n -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
             api/toc.json \
