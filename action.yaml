@@ -293,17 +293,6 @@ runs:
         cd ..
 
 
-    # DEBUG
-    - name: DEBUG
-      shell: bash
-      run: |
-        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        cat .docfx/toc.yml
-        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        cat .docfx/docfx.json
-        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-
-
     - name: Insert define symbols into all the .cs files... hehe.
       shell: bash
       run: |
@@ -347,6 +336,17 @@ runs:
           echo "${{ inputs.main_css }}" >> template/public/main.css
 
         cd ..
+
+
+    # DEBUG
+    - name: DEBUG
+      shell: bash
+      run: |
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        cat .docfx/toc.yml
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        cat .docfx/docfx-metadata-mref.json
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 
     # two pass processing
