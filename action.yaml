@@ -377,10 +377,10 @@ runs:
           # 2nd pass
           docfx docfx-metadata-mref.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat site/api/toc.json
+          cat _site/api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           jq -c '[ .items[] | select(.name == "") | .name = "global::" ]' \
-            site/api/toc.json \
+            _site/api/toc.json \
             > api/toc_global.json
 
           # merge toc
