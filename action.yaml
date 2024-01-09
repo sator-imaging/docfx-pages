@@ -362,8 +362,6 @@ runs:
 
           # 1st pass
           docfx docfx-metadata-api.json
-          cp api/toc.yml toc-api.yml
-          rm -rf api
           docfx docfx-build.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/toc.json
@@ -374,6 +372,7 @@ runs:
 
           # 2nd pass
           docfx docfx-metadata-mref.json
+          docfx docfx-build.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
