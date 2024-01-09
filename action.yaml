@@ -363,7 +363,7 @@ runs:
           # 1st pass
           docfx docfx-metadata-api.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat api/toc.json
+          cat api/toc.yml
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           jq -n -c '[ .items[] | .shortName = .name | .shortName |= match("[^\\.]+$").string ]' \
             api/toc.json \
