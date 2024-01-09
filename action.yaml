@@ -364,7 +364,7 @@ runs:
           docfx docfx-metadata-api.json
           cp api/toc.yml toc-api.yml
           rm -rf api
-          docfx build -o:api -t:default,modern,template
+          docfx docfx-build.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/toc.json
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
