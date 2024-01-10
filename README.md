@@ -37,8 +37,8 @@ Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessar
   - https://sator-imaging.github.io/docfx-pages/HeaderDocs/Tests/Program.cs.html
   - C# Source Code
     - https://github.com/sator-imaging/docfx-pages/blob/main/Tests/Program.cs
-- Built with `class_members: 'separatePages'` → [Go 🧾](https://sator-imaging.github.io/Half-Ulid/api/SatorImaging.HUlid.html)
-- Built with `class_members: 'samePage'` → [Go 🧾](https://sator-imaging.github.io/docfx-pages/api/SatorImaging.DocFXPages.Tests.App.html)
+- Built with `class_members: 'separatePages'` → [Go 🧾](https://sator-imaging.github.io/Half-Ulid/api/index.html)
+- Built with `class_members: 'samePage'` → [Go 🧾](https://sator-imaging.github.io/docfx-pages/api/index.html)
   - *Note:* this sample demonstrates wrong result when specify `site_logo` or `site_favidon` as full-qualified URL. (Logo image in header is missing. `docfx` supports only relative path.)
 
 
