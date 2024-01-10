@@ -1,15 +1,32 @@
 {
     "build": {
+        "dest": "_site",
+        "dryRun": true,
+        "noLangKeyword": true,
+        "disableGitFeatures": true,
+        "shouldSkipMarkup": true,
+        "noRestore": true,
+        "allowCompilationErrors": true,
+        "EnumSortOrder": "declaringOrder",
+        "includePrivateMembers": false,
+        "includeExplicitInterfaceImplementations": false,
         "globalMetadata": {
+            "_enableSearch": false,
             "pdf": false,
-            "_enableSearch": false
+
+            "_disableNavbar": true,
+            "_disableBreadcrumb": true,
+            "_disableAffix": true,
+            "_disableContribution": true,
+            "_noindex": true,
+
+            "_disableToc": false
         },
         "template": [
             "default",
             "modern",
             "template"
         ],
-        "dest": "_site",
         "content": [
             {
                 "files": [
@@ -21,8 +38,6 @@
                     "**/.*"
                 ]
             }
-        ],
-        "noLangKeyword": true,
-        "disableGitFeatures": true
+        ]
     }
 }

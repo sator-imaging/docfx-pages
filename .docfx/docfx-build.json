@@ -1,5 +1,6 @@
 {
     "build": {
+        "dest": "_site",
         "globalMetadata": {
             "_appName": "%s",
             "_appTitle": "%s",
@@ -23,7 +24,6 @@
             "modern",
             "template"
         ],
-        "dest": "_site",
         "sitemap": {
             "baseUrl": "%s",
             "priority": 0.1,
