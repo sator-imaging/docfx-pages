@@ -405,9 +405,7 @@ runs:
           if ! [[ -f api/index.md ]]; then
             echo "# API Reference" > api/index.md
 
-            docfx build --exportRawModel docfx-build-fast.json
-            # raw model doesn't generate .json
-            docfx build --exportViewModel docfx-build-fast.json
+            docfx build docfx-build-fast.json
             
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
               _site/api/toc.json \
@@ -415,6 +413,8 @@ runs:
               | jq -r '.[] | "## \(.shortName)", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
               >> api/index.md
 
+            echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            cat _site/api/toc.json
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             cat api/index.md
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"

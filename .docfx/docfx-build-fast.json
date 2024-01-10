@@ -20,7 +20,7 @@
             "_disableContribution": true,
             "_noindex": true,
 
-            "_disableToc": false
+            "_disableToc": true
         },
         "template": [
             "default",
