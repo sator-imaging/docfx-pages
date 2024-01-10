@@ -16,10 +16,19 @@
 <a id="{{id}}" data-uid="{{uid}}"></a>
 {{/overload}}
 
-<h3 id="{{id}}" data-uid="{{uid}}">
-  {{name.0.value}}
-  {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
-</h3>
+{{!STMG  use h2 if separatePage}}
+{{#_splitReference}}
+  <h2 id="{{id}}" data-uid="{{uid}}">
+    {{name.0.value}}
+    {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
+  </h2>
+{{/_splitReference}}
+{{^_splitReference}}
+  <h3 id="{{id}}" data-uid="{{uid}}">
+    {{name.0.value}}
+    {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
+  </h3>
+{{/_splitReference}}
 
 {{!STMG  swap order: summary and syntax code}}
 {{#syntax}}
