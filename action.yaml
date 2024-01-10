@@ -374,10 +374,6 @@ runs:
           docfx metadata docfx-metadata-mref.json
           cp api/toc.yml __stmg__toc_global.txt
 
-          # some project fails on build (error: file is being used by another process)
-          # need a delay
-          sleep 7s
-
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat __stmg__toc_global.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -408,6 +404,16 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/toc.yml
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        
+        popd
+
+    # some project fails on build (error: file is being used by another process)
+    # need to run in new shell
+    - name: Generate api/index.md
+      shell: bash
+      run: |
+
+        pushd .docfx
 
           # genereate api/index.md
           if ! [[ -f api/index.md ]]; then
@@ -420,11 +426,6 @@ runs:
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             docfx build docfx-build-fast.json
             
-            # some project fails on build (error: file is being used by another process)
-            # need a delay
-            sleep 7s
-
-
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
               _site/api/toc.json \
               | jq -c '[ .[] | .shortName = .name | .shortName |= match("[^\\.]+$").string | .parentName = .name | .parentName |= sub("\\.?[^\\.]+$"; "") ]' \
@@ -448,7 +449,7 @@ runs:
         popd
 
     # some project fails on build (error: file is being used by another process)
-    # need a delay
+    # need to run in new shell
     - name: Build Pages
       shell: bash
       run: |
