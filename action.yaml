@@ -374,6 +374,10 @@ runs:
           docfx metadata docfx-metadata-mref.json
           cp api/toc.yml __stmg__toc_global.txt
 
+          # some project fails on build (error: file is being used by another process)
+          # need a delay
+          sleep 15s
+
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat __stmg__toc_global.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
