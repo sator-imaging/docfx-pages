@@ -375,8 +375,8 @@ runs:
           cp api/toc.yml __stmg__toc_global.txt
 
           # some project fails on build (error: file is being used by another process)
-          # need a delay
-          sleep 15s
+          # need a delay (15s is stable, sleep 30s for safe.)
+          sleep 30s
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat __stmg__toc_global.txt
@@ -431,8 +431,8 @@ runs:
             docfx build docfx-build-fast.json
             
             # some project fails on build (error: file is being used by another process)
-            # need a delay
-            sleep 30s
+            # need a delay (60s is stable, sleep 90s for safe.)
+            sleep 90s
 
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
               _site/api/toc.json \

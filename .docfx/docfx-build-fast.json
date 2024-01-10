@@ -3,7 +3,7 @@
         "dest": "_site",
         "dryRun": false,
         "noRestore": true,
-        "maxParallelism": 1,
+        "maxParallelism": 0,
         "noLangKeyword": true,
         "disableGitFeatures": true,
         "shouldSkipMarkup": true,
