@@ -158,16 +158,16 @@ body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
 
 article h1,
 article h2 {
-    margin-top: 3rem;
+    margin-top: 1.6rem;
+}
+
+article h1+h2 {
+    margin-top: 1rem;
 }
 
 article h1:first-child,
 article h2:first-child {
     margin-top: 0;
-}
-
-article h1+h2 {
-    margin-top: 1rem;
 }
 
 article p+ul,

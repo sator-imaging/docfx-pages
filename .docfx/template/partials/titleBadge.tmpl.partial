@@ -11,7 +11,7 @@
   {{name.0.value}} <span class="badge rounded-pill bg-info">Namespace</span>
 {{/name.0.value}}
 {{^name.0.value}}
-  <code>global::</code> <span class="badge rounded-pill bg-info">Namespace</span>
+  <code>global::</code>
 {{/name.0.value}}
 
 {{/isNamespace}}
