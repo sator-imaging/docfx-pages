@@ -2,10 +2,11 @@
     "build": {
         "dest": "_site",
         "dryRun": false,
+        "noRestore": true,
+        "maxParallelism": 1,
         "noLangKeyword": true,
         "disableGitFeatures": true,
         "shouldSkipMarkup": true,
-        "noRestore": false,
         "allowCompilationErrors": true,
         "EnumSortOrder": "declaringOrder",
         "includePrivateMembers": false,
