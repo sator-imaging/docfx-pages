@@ -369,6 +369,8 @@ runs:
           # 1st pass
           docfx metadata docfx-metadata-api.json
           cp api/toc.yml __stmg__toc_api.txt
+          
+          rm -rf '_site' 'api'  # leaving file will make build incorrectly.
 
           # 2nd pass
           docfx metadata docfx-metadata-mref.json
