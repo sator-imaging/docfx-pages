@@ -431,8 +431,8 @@ runs:
             docfx build docfx-build-fast.json
             
             # some project fails on build (error: file is being used by another process)
-            # need a delay (60s is stable, sleep 90s for safe.)
-            sleep 90s
+            # need a delay (30s is stable, sleep 60s for safe.)
+            sleep 60s
 
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
               _site/api/toc.json \
