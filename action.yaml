@@ -408,7 +408,7 @@ runs:
           if ! [[ -f api/index.md ]]; then
             echo "# API Reference" > api/index.md
             echo "Class index of \`${{ env.REPO_NAME }}\` API including Enum, Interface and Struct." >> api/index.md
-            echo "See list in [Alphabetical Order](#alphabetical-order)." >> api/index.md
+            echo "[Alphabetical Order](#alphabetical-order)." >> api/index.md
 
             docfx build docfx-build-fast.json
             

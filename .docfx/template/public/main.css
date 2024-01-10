@@ -234,7 +234,7 @@ body[data-yaml-mime=ManagedReference] article h3[data-uid] {
 
 /** almostly 404 not found */
 div.contribution.d-print-none {
-    display: none;
+    display: none !important;
 }
 
 /** breadcrumb
