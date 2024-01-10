@@ -422,13 +422,13 @@ runs:
             echo "[Alphabetical Order](#alphabetical-order)." >> api/index.md
 
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-            echo "1st Build"
+            echo "Yaml Build"
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             docfx build docfx-build-fast.json
             
             # some project fails on build (error: file is being used by another process)
             # need a delay
-            sleep 7s
+            ##sleep 7s
 
 
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
@@ -460,7 +460,7 @@ runs:
       run: |
 
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        echo "2nd Build"
+        echo "Page Build"
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         docfx build .docfx/docfx-build.json
 
