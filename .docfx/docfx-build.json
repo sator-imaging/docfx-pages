@@ -1,6 +1,7 @@
 {
     "build": {
         "dest": "_site",
+        "maxParallelism": 1,
         "globalMetadata": {
             "_appName": "%s",
             "_appTitle": "%s",
