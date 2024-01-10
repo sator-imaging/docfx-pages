@@ -348,6 +348,7 @@ runs:
     - name: Run DocFX
       shell: bash
       run: |
+
         ##dotnet tool update -g docfx
         dotnet tool install --global docfx --version 2.74.1
 
@@ -355,18 +356,21 @@ runs:
 
           ##docfx docfx.json
 
+          # rename temporarily
+          mv toc.yml __stmg__toc.txt
+
           # 1st pass
           docfx metadata docfx-metadata-api.json
-          cp api/toc.yml toc_api.txt
+          cp api/toc.yml __stmg__toc_api.txt
 
           # 2nd pass
           docfx metadata docfx-metadata-mref.json
-          cp api/toc.yml toc_global.txt
+          cp api/toc.yml __stmg__toc_global.txt
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat toc_global.txt
+          cat __stmg__toc_global.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat toc_api.txt
+          cat __stmg__toc_api.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # merge toc
@@ -380,6 +384,7 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # build
+          mv __stmg__toc.txt toc.yml
           docfx build docfx-build.json
 
         popd
