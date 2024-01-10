@@ -421,7 +421,7 @@ runs:
 
           # genereate api/index.md
           if ! [[ -f api/index.md ]]; then
-            echo "# API Reference" > api/index.md
+            echo "# API Class Index" > api/index.md
             echo "Class index of \`${{ env.REPO_NAME }}\` API including Enum, Interface and Struct." >> api/index.md
             echo "[Alphabetical Order](#alphabetical-order)." >> api/index.md
 

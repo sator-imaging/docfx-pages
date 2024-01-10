@@ -170,8 +170,8 @@ article h2:first-child {
     margin-top: 0;
 }
 
-article p+ul,
-article p+ol {
+article>p+ul,
+article>p+ol {
     margin-top: -0.75rem;
 }
 
