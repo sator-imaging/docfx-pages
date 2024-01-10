@@ -5,7 +5,7 @@
         "noLangKeyword": true,
         "disableGitFeatures": true,
         "shouldSkipMarkup": true,
-        "noRestore": false,
+        "noRestore": true,
         "allowCompilationErrors": true,
         "EnumSortOrder": "declaringOrder",
         "includePrivateMembers": false,

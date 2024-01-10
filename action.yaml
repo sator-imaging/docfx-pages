@@ -443,7 +443,7 @@ runs:
         sleep 7s
 
         # build
-        docfx build docfx-build.json
+        docfx build .docfx/docfx-build.json
 
 
     - name: Setup Pages
