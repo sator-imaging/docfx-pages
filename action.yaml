@@ -183,7 +183,7 @@ runs:
           
           for f in $(find $DIR -name '*.cs'); do
             if [[ -f $f ]]; then
-              if ! [[ $(head -1 $f | sed -n -E '/^\/\*+/p') ]]; then
+              if ! [[ $(head -1 $f | sed -n -E '/^\/\*/p') ]]; then
                 echo -e "NO HEADER DOC \t ${f:$LEN} ($f)"
                 continue
               fi
@@ -193,11 +193,11 @@ runs:
               # filename="${filename%.*}"
 
               HDOC=$(sed -n -E '
-                /^\/\*+/{
+                /^\/\*/{
                   :a;
                   N;
                   /[\r\n][[:blank:]]?\*\//!ba;
-                  s/^\/\*+[[:blank:]\r\n\*]+//;
+                  s/^\/\*[[:blank:]\r\n\*]*//;
                   s/([\r\n]+)[[:blank:]]?[\*\/]+[[:blank:]]?/\1/g;
                   s/[[:blank:]\r\n]+$//;
                   s/ \r?\n/\n/g;
@@ -229,13 +229,14 @@ runs:
 
                 echo "$HDOC" > "$MD_FILE"
                 printf -v TOC_LINKS "${TOC_LINKS}  - href: ${HDOC_DIR_NAME}/${f:$LEN}.md\n"
-                printf -v HDOC_PAGE "${HDOC_PAGE}<a href='${HDOC_DIR_NAME}/${f:$LEN}.html'>${f:$LEN}</a>  \n"
+                printf -v HDOC_PAGE "${HDOC_PAGE}[${f:$LEN}](${HDOC_DIR_NAME}/${f:$LEN}.md)  \n"
               fi
 
             fi
           done
         popd
 
+        AUTO_MD=''
         for f in $(find . -name '*.md'); do
           echo "MD COLLECTOR: checking... $f"
           if [[ "$f" == ./index.md || "$f" == ./LICENSE.md || "$f" == ./.docfx/* ]]; then
@@ -243,20 +244,24 @@ runs:
           fi
           echo "FILE COLLECTED: $f"
           printf -v TOC_LINKS "${TOC_LINKS}  - href: ../${f:$LEN}\n"
+          printf -v AUTO_MD "${AUTO_MD}[${f:$LEN}](${f:$LEN})  \n"
         done
 
         cd .docfx
           if ! [[ -f 'toc.yml' ]]; then
             if [[ $TOC_LINKS ]]; then
 
-              echo "# HeaderDoc Index" >> hdocs.md
-              echo "Here is list of \`HeaderDoc\` automatically generated from the source code comment." >> hdocs.md
-              echo "" >> hdocs.md
-              echo "${HDOC_PAGE}" >> hdocs.md
+              AUTO_DOCS='AutoDocs.md'
+              echo "# `docfx-pages` Automaton" >> $AUTO_DOCS
+              echo "Here is list of documents automatically generated or collected by `docfx-pages`." >> $AUTO_DOCS
+              echo "## HeaderDoc Generator" >> $AUTO_DOCS
+              echo "${HDOC_PAGE}" >> $AUTO_DOCS
+              echo "## Markdown Collector" >> $AUTO_DOCS
+              echo "${AUTO_MD}" >> $AUTO_DOCS
 
               echo "- name: Docs" >> 'toc.yml'
               ## echo "  expanded: true" >> 'toc.yml'
-              echo "  href: hdocs.html" >> 'toc.yml'
+              echo "  href: ${AUTO_DOCS}" >> 'toc.yml'
               echo "  items:" >> 'toc.yml'
               echo "  - name: Introduction" >> 'toc.yml'
               echo "    href: index.html" >> 'toc.yml'
