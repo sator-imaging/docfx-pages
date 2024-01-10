@@ -400,7 +400,7 @@ runs:
             echo "# API Reference" > api/index.md
 
             docfx build docfx-build-fast.json
-            jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "\(.name)" end ]' \
+            jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
               _site/api/toc.json \
               | jq -c '[ .[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string ]' \
               | jq -r '.[] | "## \(.shortName)", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
