@@ -33,28 +33,5 @@
                 "TargetFramework": "netstandard2.0"
             }
         }
-    ],
-    "build": {
-        "globalMetadata": {
-            "_enableSearch": false
-        },
-        "template": [
-            "default",
-            "modern",
-            "template"
-        ],
-        "dest": "_site",
-        "content": [
-            {
-                "files": [
-                    "**.yml"
-                ],
-                "exclude": [
-                    "_site/**",
-                    "obj/**",
-                    "**/.*"
-                ]
-            }
-        ]
-    }
+    ]
 }

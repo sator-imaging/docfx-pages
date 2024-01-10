@@ -114,12 +114,6 @@ runs:
         echo ${{ env.REPO_NAME }}
 
 
-    - name: Dotnet Setup
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 8.x
-
-
     - name: Checkout docfx-pages
       uses: actions/checkout@v3
       with:
@@ -173,16 +167,6 @@ runs:
         if ! [[ -f 'index.md' ]]; then
           mv 'README.md' 'index.md'
         fi
-
-    - name: Generate .docfx/api/index.md
-      shell: bash
-      run: |
-        mkdir -p .docfx/api
-        pushd .docfx/api
-          if ! [[ -f index.md ]]; then
-            echo "# API Reference" > index.md
-          fi
-        popd
 
 
     - name: HeaderDoc extraction and Generate toc.yml
@@ -354,6 +338,12 @@ runs:
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 
+    - name: Dotnet Setup
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.x
+
+
     # two pass processing
     - name: Run DocFX
       shell: bash
@@ -366,58 +356,32 @@ runs:
           ##docfx docfx.json
 
           # 1st pass
-          docfx docfx-metadata-api.json
-          jq -c '[ .items[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string ]' \
-            _site/api/toc.json \
-            > toc_api.json
+          docfx metadata docfx-metadata-api.json
+          cp api/toc.yml toc_api.txt
 
           # 2nd pass
-          docfx docfx-metadata-mref.json
-          jq -c '[ .items[] | select(.name == "") | .name = "global::" | .shortName = .name ]' \
-            _site/api/toc.json \
-            > toc_global.json
+          docfx metadata docfx-metadata-mref.json
+          cp api/toc.yml toc_global.txt
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat toc_global.json
+          cat toc_global.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat toc_api.json
+          cat toc_api.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # merge toc
-          # https://www.tohoho-web.com/ex/jq.html#opt-slurpfile
-          jq -n -c --slurpfile global toc_global.json --slurpfile api toc_api.json '$global[0] + $api[0]' \
-            ##| jq -c ".order = 100 | .pdf = false | .memberLayout = \"${{ inputs.class_members }}\"" \
-            > api/toc.json
-
-          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat api/toc.json
-          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+          # sed
 
           # api/toc.json to api/index.md
           echo "# API Reference" > api/index.md
-          jq -c '[ .[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "\(.name)" end ]' \
-            api/toc.json \
-            #| jq -r '.[] | "## \(.shortName) <span class=\"\">Namespace</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
-            #>> api/index.md
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/index.md
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # build
-          docfx docfx-build.json
+          docfx build docfx-build.json
 
-        popd
-
-    - name: TOC expansion
-      shell: bash
-      run: |
-        pushd .docfx/_site
-          if [[ -f toc.json ]]; then
-            ## sed 's/toc.yml"\,"items"\:\[{/toc.yml"\,"items"\:\[{"expanded"\:true\,/g' -i toc.json
-            ## sed 's/html"}\]}\,{/html"}\]}\,{"expanded"\:true\,/g' -i toc.json
-            cat toc.json
-          fi
         popd
 
 
