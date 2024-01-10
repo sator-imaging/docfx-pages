@@ -370,19 +370,9 @@ runs:
           docfx metadata docfx-metadata-api.json
           cp api/toc.yml __stmg__toc_api.txt
 
-          # some project fails on build (error: file is being used by another process)
-          # need a delay
-          ##sleep 7s
-
-
           # 2nd pass
           docfx metadata docfx-metadata-mref.json
           cp api/toc.yml __stmg__toc_global.txt
-
-          # some project fails on build (error: file is being used by another process)
-          # need a delay
-          ##sleep 7s
-
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat __stmg__toc_global.txt
@@ -428,7 +418,7 @@ runs:
             
             # some project fails on build (error: file is being used by another process)
             # need a delay
-            ##sleep 7s
+            sleep 7s
 
 
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
