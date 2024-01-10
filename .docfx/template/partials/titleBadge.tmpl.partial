@@ -5,7 +5,15 @@
 {{name.0.value}} <span class="badge rounded-pill bg-info">Package</span>
 {{/inPackage}}
 {{#isNamespace}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Namespace</span>
+
+{{!STMG  global namespace is empty}}
+{{#name.0.value}}
+  {{name.0.value}} <span class="badge rounded-pill bg-info">Namespace</span>
+{{/name.0.value}}
+{{^name.0.value}}
+  <code>global::</code> <span class="badge rounded-pill bg-info">Namespace</span>
+{{/name.0.value}}
+
 {{/isNamespace}}
 {{#inClass}}
 {{name.0.value}} <span class="badge rounded-pill bg-info">Class</span>
