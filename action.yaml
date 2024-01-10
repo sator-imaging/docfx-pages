@@ -255,10 +255,13 @@ runs:
               echo "# \`docfx-pages\` Automaton" >> $AUTO_DOCS
               echo "Here is list of documents automatically generated or collected by" >> $AUTO_DOCS
               echo "[\`docfx-pages\`](https://github.com/marketplace/actions/docfx-for-github-pages)" >> $AUTO_DOCS
-              echo "## HeaderDoc Generator" >> $AUTO_DOCS
-              echo "${HDOC_PAGE}" >> $AUTO_DOCS
               echo "## Markdown Collector" >> $AUTO_DOCS
               echo "${AUTO_MD}" >> $AUTO_DOCS
+              echo "## HeaderDoc Generator" >> $AUTO_DOCS
+              echo "${HDOC_PAGE}" >> $AUTO_DOCS
+              echo "## API Class Index" >> $AUTO_DOCS
+              echo "[By Namespace](api/index.md)  " >> $AUTO_DOCS
+              echo "[By Alphabetically](api/index.md#alphabetical-order)  " >> $AUTO_DOCS
 
               echo "- name: Docs" >> 'toc.yml'
               ## echo "  expanded: true" >> 'toc.yml'
@@ -404,14 +407,20 @@ runs:
           # genereate api/index.md
           if ! [[ -f api/index.md ]]; then
             echo "# API Reference" > api/index.md
+            echo "Class index of \`${{ env.REPO_NAME }}\` API including Enum, Interface and Struct." >> api/index.md
+            echo "See list in [Alphabetical Order](#alphabetical-order)." >> api/index.md
 
             docfx build docfx-build-fast.json
             
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
               _site/api/toc.json \
-              | jq -c '[ .[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string ]' \
-              | jq -r '.[] | "## \(.shortName)", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
+              | jq -c '[ .[] | .shortName = .name | .shortName |= match("[^\\.]+$").string | .parentName = .name | .parentName |= sub("\\.?[^\\.]+$"; "") ]' \
+              | jq -r '.[] | "## \(.shortName) <span class=\"badge rounded-pill bg-info\">\(.parentName)</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
               >> api/index.md
+
+            # TODO: alphabetical order
+            echo "## Alphabetical Order" >> api/index.md
+
 
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             cat _site/api/toc.json

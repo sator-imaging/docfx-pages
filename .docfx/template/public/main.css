@@ -228,3 +228,30 @@ h3,
 body[data-yaml-mime=ManagedReference] article h3[data-uid] {
     font-weight: 200;
 }
+
+
+/** fix errors */
+
+/** almostly 404 not found */
+div.contribution.d-print-none {
+    display: none;
+}
+
+/** breadcrumb
+ *  NOTE: docfx bultin script logic is broken.
+ *        wrong result when root expandable in TOC has link to document.
+ *        these styles partially fix problem but not perfect.
+ *        (wrong when root expandable is selected)
+ */
+
+.breadcrumb>li:not(:only-of-type):first-child {
+    display: none;
+}
+
+.breadcrumb>li:nth-child(2) {
+    padding-left: unset;
+}
+
+.breadcrumb>li:nth-child(2)::before {
+    content: none;
+}
