@@ -420,7 +420,10 @@ runs:
 
             # TODO: alphabetical order
             echo "## Alphabetical Order" >> api/index.md
-
+            jq -c '[ .items[].items[] | select(has("href")) | .shortName = .name | .shortName |= match("[^\\.]+$").string ] | sort_by(.shortName)' \
+              _site/api/toc.json \
+              | jq -r '.[] | "- [\(.shortName)](\(.href))"' \
+              >> api/index.md
 
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             cat _site/api/toc.json
