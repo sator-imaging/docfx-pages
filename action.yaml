@@ -430,6 +430,10 @@ runs:
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             docfx build docfx-build-fast.json
             
+            # some project fails on build (error: file is being used by another process)
+            # need a delay
+            sleep 30s
+
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
               _site/api/toc.json \
               | jq -c '[ .[] | .shortName = .name | .shortName |= match("[^\\.]+$").string | .parentName = .name | .parentName |= sub("\\.?[^\\.]+$"; "") ]' \
