@@ -332,8 +332,6 @@ runs:
       shell: bash
       run: |
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        cat .docfx/toc.yml
-        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         cat .docfx/docfx-metadata-mref.json
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
@@ -374,7 +372,32 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # merge toc
-          # sed
+          sed -n -E '
+            /^- uid\: Global$/{
+              :a;
+              N;
+              /[\r\n]+- uid\: /!ba;
+              s/[\r\n]+[^\r\n]+$//;
+              s/[\r\n]+  name\: ..[\r\n]+/\n  name\: "global\:\:"\n/;
+              p;
+            }' -i __stmg__toc_global.txt
+          head -1 __stmg__toc_api.txt > api/toc.yml
+          cat __stmg__toc_global.txt >> api/toc.yml
+          tail -n +2 __stmg__toc_api.txt >> api/toc.yml
+
+
+          mv __stmg__toc.txt toc.yml
+
+          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+          cat toc.yml
+          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+          cat api/toc.yml
+          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
+
+          # build
+          docfx build docfx-build.json
+
 
           # api/toc.json to api/index.md
           echo "# API Reference" > api/index.md
@@ -382,10 +405,6 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/index.md
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-
-          # build
-          mv __stmg__toc.txt toc.yml
-          docfx build docfx-build.json
 
         popd
 
