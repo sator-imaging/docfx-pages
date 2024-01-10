@@ -372,7 +372,7 @@ runs:
 
           # some project fails on build (error: file is being used by another process)
           # need a delay
-          sleep 7s
+          ##sleep 7s
 
 
           # 2nd pass
@@ -381,7 +381,7 @@ runs:
 
           # some project fails on build (error: file is being used by another process)
           # need a delay
-          sleep 7s
+          ##sleep 7s
 
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
