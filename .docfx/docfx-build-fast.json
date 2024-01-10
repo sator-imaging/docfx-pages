@@ -1,0 +1,28 @@
+{
+    "build": {
+        "globalMetadata": {
+            "pdf": false,
+            "_enableSearch": false
+        },
+        "template": [
+            "default",
+            "modern",
+            "template"
+        ],
+        "dest": "_site",
+        "content": [
+            {
+                "files": [
+                    "**.yml"
+                ],
+                "exclude": [
+                    "_site/**",
+                    "obj/**",
+                    "**/.*"
+                ]
+            }
+        ],
+        "noLangKeyword": true,
+        "disableGitFeatures": true
+    }
+}
