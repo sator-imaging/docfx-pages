@@ -253,7 +253,8 @@ runs:
 
               AUTO_DOCS='AutoDocs.md'
               echo "# \`docfx-pages\` Automaton" >> $AUTO_DOCS
-              echo "Here is list of documents automatically generated or collected by `docfx-pages`." >> $AUTO_DOCS
+              echo "Here is list of documents automatically generated or collected by" >> $AUTO_DOCS
+              echo "[\`docfx-pages\`](https://github.com/marketplace/actions/docfx-for-github-pages)" >> $AUTO_DOCS
               echo "## HeaderDoc Generator" >> $AUTO_DOCS
               echo "${HDOC_PAGE}" >> $AUTO_DOCS
               echo "## Markdown Collector" >> $AUTO_DOCS
