@@ -410,6 +410,11 @@ runs:
             echo "Class index of \`${{ env.REPO_NAME }}\` API including Enum, Interface and Struct." >> api/index.md
             echo "[Alphabetical Order](#alphabetical-order)." >> api/index.md
 
+
+            # some project fails on build (error: file is being used by another process)
+            # need a delay
+            sleep 7s
+
             docfx build docfx-build-fast.json
             
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
