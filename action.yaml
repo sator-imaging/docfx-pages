@@ -395,16 +395,23 @@ runs:
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 
-          # build
-          docfx build docfx-build.json
-
-
           # api/toc.json to api/index.md
-          echo "# API Reference" > api/index.md
+          if ! [[ -f api/index.md ]]; then
+            echo "# API Reference" > api/index.md
+            jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "\(.name)" end ]' \
+              api/toc.json \
+              | jq -c '[ .[] | .shortName = .name | .shortName |= match("([^\\.]+\\.)?[^\\.]+$").string ]' \
+              | jq -r '.[] | "## \(.shortName)", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
+              >> api/index.md
+          fi
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           cat api/index.md
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
+
+          # build
+          docfx build docfx-build.json
 
         popd
 
