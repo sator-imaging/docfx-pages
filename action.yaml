@@ -251,7 +251,7 @@ runs:
           if ! [[ -f 'toc.yml' ]]; then
             if [[ $TOC_LINKS ]]; then
 
-              AUTO_DOCS='AutoDocs.md'
+              AUTO_DOCS='Automaton.md'
               echo "# \`docfx-pages\` Automaton" >> $AUTO_DOCS
               echo "Here is list of documents automatically generated or collected by" >> $AUTO_DOCS
               echo "[\`docfx-pages\`](https://github.com/marketplace/actions/docfx-for-github-pages)" >> $AUTO_DOCS

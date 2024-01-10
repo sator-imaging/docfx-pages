@@ -87,21 +87,6 @@ nav.toc ul>li:first-child>span.name-only {
 }
 
 
-/** breadcrumb */
-
-body[data-yaml-mime=ManagedReference] .breadcrumb>li:first-child {
-    display: none;
-}
-
-body[data-yaml-mime=ManagedReference] .breadcrumb>li:nth-child(2) {
-    padding-left: unset;
-}
-
-body[data-yaml-mime=ManagedReference] .breadcrumb>li:nth-child(2)::before {
-    content: none;
-}
-
-
 /** affix */
 
 body[data-yaml-mime=ManagedReference] div.affix .badge {
@@ -122,10 +107,10 @@ body[data-yaml-mime=ManagedReference] div.affix .link-secondary {
 }
 
 
-/** api page */
+/** api page badges */
 
-h1.api>.badge,
-h2.api>.badge {
+article h1>.badge,
+article h2>.badge {
     font-size: 0.4em;
     line-height: 1em;
     font-weight: 300;
@@ -133,11 +118,7 @@ h2.api>.badge {
     vertical-align: super !important;
 }
 
-h2.api {
-    position: relative;
-}
-
-h3.api>.badge {
+article h3>.badge {
     font-size: 0.5em;
     line-height: 1em;
     font-weight: normal;
@@ -152,25 +133,41 @@ body[data-yaml-mime=ManagedReference] article dt .badge {
 }
 
 
-/** api page header */
+/** api page */
 
-body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.alert {
-    margin-bottom: 0.5rem;
+body[data-yaml-mime=ManagedReference] article dl.typelist>dt {
+    font-weight: 300;
+    font-size: 1.2em;
 }
 
-body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.facts,
-body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.alert+div.facts {
+body[data-yaml-mime=ManagedReference] article div.facts {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.facts+pre+p,
-body[data-yaml-mime=ManagedReference] article h1.api:first-child+div.alert+div.facts+pre+p {
-    margin-top: 1.6rem;
+body[data-yaml-mime=ManagedReference] article div.summary {
+  margin-top: 1.6rem;
+}
+
+body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
+  margin-top: 0.25em;
 }
 
 
 /** article */
+
+article h1,
+article h2 {
+    margin-top: 3rem;
+}
+
+article h1+h2 {
+    margin-top: 1rem;
+}
+
+article p+ul, article p+ol {
+    margin-top: -0.75rem;
+}
 
 article ul>li>p,
 article ol>li>p {
