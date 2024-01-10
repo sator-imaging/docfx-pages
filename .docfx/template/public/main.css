@@ -146,11 +146,11 @@ body[data-yaml-mime=ManagedReference] article div.facts {
 }
 
 body[data-yaml-mime=ManagedReference] article div.summary {
-  margin-top: 1.6rem;
+    margin-top: 1.6rem;
 }
 
 body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
-  margin-top: 0.25em;
+    margin-top: 0.25em;
 }
 
 
@@ -165,7 +165,8 @@ article h1+h2 {
     margin-top: 1rem;
 }
 
-article p+ul, article p+ol {
+article p+ul,
+article p+ol {
     margin-top: -0.75rem;
 }
 
