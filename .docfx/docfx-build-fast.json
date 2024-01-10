@@ -1,7 +1,7 @@
 {
     "build": {
         "dest": "_site",
-        "dryRun": true,
+        "dryRun": false,
         "noLangKeyword": true,
         "disableGitFeatures": true,
         "shouldSkipMarkup": true,
@@ -20,7 +20,7 @@
             "_disableContribution": true,
             "_noindex": true,
 
-            "_disableToc": false
+            "_disableToc": true
         },
         "template": [
             "default",
