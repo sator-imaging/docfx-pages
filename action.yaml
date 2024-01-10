@@ -432,11 +432,18 @@ runs:
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           fi
 
-
-          # build
-          docfx build docfx-build.json
-
         popd
+
+    # some project fails on build (error: file is being used by another process)
+    # need a delay
+    - name: Build Pages
+      shell: bash
+      run: |
+
+        sleep 7s
+
+        # build
+        docfx build docfx-build.json
 
 
     - name: Setup Pages
