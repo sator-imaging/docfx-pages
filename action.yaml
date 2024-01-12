@@ -94,6 +94,9 @@ runs:
     - name: DEBUG
       shell: bash
       run: |
+        which jq
+        which yq
+        which ruby  ## ruby -rjson -ryaml -e 'print YAML.load(STDIN.read).to_json' < sample.yaml
         echo "github.ref: ${{ github.ref }}"
         echo "github.action_ref: ${{ github.action_ref }}"
         echo "github.workflow_ref: ${{ github.workflow_ref }}"
@@ -341,7 +344,7 @@ runs:
       shell: bash
       run: |
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        cat .docfx/docfx-metadata-mref.json
+        cat -n .docfx/docfx-metadata-mref.json
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 
@@ -378,12 +381,12 @@ runs:
 
           # some project fails on build (error: file is being used by another process)
           # need a delay (15s is stable, sleep 30s for safe.)
-          sleep 30s
+          ##sleep 30s
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat __stmg__toc_global.txt
+          cat -n __stmg__toc_global.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat __stmg__toc_api.txt
+          cat -n __stmg__toc_api.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # merge toc
@@ -400,26 +403,35 @@ runs:
           cat __stmg__toc_global.txt >> api/toc.yml
           tail -n +2 __stmg__toc_api.txt >> api/toc.yml
 
+          sed -E '
+            /^ *href\: .*\.yml/ {
+              s/\.yml/\.html/;
+            };
+            /^ *- uid\: / {
+              s/[\r\n]/\.html/;
+              s/- uid\: /- href\: /;
+            }' api/toc.yml
 
-          mv __stmg__toc.txt toc.yml
+          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+          cat -n api/toc.yml
+          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
-          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          echo "Before generating api/index.md"
-          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat toc.yml
-          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat api/toc.yml
-          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        
         popd
 
-    # some project fails on build (error: file is being used by another process)
-    # need to run in new shell
+    - name: Convert yml to json
+      uses: mikefarah/yq@v4.40.5
+      with:
+        cmd: yq -o=json -I=0 '.' .docfx/api/toc.yml > .docfx/api/toc_json.txt
+
     - name: Generate api/index.md
       shell: bash
       run: |
 
         pushd .docfx
+
+          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+          cat -n api/toc_json.txt
+          echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # genereate api/index.md
           if ! [[ -f api/index.md ]]; then
@@ -427,17 +439,8 @@ runs:
             echo "Class index of \`${{ env.REPO_NAME }}\` API including Enum, Interface and Struct." >> api/index.md
             echo "[Alphabetical Order](#alphabetical-order)." >> api/index.md
 
-            echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-            echo "Yaml Build"
-            echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-            docfx build docfx-build-fast.json
-            
-            # some project fails on build (error: file is being used by another process)
-            # need a delay (30s is stable, sleep 60s for safe.)
-            sleep 60s
-
             jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
-              _site/api/toc.json \
+              api/toc_json.txt \
               | jq -c '[ .[] | .shortName = .name | .shortName |= match("[^\\.]+$").string | .parentName = .name | .parentName |= sub("\\.?[^\\.]+$"; "") ]' \
               | jq -r '.[] | "## \(.shortName) <span class=\"badge rounded-pill bg-info\">\(.parentName)</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
               >> api/index.md
@@ -445,14 +448,14 @@ runs:
             # TODO: alphabetical order
             echo "## Alphabetical Order" >> api/index.md
             jq -c '[ .items[].items[] | select(has("href")) | .shortName = .name | .shortName |= match("[^\\.]+$").string ] | sort_by(.shortName)' \
-              _site/api/toc.json \
+              api/toc_json.txt \
               | jq -r '.[] | "- [\(.shortName)](\(.href))"' \
               >> api/index.md
 
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-            cat _site/api/toc.json
+            cat -n _site/api/toc.json
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-            cat api/index.md
+            cat -n api/index.md
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           fi
 
