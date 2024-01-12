@@ -2,6 +2,16 @@ apiRules:
 - include:
   uidRegex: ^Global
   type: Namespace
+
+# inherited methods
+- exclude:
+    uidRegex: ^System\.Object\..*
+    type: Method
+- exclude:
+    uidRegex: ^System\.Attribute\..*
+    type: Method
+
+# types
 - exclude:
   uidRegex: ^System\.Object
   type: Type
