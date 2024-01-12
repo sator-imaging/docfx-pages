@@ -135,6 +135,10 @@ body[data-yaml-mime=ManagedReference] article dt .badge {
 
 /** api page */
 
+body[data-yaml-mime=ManagedReference] article h2 {
+    position: relative;
+}
+
 body[data-yaml-mime=ManagedReference] article dl.typelist>dt {
     font-weight: 300;
     font-size: 1.2em;
