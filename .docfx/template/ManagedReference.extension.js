@@ -14,10 +14,16 @@ exports.preTransform = function (model) {
 exports.postTransform = function (model) {
 
     fixSourceCodeAnchor(model);
-    for (const child of model.children) {
-        fixSourceCodeAnchor(child);
-        for (const grand of child.children) {
-            fixSourceCodeAnchor(grand);
+
+    if (model.children) {
+        for (const child of model.children) {
+            fixSourceCodeAnchor(child);
+
+            if (child.children) {
+                for (const grand of child.children) {
+                    fixSourceCodeAnchor(grand);
+                }
+            }
         }
     }
 
