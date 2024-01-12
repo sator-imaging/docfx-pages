@@ -10,6 +10,9 @@ apiRules:
 - exclude:
     uidRegex: ^System\.Attribute\..*
     type: Method
+- exclude:
+    uidRegex: ^System\.Attribute\..*
+    type: Property
 
 # types
 - exclude:
