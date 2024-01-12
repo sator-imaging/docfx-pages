@@ -405,7 +405,7 @@ runs:
               s/\.yml/\.html/;
             };
             /^ *- uid\: / {
-              s/[\r\n]/\.html/;
+              s/$/\.html/;
               s/- uid\: /- href\: /;
             }' -i api/toc.yml
 
