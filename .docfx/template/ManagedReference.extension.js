@@ -37,11 +37,11 @@ function fixSourceCodeAnchor(modelData) {
         return;
 
     let link = new String(modelData.sourceurl);
+    if (link.search(/#L[0-9]+$/) < 0)
+        return;
 
     var p = link.search(/[0-9]+$/);
-    if (p >= 0) {
-        modelData.sourceurl
-            = link.substring(0, p)
-            + (parseInt(link.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
-    }
+    modelData.sourceurl
+        = link.substring(0, p)
+        + (parseInt(link.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
 }
