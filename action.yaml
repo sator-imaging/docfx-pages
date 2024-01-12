@@ -344,7 +344,7 @@ runs:
       shell: bash
       run: |
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        cat -n .docfx/docfx-metadata-mref.json
+        cat .docfx/docfx-metadata-mref.json
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 
@@ -366,9 +366,6 @@ runs:
 
           ##docfx docfx.json
 
-          # rename temporarily
-          mv toc.yml __stmg__toc.txt
-
           # 1st pass
           docfx metadata docfx-metadata-api.json
           cp api/toc.yml __stmg__toc_api.txt
@@ -384,9 +381,9 @@ runs:
           ##sleep 30s
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat -n __stmg__toc_global.txt
+          cat __stmg__toc_global.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat -n __stmg__toc_api.txt
+          cat __stmg__toc_api.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # merge toc
@@ -410,10 +407,10 @@ runs:
             /^ *- uid\: / {
               s/[\r\n]/\.html/;
               s/- uid\: /- href\: /;
-            }' api/toc.yml
+            }' -i api/toc.yml
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat -n api/toc.yml
+          cat api/toc.yml
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
         popd
@@ -430,7 +427,7 @@ runs:
         pushd .docfx
 
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-          cat -n api/toc_json.txt
+          cat api/toc_json.txt
           echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
           # genereate api/index.md
@@ -439,7 +436,7 @@ runs:
             echo "Class index of \`${{ env.REPO_NAME }}\` API including Enum, Interface and Struct." >> api/index.md
             echo "[Alphabetical Order](#alphabetical-order)." >> api/index.md
 
-            jq -c '[ .items[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
+            jq -c '[ .[] | .items[] |= if .href then "- [\(.name)](\(.href))" else "### \(.name)" end ]' \
               api/toc_json.txt \
               | jq -c '[ .[] | .shortName = .name | .shortName |= match("[^\\.]+$").string | .parentName = .name | .parentName |= sub("\\.?[^\\.]+$"; "") ]' \
               | jq -r '.[] | "## \(.shortName) <span class=\"badge rounded-pill bg-info\">\(.parentName)</span>", "```csharp", "namespace \(.name)", "```", "\(.items[])"' \
@@ -447,15 +444,15 @@ runs:
 
             # TODO: alphabetical order
             echo "## Alphabetical Order" >> api/index.md
-            jq -c '[ .items[].items[] | select(has("href")) | .shortName = .name | .shortName |= match("[^\\.]+$").string ] | sort_by(.shortName)' \
+            jq -c '[ .[].items[] | select(has("href")) | .shortName = .name | .shortName |= match("[^\\.]+$").string ] | sort_by(.shortName)' \
               api/toc_json.txt \
               | jq -r '.[] | "- [\(.shortName)](\(.href))"' \
               >> api/index.md
 
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-            cat -n _site/api/toc.json
+            cat _site/api/toc.json
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-            cat -n api/index.md
+            cat api/index.md
             echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           fi
 
