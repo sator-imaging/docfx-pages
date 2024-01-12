@@ -13,7 +13,17 @@ exports.preTransform = function (model) {
  */
 exports.postTransform = function (model) {
 
-    model.sourceurl += 'xxx';
+    // fix source code link. see define_symbols.txt for detail
+    if (model.sourceurl) {
+        let link = new String(model.sourceurl);
+
+        var p = link.search(/[0-9]+$/);
+        if (p < 0) continue;
+
+        model.sourceurl
+            = link.substring(0, p)
+            + (parseInt(link.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
+    }
 
     return model;
 }

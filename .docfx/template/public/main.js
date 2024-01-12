@@ -28,19 +28,6 @@ setTimeout(initializeAffix, 1024);
 */
 
 function initializePage(event) {
-    // fix source code link. see define_symbols.txt for detail
-    const fixViewSourceLink = function () {
-        for (const link of document.querySelectorAll("a.header-action[title='View source']")) {
-            var p = link.href.search(/[0-9]+$/);
-            if (p < 0) continue;
-            link.href
-                = link.href.substring(0, p)
-                + (parseInt(link.href.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
-        }
-    };
-    // delay once
-    setTimeout(fixViewSourceLink, 1024);
-
     // TODO: do this by customizing template/partials.
     const stylingByScript = function () {
         // disable navbar submenu.
