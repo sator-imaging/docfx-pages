@@ -13,11 +13,11 @@ exports.preTransform = function (model) {
  */
 exports.postTransform = function (model) {
 
-    fixSourceCodeAnchor(model.sourceurl);
+    fixSourceCodeAnchor(model);
     for (const child of model.children) {
-        fixSourceCodeAnchor(child.sourceurl);
+        fixSourceCodeAnchor(child);
         for (const grand of child.children) {
-            fixSourceCodeAnchor(grand.sourceurl);
+            fixSourceCodeAnchor(grand);
         }
     }
 
