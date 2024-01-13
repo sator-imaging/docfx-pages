@@ -59,14 +59,8 @@ function updateTypeModelData(model) {
                 model.isDeprecated = true;
             }
 
-            if (model.isEnum && model.syntax?.content) {
-                for (const content of model.syntax.content) {
-                    let value = new String(content.value);
-                    if (!value || value.search(/\[[\s\r\n]*Obsolete/) < 0)
-                        continue;
-
-                    content.value = value.replaceAll(/\][\s\r\n]*/, '<br />');
-                }
+            if (model.isEnum && model.syntax?.content[0]?.value.search(/\[[\s\r\n]*Obsolete/) >= 0) {
+                model.syntax.content[0].value = model.syntax.content[0].value.replaceAll(/\][\s\r\n]*/, '<br />');
             }
         }
     }
