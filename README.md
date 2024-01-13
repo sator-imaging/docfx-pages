@@ -2,6 +2,11 @@
 
 Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessary file upload and complicated `docfx` setup.
 
+- ✅ No `.json`, `.yml` and `.csproj` Files Required
+- ✅ Automatic HeaderDoc & TOC Generator
+- ✅ Unity Project & Editor Extension Supported
+
+
 | Light Theme | Dark Theme |
 |:-----------:|:----------:|
 | ![Light Theme](images/docfx-pages-light.png)  | ![Dark Theme](images/docfx-pages-dark.png)

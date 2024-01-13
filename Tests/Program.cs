@@ -117,7 +117,7 @@ namespace DocFXPages.Tests
             Default = -9999,
             First = 100,
             Second,
-            [Obsolete]
+            [Obsolete("Obsolete Enum Item!!")]
             Exceeded = 9999,
         }
 
