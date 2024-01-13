@@ -30,7 +30,7 @@
   </h3>
 {{/_splitReference}}
 
-{{!STMG  swap order: summary and syntax code}}
+{{!STMG  swap order: summary and syntax code & deprecate flag}}
 {{#syntax}}
 <div class="codewrapper {{#isDeprecated}}deprecated{{/isDeprecated}}">
   <pre><code class="lang-csharp hljs">{{syntax.content.0.value}}</code></pre>
