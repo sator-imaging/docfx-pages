@@ -51,7 +51,7 @@ function updateTypeModelData(model) {
 
     // enum
     if (model.isEnum && model.isDeprecated && model.children) {
-        for (const child in model.children) {
+        for (const child of model.children) {
             if (!child.children)
                 continue;
             for (const grand of child.children) {
