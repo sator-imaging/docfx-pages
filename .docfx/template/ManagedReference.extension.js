@@ -58,6 +58,16 @@ function updateTypeModelData(model) {
             if (attr.type == 'System.ObsoleteAttribute') {
                 model.isDeprecated = true;
             }
+
+            if (model.isEnum && model.syntax?.content) {
+                for (const content of model.syntax.content) {
+                    let value = new String(content.value);
+                    if (!value || value.search(/\[[\s\r\n]*Obsolete/) < 0)
+                        continue;
+
+                    content.value = value.replaceAll(/\][\s\r\n]*/, '<br />');
+                }
+            }
         }
     }
 }
