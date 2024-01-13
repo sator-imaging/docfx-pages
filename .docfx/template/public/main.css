@@ -158,6 +158,32 @@ body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
 }
 
 
+/** deprecated */
+
+.codewrapper.deprecated {
+    __margin-top: 20px !important;
+}
+
+.codewrapper.deprecated:before {
+    content: "Deprecated";
+    display: block;
+    position: absolute;
+    z-index: 310;
+    right: 0;
+    top: -10px;
+    border-radius: 5px;
+    padding: 0px 16px;
+    color: white;
+    font-weight: 900;
+    background: var(--bs-danger-bg-subtle);
+    opacity: 1;
+}
+
+.codewrapper.deprecated>pre>code {
+    background: var(--bs-danger-bg-subtle);
+}
+
+
 /** article */
 
 article h1,
