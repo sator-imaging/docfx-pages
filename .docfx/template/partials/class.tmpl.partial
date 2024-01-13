@@ -21,6 +21,7 @@
 {{^_splitReference}}<h3 id="{{id}}" data-uid="{{uid}}">{{/_splitReference}}
   {{#isDeprecated}}
     <del>{{name.0.value}}</del>
+    <span class="badge rounded-pill bg-danger">Deprecated</span>
   {{/isDeprecated}}
   {{^isDeprecated}}
     {{name.0.value}}
