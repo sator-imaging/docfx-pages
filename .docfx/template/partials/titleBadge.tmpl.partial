@@ -1,59 +1,66 @@
 {{!STMG  original: https://github.com/dotnet/docfx/blob/main/templates/default/partials/title.tmpl.partial}}
-
 {{!Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license.}}
-{{#inPackage}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Package</span>
-{{/inPackage}}
-{{#isNamespace}}
 
-{{!STMG  global namespace is empty}}
-{{#name.0.value}}
-  {{name.0.value}} <span class="badge rounded-pill bg-info">Namespace</span>
-{{/name.0.value}}
-{{^name.0.value}}
-  <code>global::</code>
-{{/name.0.value}}
+{{#isDeprecated}}<del>{{/isDeprecated}}
+  {{!STMG  global namespace is empty}}
+  {{#name.0.value}}
+    {{name.0.value}}
+  {{/name.0.value}}
+  {{^name.0.value}}
+    <code>global::</code>
+  {{/name.0.value}}
+{{#isDeprecated}}</del>{{/isDeprecated}}
 
-{{/isNamespace}}
-{{#inClass}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Class</span>
-{{/inClass}}
-{{#inStruct}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Struct</span>
-{{/inStruct}}
-{{#inInterface}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Interface</span>
-{{/inInterface}}
-{{#inEnum}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Enum</span>
-{{/inEnum}}
-{{#inDelegate}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Delegate</span>
-{{/inDelegate}}
-{{#inConstructor}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Constructor</span>
-{{/inConstructor}}
-{{#inField}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Field</span>
-{{/inField}}
-{{#inProperty}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Property</span>
-{{/inProperty}}
-{{#inMethod}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Method</span>
-{{/inMethod}}
-{{#inEvent}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Event</span>
-{{/inEvent}}
-{{#inOperator}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Operator</span>
-{{/inOperator}}
-{{#inEii}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Explicit Interface Implementation</span>
-{{/inEii}}
-{{#inVariable}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Variable</span>
-{{/inVariable}}
-{{#inTypeAlias}}
-{{name.0.value}} <span class="badge rounded-pill bg-info">Type Alias</span>
-{{/inTypeAlias}}
+{{#isDeprecated}}
+  <span class="badge rounded-pill bg-danger">Deprecated</span>
+{{/isDeprecated}}
+{{^isDeprecated}}
+  {{#inPackage}}
+    <span class="badge rounded-pill bg-info">Package</span>
+  {{/inPackage}}
+  {{#isNamespace}}
+    <span class="badge rounded-pill bg-info">Namespace</span>
+  {{/isNamespace}}
+  {{#inClass}}
+    <span class="badge rounded-pill bg-info">Class</span>
+  {{/inClass}}
+  {{#inStruct}}
+    <span class="badge rounded-pill bg-info">Struct</span>
+  {{/inStruct}}
+  {{#inInterface}}
+    <span class="badge rounded-pill bg-info">Interface</span>
+  {{/inInterface}}
+  {{#inEnum}}
+    <span class="badge rounded-pill bg-info">Enum</span>
+  {{/inEnum}}
+  {{#inDelegate}}
+    <span class="badge rounded-pill bg-info">Delegate</span>
+  {{/inDelegate}}
+  {{#inConstructor}}
+    <span class="badge rounded-pill bg-info">Constructor</span>
+  {{/inConstructor}}
+  {{#inField}}
+    <span class="badge rounded-pill bg-info">Field</span>
+  {{/inField}}
+  {{#inProperty}}
+    <span class="badge rounded-pill bg-info">Property</span>
+  {{/inProperty}}
+  {{#inMethod}}
+    <span class="badge rounded-pill bg-info">Method</span>
+  {{/inMethod}}
+  {{#inEvent}}
+    <span class="badge rounded-pill bg-info">Event</span>
+  {{/inEvent}}
+  {{#inOperator}}
+    <span class="badge rounded-pill bg-info">Operator</span>
+  {{/inOperator}}
+  {{#inEii}}
+    <span class="badge rounded-pill bg-info">Explicit Interface Implementation</span>
+  {{/inEii}}
+  {{#inVariable}}
+    <span class="badge rounded-pill bg-info">Variable</span>
+  {{/inVariable}}
+  {{#inTypeAlias}}
+    <span class="badge rounded-pill bg-info">Type Alias</span>
+  {{/inTypeAlias}}
+{{/isDeprecated}}

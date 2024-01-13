@@ -117,8 +117,8 @@ body[data-yaml-mime=ManagedReference] div.affix .link-secondary {
 
 /** api page badges */
 
-article h1>.badge,
-article h2>.badge {
+article h1 .badge,
+article h2 .badge {
     font-size: 0.4em;
     line-height: 1em;
     font-weight: 300;
@@ -126,7 +126,7 @@ article h2>.badge {
     vertical-align: super !important;
 }
 
-article h3>.badge {
+article h3 .badge {
     font-size: 0.5em;
     line-height: 1em;
     font-weight: normal;
@@ -172,7 +172,7 @@ body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
     __margin-top: 20px !important;
 }
 
-.codewrapper.deprecated:before {
+.codewrapper.deprecated::before {
     content: "Deprecated";
     display: block;
     position: absolute;
@@ -183,13 +183,22 @@ body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
     padding: 0px 16px;
     font-weight: 900;
     font-size: 14px;
+    opacity: 1;
     color: #ff0000;
     background: #f5f5f5;
-    opacity: 1;
 }
 
 .codewrapper.deprecated>pre>code {
     background: #f5f5f5;
+}
+
+article h1+.facts+.codewrapper.deprecated::before {
+    color: #000000;
+    background: var(--bs-warning-bg-subtle);
+}
+
+article h1+.facts+.codewrapper.deprecated>pre>code {
+    background: var(--bs-warning-bg-subtle);
 }
 
 
