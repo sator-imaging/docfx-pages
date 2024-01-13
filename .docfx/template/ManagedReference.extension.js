@@ -16,21 +16,9 @@ exports.postTransform = function (model) {
 
     updateTypeModelData(model);
 
-    if (model.children) {
-        for (const child of model.children) {
-            updateTypeModelData(child);
-
-            if (child.children) {
-                for (const grand of child.children) {
-                    updateTypeModelData(grand);
-
-                    if (!dumpJsonOnce && grand.isDeprecated) {
-                        dumpJsonOnce = true;
-                        console.log(JSON.stringify(model));
-                    }
-                }
-            }
-        }
+    if (!dumpJsonOnce && model.children[0]?.children[0]?.isDeprecated) {
+        dumpJsonOnce = true;
+        console.log(JSON.stringify(model));
     }
 
     return model;
@@ -58,10 +46,20 @@ function updateTypeModelData(model) {
             if (attr.type == 'System.ObsoleteAttribute') {
                 model.isDeprecated = true;
             }
+        }
+    }
 
-            if (model.isEnum && model.syntax?.content[0]?.value.search(/\[[\s\r\n\\rn]*Obsolete/) >= 0) {
-                model.syntax.content[0].value = model.syntax.content[0].value.replaceAll(/\][\s\r\n\\rn]*/, '<br />');
-            }
+    // enum
+    if (model.isEnum && model.isDeprecated && model.syntax?.content) {
+        for (const content of model.syntax.content) {
+            content.value = content.value.replaceAll(/\][\s\r\n\\rn]*/, '<br />');
+        }
+    }
+
+    // recursive
+    if (model.children) {
+        for (const child of model.children) {
+            updateTypeModelData(child);
         }
     }
 }
