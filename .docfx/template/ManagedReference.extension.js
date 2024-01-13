@@ -53,6 +53,7 @@ function updateTypeModelData(model) {
     if (model.isEnum && model.isDeprecated && model.syntax?.content) {
         for (const content of model.syntax.content) {
             content.value = content.value.replaceAll(/\][\s\r\n\\rn]*/, '<br />');
+            content.value = 'DEBUG: ' + content.value;
         }
     }
 
