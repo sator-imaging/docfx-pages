@@ -120,6 +120,7 @@ namespace DocFXPages.Tests
             [Header("UnityEngine.HeaderAttribute")]
             [Obsolete("Obsolete Enum Item!!")]
             [Tooltip("UnityEngine.TooltipAttribute")]
+            [EditorBrowsable(EditorBrowsableState.Always)]
             Exceeded = 9999,
         }
 
@@ -129,7 +130,7 @@ namespace DocFXPages.Tests
             Default,
             First = 100,
             Second,
-            [Obsolete]Exceeded = 18446744073709551615,
+            [EditorBrowsable(EditorBrowsableState.Always)][Obsolete]Exceeded = 18446744073709551615,
         }
 
         /// <summary>
