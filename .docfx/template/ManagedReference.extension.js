@@ -64,7 +64,8 @@ function updateTypeModelData(model) {
                 if (!grand.syntax?.content)
                     continue;
                 for (const content of grand.syntax.content) {
-                    //content.value = content.value.replaceAll(/\][\s\r\n\\rn]*/g, ']\n');
+                    // NOTE: model data has only obsolete attribute in syntax data even if other atttributes exist.
+                    //       and newline will be added after ']' automatically, so nothing to do here.
                 }
             }
         }
