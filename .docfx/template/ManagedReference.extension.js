@@ -17,12 +17,19 @@ exports.postTransform = function (model) {
 
     updateTypeModelData(model);
 
-    if (!dumpDeprecatedOnce && model.children[0]?.children[0]?.isDeprecated) {
+    if (!dumpDeprecatedOnce
+        && model.children?.length > 0
+        && model.children[0].children?.length > 0
+        && model.children[0].children[0].isDeprecated
+    ) {
         dumpDeprecatedOnce = true;
         console.log(JSON.stringify(model));
     }
 
-    if (!dumpEnumOnce && model.isEnum && model.children[0]?.children[0]) {
+    if (!dumpEnumOnce && model.isEnum
+        && model.children?.length > 0
+        && model.children[0].children?.length > 0
+    ) {
         dumpEnumOnce = true;
         console.log(JSON.stringify(model));
     }
