@@ -64,7 +64,7 @@ function updateTypeModelData(model) {
                 if (!grand.syntax?.content)
                     continue;
                 for (const content of grand.syntax.content) {
-                    content.value = content.value.replaceAll(/\][\s\r\n\\rn]*/, '<br />');
+                    content.value = content.value.replaceAll(/\][\s\r\n\\rn]*/g, '<br />');
                     content.value = 'DEBUG: ' + content.value;
                 }
             }
