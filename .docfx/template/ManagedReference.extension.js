@@ -22,7 +22,7 @@ exports.postTransform = function (model) {
         console.log(JSON.stringify(model));
     }
 
-    if (!dumpEnumOnce && model.isEnum) {
+    if (!dumpEnumOnce && model.isEnum && model.children[0]?.children[0]) {
         dumpEnumOnce = true;
         console.log(JSON.stringify(model));
     }
