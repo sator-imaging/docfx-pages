@@ -149,9 +149,12 @@
   
   {{!STMG  deprecate flag}}
   <dt id="{{id}}">
-    {{syntax.content.0.value}}
     {{#isDeprecated}}
+      <code>{{syntax.content.0.value}}</code>
       <span class="badge rounded-pill bg-danger">Deprecated</span>
+    {{/isDeprecated}}
+    {{^isDeprecated}}
+      {{syntax.content.0.value}}
     {{/isDeprecated}}
   </dt>
 

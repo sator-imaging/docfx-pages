@@ -1,15 +1,18 @@
 {{!STMG  original: https://github.com/dotnet/docfx/blob/main/templates/default/partials/title.tmpl.partial}}
 {{!Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license.}}
 
-{{#isDeprecated}}<del>{{/isDeprecated}}
-  {{!STMG  global namespace is empty}}
-  {{#name.0.value}}
+{{!STMG  global namespace is empty}}
+{{#name.0.value}}
+  {{#isDeprecated}}
+    <del>{{name.0.value}}</del>
+  {{/isDeprecated}}
+  {{^isDeprecated}}
     {{name.0.value}}
-  {{/name.0.value}}
-  {{^name.0.value}}
-    <code>global::</code>
-  {{/name.0.value}}
-{{#isDeprecated}}</del>{{/isDeprecated}}
+  {{/isDeprecated}}
+{{/name.0.value}}
+{{^name.0.value}}
+  <code>global::</code>
+{{/name.0.value}}
 
 {{#isDeprecated}}
   <span class="badge rounded-pill bg-danger">Deprecated</span>

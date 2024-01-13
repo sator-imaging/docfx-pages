@@ -19,9 +19,12 @@
 {{!STMG  use h2 if separatePage & deprecate flag}}
 {{#_splitReference}}<h2 id="{{id}}" data-uid="{{uid}}">{{/_splitReference}}
 {{^_splitReference}}<h3 id="{{id}}" data-uid="{{uid}}">{{/_splitReference}}
-  {{#isDeprecated}}<del>{{/isDeprecated}}
+  {{#isDeprecated}}
+    <del>{{name.0.value}}</del>
+  {{/isDeprecated}}
+  {{^isDeprecated}}
     {{name.0.value}}
-  {{#isDeprecated}}</del>{{/isDeprecated}}
+  {{/isDeprecated}}
   {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
 {{#_splitReference}}</h2>{{/_splitReference}}
 {{^_splitReference}}</h3>{{/_splitReference}}
