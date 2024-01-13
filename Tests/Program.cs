@@ -119,6 +119,7 @@ namespace DocFXPages.Tests
             Second,
             [Header("UnityEngine.HeaderAttribute")]
             [Obsolete("Obsolete Enum Item!!")]
+            [Tooltip("UnityEngine.TooltipAttribute")]
             Exceeded = 9999,
         }
 
