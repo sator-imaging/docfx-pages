@@ -24,14 +24,9 @@ exports.postTransform = function (model) {
                 for (const grand of child.children) {
                     fixSourceCodeAnchor(grand);
 
-                    if (!dumpJsonOnce && grand.syntax?.content) {
-
-                        for (const syntax of grand.syntax.content) {
-                            if (syntax.lang == "csharp" && syntax.value.search(/\[\s*Obsolete/) >= 0) {
-                                dumpJsonOnce = true;
-                                console.log(JSON.stringify(model));
-                            }
-                        }
+                    if (!dumpJsonOnce && grand.isDeprecated) {
+                        dumpJsonOnce = true;
+                        console.log(JSON.stringify(model));
                     }
                 }
             }
@@ -43,16 +38,27 @@ exports.postTransform = function (model) {
 
 
 function fixSourceCodeAnchor(modelData) {
+    if (!modelData)
+        return;
+
     // fix source code link. see define_symbols.txt for detail
-    if (!modelData || !modelData.sourceurl)
-        return;
+    if (modelData.sourceurl) {
+        let link = new String(modelData.sourceurl);
+        if (link.search(/#L[0-9]+$/) < 0)
+            return;
 
-    let link = new String(modelData.sourceurl);
-    if (link.search(/#L[0-9]+$/) < 0)
-        return;
+        var p = link.search(/[0-9]+$/);
+        modelData.sourceurl
+            = link.substring(0, p)
+            + (parseInt(link.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
+    }
 
-    var p = link.search(/[0-9]+$/);
-    modelData.sourceurl
-        = link.substring(0, p)
-        + (parseInt(link.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
+    //deprecate
+    if (modelData.attributes) {
+        for (const attr of grand.attributes) {
+            if (attr == 'System.ObsoleteAttribute') {
+                model.isDeprecated = true;
+            }
+        }
+    }
 }
