@@ -117,6 +117,7 @@ namespace DocFXPages.Tests
             Default = -9999,
             First = 100,
             Second,
+            [Header("UnityEngine.HeaderAttribute")]
             [Obsolete("Obsolete Enum Item!!")]
             Exceeded = 9999,
         }
@@ -127,8 +128,7 @@ namespace DocFXPages.Tests
             Default,
             First = 100,
             Second,
-            [Obsolete]
-            Exceeded = 18446744073709551615,
+            [Obsolete]Exceeded = 18446744073709551615,
         }
 
         /// <summary>
