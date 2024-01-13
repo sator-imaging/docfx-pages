@@ -11,13 +11,19 @@ exports.preTransform = function (model) {
 /**
  * This method will be called at the end of exports.transform in ManagedReference.html.primary.js
  */
-var dumpJsonOnce;
+var dumpDeprecatedOnce;
+var dumpEnumOnce;
 exports.postTransform = function (model) {
 
     updateTypeModelData(model);
 
-    if (!dumpJsonOnce && model.children[0]?.children[0]?.isDeprecated) {
-        dumpJsonOnce = true;
+    if (!dumpDeprecatedOnce && model.children[0]?.children[0]?.isDeprecated) {
+        dumpDeprecatedOnce = true;
+        console.log(JSON.stringify(model));
+    }
+
+    if (!dumpEnumOnce && model.isEnum) {
+        dumpEnumOnce = true;
         console.log(JSON.stringify(model));
     }
 
