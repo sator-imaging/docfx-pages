@@ -11,7 +11,7 @@ exports.preTransform = function (model) {
 /**
  * This method will be called at the end of exports.transform in ManagedReference.html.primary.js
  */
-let dumpJsonOnce;
+var dumpJsonOnce;
 exports.postTransform = function (model) {
 
     fixSourceCodeAnchor(model);
@@ -24,9 +24,14 @@ exports.postTransform = function (model) {
                 for (const grand of child.children) {
                     fixSourceCodeAnchor(grand);
 
-                    if (!dumpJsonOnce && grand.sourceurl) {
-                        dumpJsonOnce = true;
-                        console.log(JSON.stringify(model, null, 2));
+                    if (!dumpJsonOnce && grand.syntax?.content) {
+
+                        for (const syntax of grand.syntax.content) {
+                            if (syntax.lang == "csharp" && syntax.value.search(/\[\s*Obsolete/) >= 0) {
+                                dumpJsonOnce = true;
+                                console.log(JSON.stringify(model));
+                            }
+                        }
                     }
                 }
             }
