@@ -67,11 +67,11 @@ nav.toc span.expand-stub {
 }
 
 nav.toc li {
-    margin: 0.4em 0;
+    margin: 0.6em 0;
 }
 
 nav.toc li>ul>li>ul {
-    margin-bottom: 0.6em;
+    margin-bottom: 0.9em;
 }
 
 nav.toc ul>li>ul>li>ul>li>ul {
@@ -87,11 +87,11 @@ nav.toc span.name-only {
 }
 
 nav.toc ul>li:first-child>span.name-only {
-    margin-top: 0;
+    margin-top: 0.16em;
 }
 
 nav.toc ul>li>ul>li>ul>li>ul span.name-only {
-    margin: 0.8em 0 0 0;
+    margin: 0.4em 0 0 0;
 }
 
 
