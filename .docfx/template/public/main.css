@@ -173,14 +173,14 @@ body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
     top: -10px;
     border-radius: 5px;
     padding: 0px 16px;
-    color: white;
     font-weight: 900;
-    background: var(--bs-danger-bg-subtle);
+    color: black;
+    background: var(--bs-warning-border-subtle);
     opacity: 1;
 }
 
 .codewrapper.deprecated>pre>code {
-    background: var(--bs-danger-bg-subtle);
+    background: var(--bs-warning-border-subtle);
 }
 
 

@@ -146,7 +146,15 @@
 <h2 id="{{id}}">{{>partials/classSubtitle}}</h2>
 <dl class="parameters">
 {{#children}}
-  <dt id="{{id}}"><code>{{syntax.content.0.value}}</code></dt>
+  
+  {{!STMG  deprecate flag}}
+  <dt id="{{id}}">
+    <code>{{syntax.content.0.value}}</code>
+    {{#isDeprecated}}
+      <span class="badge rounded-pill bg-danger">Deprecated</span>
+    {{/isDeprecated}}
+  </dt>
+
   <dd>{{{summary}}}</dd>
 {{/children}}
 </dl>
