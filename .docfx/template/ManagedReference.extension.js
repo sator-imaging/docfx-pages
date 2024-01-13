@@ -50,10 +50,18 @@ function updateTypeModelData(model) {
     }
 
     // enum
-    if (model.isEnum && model.isDeprecated && model.syntax?.content) {
-        for (const content of model.syntax.content) {
-            content.value = content.value.replaceAll(/\][\s\r\n\\rn]*/, '<br />');
-            content.value = 'DEBUG: ' + content.value;
+    if (model.isEnum && model.isDeprecated && model.children) {
+        for (const child in model.children) {
+            if (!child.children)
+                continue;
+            for (const grand of child.children) {
+                if (!grand.syntax?.content)
+                    continue;
+                for (const content of grand.syntax.content) {
+                    content.value = content.value.replaceAll(/\][\s\r\n\\rn]*/, '<br />');
+                    content.value = 'DEBUG: ' + content.value;
+                }
+            }
         }
     }
 
