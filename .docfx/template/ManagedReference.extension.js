@@ -14,15 +14,15 @@ exports.preTransform = function (model) {
 var dumpJsonOnce;
 exports.postTransform = function (model) {
 
-    fixSourceCodeAnchor(model);
+    updateTypeModelData(model);
 
     if (model.children) {
         for (const child of model.children) {
-            fixSourceCodeAnchor(child);
+            updateTypeModelData(child);
 
             if (child.children) {
                 for (const grand of child.children) {
-                    fixSourceCodeAnchor(grand);
+                    updateTypeModelData(grand);
 
                     if (!dumpJsonOnce && grand.isDeprecated) {
                         dumpJsonOnce = true;
@@ -37,26 +37,25 @@ exports.postTransform = function (model) {
 }
 
 
-function fixSourceCodeAnchor(modelData) {
-    if (!modelData)
+function updateTypeModelData(model) {
+    if (!model)
         return;
 
     // fix source code link. see define_symbols.txt for detail
-    if (modelData.sourceurl) {
-        let link = new String(modelData.sourceurl);
-        if (link.search(/#L[0-9]+$/) < 0)
-            return;
-
-        var p = link.search(/[0-9]+$/);
-        modelData.sourceurl
-            = link.substring(0, p)
-            + (parseInt(link.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
+    if (model.sourceurl) {
+        let link = new String(model.sourceurl);
+        if (link.search(/#L[0-9]+$/) >= 0) {
+            var p = link.search(/[0-9]+$/);
+            model.sourceurl
+                = link.substring(0, p)
+                + (parseInt(link.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
+        }
     }
 
-    //deprecate
-    if (modelData.attributes) {
-        for (const attr of grand.attributes) {
-            if (attr == 'System.ObsoleteAttribute') {
+    // obsolete attribute
+    if (model.attributes) {
+        for (const attr of model.attributes) {
+            if (attr.type == 'System.ObsoleteAttribute') {
                 model.isDeprecated = true;
             }
         }
