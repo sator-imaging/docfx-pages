@@ -193,10 +193,10 @@ then, set options in your GitHub Actions. Note that paths must be relative from 
 
 - `images/wikimedia-commons/logo-csharp-recolor.svg`
     - C# logo file for `site_logo` and `site_favicon`
-    - ![C# Logo](https://raw.githubusercontent.com/sator-imaging/docfx-pages/releases/v1.0.0/.docfx/images/wikimedia-commons/logo-csharp-recolor.svg)
+    - ![C# Logo](https://raw.githubusercontent.com/sator-imaging/docfx-pages/release/v1.0.0/.docfx/images/wikimedia-commons/logo-csharp-recolor.svg)
 - `images/unity/made-with-unity.svg`
     - Theme-aware SVG file for `site_logo`
-    - ![Made with Unity](https://raw.githubusercontent.com/sator-imaging/docfx-pages/releases/v1.0.0/.docfx/images/unity/made-with-unity.svg)
+    - ![Made with Unity](https://raw.githubusercontent.com/sator-imaging/docfx-pages/release/v1.0.0/.docfx/images/unity/made-with-unity.svg)
 
 
 
