@@ -57,6 +57,9 @@ Just enable GitHub Pages in repository setting and paste the code below.
 
 ### GitHub Actions Source Code
 
+> [!TIP]
+> 👇 Here is boilerplate-included sample code for GitHub Pages by Actions.
+
 <p><details>
 
 ```yaml
@@ -68,9 +71,6 @@ on:
     branches:
       - 'main'
       ##- 'releases/**'
-  pull_request:
-    branches: 
-      - 'main'
   release:
     types: [published]
 
@@ -110,7 +110,7 @@ jobs:
 
 
       # after checkout, you can checkout another repo, copy logo image or
-      # other assets into '.docfx' folder to setup own docfx environment.
+      # other assets into '.docfx' folder to setup your own docfx environment.
       # note that images must be copied into '.docfx/images', 'images' or '.images'.
 
 
