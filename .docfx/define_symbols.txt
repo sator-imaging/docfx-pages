@@ -36,20 +36,9 @@
 #define UNITY_ASSERTIONS
 #define UNITY_64
 
-#define UNITY_5
-#define UNITY_5_0
-#define UNITY_5_0_OR_NEWER
-#define UNITY_5_1
-#define UNITY_5_1_OR_NEWER
-#define UNITY_5_2
-#define UNITY_5_2_OR_NEWER
-#define UNITY_5_3
 #define UNITY_5_3_OR_NEWER
-#define UNITY_5_4
 #define UNITY_5_4_OR_NEWER
-#define UNITY_5_5
 #define UNITY_5_5_OR_NEWER
-#define UNITY_5_6
 #define UNITY_5_6_OR_NEWER
 #define UNITY_2017
 #define UNITY_2017_1
@@ -106,7 +95,3 @@
 #define UNITY_2023_2_OR_NEWER
 #define UNITY_2023_3
 #define UNITY_2023_3_OR_NEWER
-
-// NOTE: this will reset the source code line number counting.
-//       if removed, API reference links to wrong line number in source code.
-#line 1

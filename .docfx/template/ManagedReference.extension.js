@@ -49,7 +49,7 @@ function updateTypeModelData(model) {
             var p = link.search(/[0-9]+$/);
             model.sourceurl
                 = link.substring(0, p)
-                + (parseInt(link.substring(p)) - 112);  // <-- subtract define_symbols.txt line count
+                + (parseInt(link.substring(p)) - 97);  // <-- subtract define_symbols.txt line count
         }
     }
 
