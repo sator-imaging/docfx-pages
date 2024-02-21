@@ -118,7 +118,7 @@ runs:
 
 
     - name: Checkout docfx-pages
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: 'sator-imaging/docfx-pages'
         sparse-checkout: '.docfx'
@@ -349,7 +349,7 @@ runs:
 
 
     - name: Dotnet Setup
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.x
 
@@ -465,13 +465,13 @@ runs:
 
 
     - name: Setup Pages
-      uses: actions/configure-pages@v3
+      uses: actions/configure-pages@v4
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
       with:
         # Upload entire repository
         path: '.docfx/_site'
 
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v2
+      uses: actions/deploy-pages@v4
