@@ -40,7 +40,7 @@ jobs:
       # for extensibility, docfx-pages does NOT checkout your repository.
       # so you need to checkout manually prior to sator-imaging/docfx-pages.
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
 
       # after checkout, you can checkout another repo, copy logo image or
