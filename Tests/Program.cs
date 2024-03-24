@@ -60,6 +60,21 @@ namespace DocFXPages.Tests
         public interface IEntry {
             public string AppName { get; }
         }
+
+        public class DeprecatedAndObsolete
+        {
+            [Obsolete]
+            public class ObsoleteNoArgs() { }
+
+            [Obsolete("1st arg")]
+            public class ObsoleteWithOneArg() { }
+
+            [Obsolete("1st arg", true)]
+            public class ObsoleteWithTwoArgsTrue() { }
+
+            [Obsolete("1st arg", false)]
+            public class ObsoleteWithTwoArgsFalse() { }
+        }
     }
 
     namespace Instances
