@@ -61,7 +61,7 @@ function updateTypeModelData(model) {
                 // check whether error option is set
                 if (attr.arguments) {
                     if (attr.arguments.length == 2) {
-                        model.isDeprecated = attr.arguments[1].value;
+                        model.isDeprecated = attr.arguments[1].value == true;
                     }
                 }
             }
