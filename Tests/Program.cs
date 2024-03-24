@@ -63,15 +63,25 @@ namespace DocFXPages.Tests
 
         public class DeprecatedAndObsolete
         {
+            [Obsolete("Class"), true]
+            public class DeprecatedClass { }
+            [Obsolete("Class"), false]
+            public class ObsoleteClass { }
+
+            public enum EnumAttribute {
+                Default = 0,
+                [Obsolete("Enum"), true]
+                Deprecated,
+                [Obsolete("Enum"), false]
+                Obsolete,
+            }
+
             [Obsolete]
             public void ObsoleteNoArgs() { }
-
             [Obsolete("1st arg")]
             public void ObsoleteWithOneArg() { }
-
             [Obsolete("1st arg", true)]
             public void ObsoleteWithTwoArgsTrue() { }
-
             [Obsolete("1st arg", false)]
             public void ObsoleteWithTwoArgsFalse() { }
         }
