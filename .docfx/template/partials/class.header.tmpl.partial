@@ -15,7 +15,7 @@
 
 {{!STMG  swap order: summary and syntax code & deprecate flag}}
 {{#syntax.content.0.value}}
-<div class="codewrapper {{#isObsolete}}obsolete{{/isObsolete}} {{#isDeprecated}}deprecated{{/isDeprecated}}">
+<div class="codewrapper {{#isDeprecated}}deprecated{{/isDeprecated}} {{#isObsolete}}obsolete{{/isObsolete}}">
   <pre><code class="lang-csharp hljs">{{syntax.content.0.value}}</code></pre>
 </div>
 {{/syntax.content.0.value}}
@@ -149,19 +149,19 @@
   
   {{!STMG  deprecate flag}}
   <dt id="{{id}}">
-    {{#isDeprecated}}
+    {{#isObsolete}}
       <code style='white-space: pre-line;'><del>{{syntax.content.0.value}}</del></code>
-      <span class="badge rounded-pill bg-danger">Deprecated</span>
-    {{/isDeprecated}}
-    {{^isDeprecated}}
-      {{#isObsolete}}
+      <span class="badge rounded-pill bg-danger">Obsolete</span>
+    {{/isObsolete}}
+    {{^isObsolete}}
+      {{#isDeprecated}}
         <code style='white-space: pre-line;'>{{syntax.content.0.value}}</code>
-        <span class="badge rounded-pill bg-warning">Obsolete</span>
-      {{/isObsolete}}
-      {{^isObsolete}}
+        <span class="badge rounded-pill bg-warning">Deprecated</span>
+      {{/isDeprecated}}
+      {{^isDeprecated}}
         {{syntax.content.0.value}}
-      {{/isObsolete}}
-    {{/isDeprecated}}
+      {{/isDeprecated}}
+    {{/isObsolete}}
   </dt>
 
   <dd>{{{summary}}}</dd>

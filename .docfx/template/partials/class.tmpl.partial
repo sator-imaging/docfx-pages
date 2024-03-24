@@ -19,26 +19,26 @@
 {{!STMG  use h2 if separatePage & deprecate flag}}
 {{#_splitReference}}<h2 id="{{id}}" data-uid="{{uid}}">{{/_splitReference}}
 {{^_splitReference}}<h3 id="{{id}}" data-uid="{{uid}}">{{/_splitReference}}
-  {{#isDeprecated}}
+  {{#isObsolete}}
     <del>{{name.0.value}}</del>
-    <span class="badge rounded-pill bg-danger">Deprecated</span>
-  {{/isDeprecated}}
-  {{^isDeprecated}}
-    {{#isObsolete}}
+    <span class="badge rounded-pill bg-danger">Obsolete</span>
+  {{/isObsolete}}
+  {{^isObsolete}}
+    {{#isDeprecated}}
       {{name.0.value}}
-      <span class="badge rounded-pill bg-warning">Obsolete</span>
-    {{/isObsolete}}
-    {{^isObsolete}}
+      <span class="badge rounded-pill bg-warning">Deprecated</span>
+    {{/isDeprecated}}
+    {{^isDeprecated}}
       {{name.0.value}}
-    {{/isObsolete}}
-  {{/isDeprecated}}
+    {{/isDeprecated}}
+  {{/isObsolete}}
   {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
 {{#_splitReference}}</h2>{{/_splitReference}}
 {{^_splitReference}}</h3>{{/_splitReference}}
 
 {{!STMG  swap order: summary and syntax code & deprecate flag}}
 {{#syntax}}
-<div class="codewrapper {{#isObsolete}}obsolete{{/isObsolete}} {{#isDeprecated}}deprecated{{/isDeprecated}}">
+<div class="codewrapper {{#isDeprecated}}deprecated{{/isDeprecated}} {{#isObsolete}}obsolete{{/isObsolete}}">
   <pre><code class="lang-csharp hljs">{{syntax.content.0.value}}</code></pre>
 </div>
 {{/syntax}}

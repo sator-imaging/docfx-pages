@@ -168,19 +168,19 @@ body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
 
 /** obsolete and deprecated */
 
-.codewrapper.obsolete {
+.codewrapper.deprecated {
     __margin-top: 20px !important;
 }
 
-.codewrapper.obsolete::before {
-    content: "Obsolete";
-}
-
-.codewrapper.obsolete.deprecated::before {
+.codewrapper.deprecated::before {
     content: "Deprecated";
 }
 
-.codewrapper.obsolete::before {
+.codewrapper.deprecated.obsolete::before {
+    content: "Obsolete";
+}
+
+.codewrapper.deprecated::before {
     display: block;
     position: absolute;
     z-index: 310;
@@ -195,16 +195,16 @@ body[data-yaml-mime=ManagedReference] article dl.jumplist dd>*:first-child {
     background: #f5f5f5;
 }
 
-.codewrapper.obsolete>pre>code {
+.codewrapper.deprecated>pre>code {
     background: #f5f5f5;
 }
 
-article h1+.facts+.codewrapper.obsolete::before {
+article h1+.facts+.codewrapper.deprecated::before {
     color: #000000;
     background: var(--bs-warning-bg-subtle);
 }
 
-article h1+.facts+.codewrapper.obsolete>pre>code {
+article h1+.facts+.codewrapper.deprecated>pre>code {
     background: var(--bs-warning-bg-subtle);
 }
 

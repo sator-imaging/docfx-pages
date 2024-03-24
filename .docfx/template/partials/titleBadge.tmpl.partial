@@ -3,25 +3,25 @@
 
 {{!STMG  global namespace is empty}}
 {{#name.0.value}}
-  {{#isDeprecated}}
+  {{#isObsolete}}
     <del>{{name.0.value}}</del>
-  {{/isDeprecated}}
-  {{^isDeprecated}}
+  {{/isObsolete}}
+  {{^isObsolete}}
     {{name.0.value}}
-  {{/isDeprecated}}
+  {{/isObsolete}}
 {{/name.0.value}}
 {{^name.0.value}}
   <code>global::</code>
 {{/name.0.value}}
 
-{{#isDeprecated}}
-  <span class="badge rounded-pill bg-danger">Deprecated</span>
-{{/isDeprecated}}
-{{^isDeprecated}}
-  {{#isObsolete}}
-    <span class="badge rounded-pill bg-warning">Obsolete</span>
-  {{/isObsolete}}
-  {{^isObsolete}}
+{{#isObsolete}}
+  <span class="badge rounded-pill bg-danger">Obsolete</span>
+{{/isObsolete}}
+{{^isObsolete}}
+  {{#isDeprecated}}
+    <span class="badge rounded-pill bg-warning">Deprecated</span>
+  {{/isDeprecated}}
+  {{^isDeprecated}}
     {{#inPackage}}
       <span class="badge rounded-pill bg-info">Package</span>
     {{/inPackage}}
@@ -70,5 +70,5 @@
     {{#inTypeAlias}}
       <span class="badge rounded-pill bg-info">Type Alias</span>
     {{/inTypeAlias}}
-  {{/isObsolete}}
-{{/isDeprecated}}
+  {{/isDeprecated}}
+{{/isObsolete}}
