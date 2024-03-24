@@ -61,20 +61,22 @@ namespace DocFXPages.Tests
             public string AppName { get; }
         }
 
-        public class DeprecatedAndObsolete
-        {
-            [Obsolete("Class"), true]
-            public class DeprecatedClass { }
-            [Obsolete("Class"), false]
-            public class ObsoleteClass { }
+        [Obsolete("Class"), true]  public class DeprecatedClass { }
+        [Obsolete("Class"), false] public class ObsoleteClass { }
 
-            public enum EnumAttribute {
-                Default = 0,
-                [Obsolete("Enum"), true]
-                Deprecated,
-                [Obsolete("Enum"), false]
-                Obsolete,
-            }
+        public enum EnumAttribute
+        {
+            Default = 0,
+            [Obsolete("Enum"), true]  Deprecated,
+            [Obsolete("Enum"), false] Obsolete,
+        }
+
+        public class DeprecatedAndObsoleteMembers
+        {
+            [Obsolete("Field"), true]  public int DeprecatedField;
+            [Obsolete("Field"), false] public int ObsoleteField;
+            [Obsolete("Property"), true]  public int DeprecatedProperty { get; set; }
+            [Obsolete("Property"), false] public int ObsoleteProperty { get; set; }
 
             [Obsolete]
             public void ObsoleteNoArgs() { }
