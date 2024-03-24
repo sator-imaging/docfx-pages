@@ -101,10 +101,10 @@ namespace DocFXPages.Tests
             [Obsolete]
             public static int StaticObsoleteField;
 
-            [Obsolete("Obsolete!")]
+            [Obsolete("Obsolete!", true)]
             public double ObsoleteField;
 
-            [Obsolete("HTML <b>bold</b> tag can be used??<br/>Markdown **bold** syntax enabled??")]
+            [Obsolete("HTML <b>bold</b> tag can be used??<br/>Markdown **bold** syntax enabled??", false)]
             public SealedClass() { }
             public SealedClass(float val) { }
         }
@@ -136,7 +136,7 @@ namespace DocFXPages.Tests
             [Obsolete("Obsolete Enum Item!!")]
             [Tooltip("UnityEngine.TooltipAttribute")]
             [EditorBrowsable(EditorBrowsableState.Always)]
-            Exceeded = 9999,
+            ExceededMustBeHidden = 9999,
         }
 
         /// <summary>Is this <big>shown bigger??</big></summary>
@@ -145,7 +145,9 @@ namespace DocFXPages.Tests
             Default,
             First = 100,
             Second,
-            [EditorBrowsable(EditorBrowsableState.Always)][Obsolete]Exceeded = 18446744073709551615,
+            [EditorBrowsable(EditorBrowsableState.Always)]
+            [Obsolete]
+            ExceededMustBeHidden = 18446744073709551615,
         }
 
         /// <summary>
