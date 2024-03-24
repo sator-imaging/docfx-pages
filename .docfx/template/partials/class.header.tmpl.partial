@@ -156,7 +156,7 @@
     {{^isDeprecated}}
       {{#isObsolete}}
         <code style='white-space: pre-line;'>{{syntax.content.0.value}}</code>
-        <span class="badge rounded-pill bg-danger">Obsolete</span>
+        <span class="badge rounded-pill bg-warning">Obsolete</span>
       {{/isObsolete}}
       {{^isObsolete}}
         {{syntax.content.0.value}}
