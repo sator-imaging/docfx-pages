@@ -20,7 +20,7 @@ exports.postTransform = function (model) {
     if (!dumpDeprecatedOnce
         && model.children?.length > 0
         && model.children[0].children?.length > 0
-        && model.children[0].children[0].isDeprecated
+        && model.children[0].children[0].isObsolete
     ) {
         dumpDeprecatedOnce = true;
         console.log(JSON.stringify(model));
@@ -57,7 +57,13 @@ function updateTypeModelData(model) {
     if (model.attributes) {
         for (const attr of model.attributes) {
             if (attr.type == 'System.ObsoleteAttribute') {
-                model.isDeprecated = true;
+                model.isObsolete = true;
+                // check whether error option is set
+                if (attr.arguments) {
+                    if (attr.arguments.length == 2) {
+                        model.isDeprecated = attr.arguments[1];
+                    }
+                }
             }
         }
     }

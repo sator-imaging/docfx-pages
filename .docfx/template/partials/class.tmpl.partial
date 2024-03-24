@@ -24,7 +24,13 @@
     <span class="badge rounded-pill bg-danger">Deprecated</span>
   {{/isDeprecated}}
   {{^isDeprecated}}
-    {{name.0.value}}
+    {{#isObsolete}}
+      <del>{{name.0.value}}</del>
+      <span class="badge rounded-pill bg-warning">Obsolete</span>
+    {{/isObsolete}}
+    {{^isObsolete}}
+      {{name.0.value}}
+    {{/isObsolete}}
   {{/isDeprecated}}
   {{#sourceurl}}<a class="header-action link-secondary" title="View source" href="{{sourceurl}}"><i class="bi bi-code-slash"></i></a>{{/sourceurl}}
 {{#_splitReference}}</h2>{{/_splitReference}}
@@ -32,7 +38,7 @@
 
 {{!STMG  swap order: summary and syntax code & deprecate flag}}
 {{#syntax}}
-<div class="codewrapper {{#isDeprecated}}deprecated{{/isDeprecated}}">
+<div class="codewrapper {{#isObsolete}}obsolete{{/isObsolete}} {{#isDeprecated}}deprecated{{/isDeprecated}}">
   <pre><code class="lang-csharp hljs">{{syntax.content.0.value}}</code></pre>
 </div>
 {{/syntax}}
