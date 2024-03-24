@@ -58,10 +58,11 @@ function updateTypeModelData(model) {
         for (const attr of model.attributes) {
             if (attr.type == 'System.ObsoleteAttribute') {
                 model.isObsolete = true;
+                model.isDeprecated = false;
                 // check whether error option is set
                 if (attr.arguments) {
                     if (attr.arguments.length == 2) {
-                        model.isDeprecated = attr.arguments[1].value == true;
+                        model.isDeprecated = attr.arguments[1].value;
                     }
                 }
             }
