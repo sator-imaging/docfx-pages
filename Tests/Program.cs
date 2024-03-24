@@ -60,23 +60,26 @@ namespace DocFXPages.Tests
         public interface IEntry {
             public string AppName { get; }
         }
+    }
 
-        [Obsolete("Class", true)]  public class DeprecatedClass { }
-        [Obsolete("Class", false)] public class ObsoleteClass { }
+    namespace Obsolete
+    {
+        [Obsolete("Class", true)]  public class ObsoleteClass { }
+        [Obsolete("Class", false)] public class DeprecatedClass { }
 
         public enum EnumAttribute
         {
             Default = 0,
-            [Obsolete("Enum", true)]  Deprecated,
-            [Obsolete("Enum", false)] Obsolete,
+            [Obsolete("Enum", true)]  ObsoleteEnumValue,
+            [Obsolete("Enum", false)] DeprecatedEnumValue,
         }
 
         public class DeprecatedAndObsoleteMembers
         {
-            [Obsolete("Field", true)]  public int DeprecatedField;
-            [Obsolete("Field", false)] public int ObsoleteField;
-            [Obsolete("Property", true)]  public int DeprecatedProperty { get; set; }
-            [Obsolete("Property", false)] public int ObsoleteProperty { get; set; }
+            [Obsolete("Field", true)]  public int ObsoleteField;
+            [Obsolete("Field", false)] public int DeprecatedField;
+            [Obsolete("Property", true)]  public int ObsoleteProperty { get; set; }
+            [Obsolete("Property", false)] public int DeprecatedProperty { get; set; }
 
             [Obsolete]
             public void ObsoleteNoArgs() { }
@@ -110,10 +113,10 @@ namespace DocFXPages.Tests
         [Annotations.MyAttribute]
         public sealed class SealedClass : TestClass
         {
-            [Obsolete("Obsolete!", false)]
-            public static int StaticObsoleteField;
+            [Obsolete("Deprecated!", false)]
+            public static int StaticDeprecatedField;
 
-            [Obsolete("Deprecated!", true)]
+            [Obsolete("Obsolete!", true)]
             public double ObsoleteField;
 
             [Obsolete("HTML <b>bold</b> tag can be used??<br/>Markdown **bold** syntax enabled??", false)]
@@ -145,7 +148,7 @@ namespace DocFXPages.Tests
             First = 100,
             Second,
             [Header("UnityEngine.HeaderAttribute")]
-            [Obsolete("Obsolete Enum Item!!")]
+            [Obsolete("Deprecated Enum Item!!")]
             [Tooltip("UnityEngine.TooltipAttribute")]
             [EditorBrowsable(EditorBrowsableState.Always)]
             ExceededMustBeHidden = 9999,
