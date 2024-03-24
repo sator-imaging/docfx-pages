@@ -61,22 +61,22 @@ namespace DocFXPages.Tests
             public string AppName { get; }
         }
 
-        [Obsolete("Class"), true]  public class DeprecatedClass { }
-        [Obsolete("Class"), false] public class ObsoleteClass { }
+        [Obsolete("Class", true)]  public class DeprecatedClass { }
+        [Obsolete("Class", false)] public class ObsoleteClass { }
 
         public enum EnumAttribute
         {
             Default = 0,
-            [Obsolete("Enum"), true]  Deprecated,
-            [Obsolete("Enum"), false] Obsolete,
+            [Obsolete("Enum", true)]  Deprecated,
+            [Obsolete("Enum", false)] Obsolete,
         }
 
         public class DeprecatedAndObsoleteMembers
         {
-            [Obsolete("Field"), true]  public int DeprecatedField;
-            [Obsolete("Field"), false] public int ObsoleteField;
-            [Obsolete("Property"), true]  public int DeprecatedProperty { get; set; }
-            [Obsolete("Property"), false] public int ObsoleteProperty { get; set; }
+            [Obsolete("Field", true)]  public int DeprecatedField;
+            [Obsolete("Field", false)] public int ObsoleteField;
+            [Obsolete("Property", true)]  public int DeprecatedProperty { get; set; }
+            [Obsolete("Property", false)] public int ObsoleteProperty { get; set; }
 
             [Obsolete]
             public void ObsoleteNoArgs() { }
@@ -110,10 +110,10 @@ namespace DocFXPages.Tests
         [Annotations.MyAttribute]
         public sealed class SealedClass : TestClass
         {
-            [Obsolete]
+            [Obsolete("Obsolete!", false)]
             public static int StaticObsoleteField;
 
-            [Obsolete("Obsolete!", true)]
+            [Obsolete("Deprecated!", true)]
             public double ObsoleteField;
 
             [Obsolete("HTML <b>bold</b> tag can be used??<br/>Markdown **bold** syntax enabled??", false)]
