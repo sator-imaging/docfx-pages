@@ -25,7 +25,7 @@
   {{/isDeprecated}}
   {{^isDeprecated}}
     {{#isObsolete}}
-      <del>{{name.0.value}}</del>
+      {{name.0.value}}
       <span class="badge rounded-pill bg-warning">Obsolete</span>
     {{/isObsolete}}
     {{^isObsolete}}
