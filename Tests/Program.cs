@@ -64,16 +64,16 @@ namespace DocFXPages.Tests
         public class DeprecatedAndObsolete
         {
             [Obsolete]
-            public class ObsoleteNoArgs() { }
+            public void ObsoleteNoArgs() { }
 
             [Obsolete("1st arg")]
-            public class ObsoleteWithOneArg() { }
+            public void ObsoleteWithOneArg() { }
 
             [Obsolete("1st arg", true)]
-            public class ObsoleteWithTwoArgsTrue() { }
+            public void ObsoleteWithTwoArgsTrue() { }
 
             [Obsolete("1st arg", false)]
-            public class ObsoleteWithTwoArgsFalse() { }
+            public void ObsoleteWithTwoArgsFalse() { }
         }
     }
 
