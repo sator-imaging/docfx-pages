@@ -19,6 +19,8 @@ Deploy beautiful API reference to GitHub Pages with only 1 action. No unnecessar
 
 ![HeaderDoc](images/HeaderDoc.png)
 
+<sup>* When project contains only a single script, HeaderDoc won't be extracted.</sup>
+
 
 
 ## Usage
