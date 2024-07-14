@@ -133,10 +133,10 @@ jobs:
           google_analytics: ''  # empty to disable
           define_symbols: ''  # additional preprocessor symbols separated by ';'
 
-          # paths must be relative from .docfx folder.
+          # paths must be relative from .docfx folder. default value is used when not set.
           # note that url works but only in top page. see sample website for detail.
-          site_logo:    '<logo>.svg'
-          site_favicon: '<favicon>.svg'
+          ###site_logo:    '<logo>.svg'
+          ###site_favicon: '<favicon>.svg'
 
           # advanced options
           # --> https://dotnet.github.io/docfx/docs/template.html?tabs=modern#custom-template
