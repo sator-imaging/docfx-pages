@@ -152,7 +152,7 @@ runs:
         if [[ -f README.md ]]; then
           if ! [[ $(head -1 README.md | sed -n -E '/^# /p') ]]; then
             ####echo "# $(cat README.md)" > README.md
-            echo "# ${{ inputs.site_title }}\n\n$(cat README.md)" > README.md
+            printf "# ${{ inputs.site_title }}\n\n$(cat README.md)" > README.md
           fi
         fi
         if [[ -f LICENSE.md ]]; then
