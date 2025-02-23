@@ -203,7 +203,7 @@ runs:
                   :a;
                   N;
                   /[\r\n][[:blank:]]?\*\//!ba;
-                  s/^\/\*[[:blank:]\r\n\*]*//;
+                  s/^(\xef\xbb\xbf)?\/\*[[:blank:]\r\n\*]*//;
                   s/([\r\n]+)[[:blank:]]?[\*]+[[:blank:]]?/\1/g;
                   s/[[:blank:]\r\n]+$//;
                   s/ \r?\n/\n/g;
