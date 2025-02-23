@@ -28,6 +28,10 @@ Markdown sub heading 2.
 ### One Last Heading
 Markdown triple # heading.
 
+```cs
+// this comment line must be retained
+Double_Slash_at_Line_Start_must_be_Remain_Untouched();
+```
 
  * List test in *-starting line. spaces must be preserved.
  * - 1st
