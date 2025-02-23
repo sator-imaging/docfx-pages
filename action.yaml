@@ -187,7 +187,8 @@ runs:
           
           for f in $(find $DIR -name '*.cs'); do
             if [[ -f $f ]]; then
-              if ! [[ $(head -1 $f | sed -n -E '/^\/\*/p') ]]; then
+              ### --> UTF-8 BOM (0xEF 0xBB 0xBF)
+              if ! [[ $(head -1 $f | sed -n -E '/^(\xef\xbb\xbf)?\/\*/p') ]]; then
                 echo -e "NO HEADER DOC \t ${f:$LEN} ($f)"
                 continue
               fi
@@ -196,8 +197,9 @@ runs:
               # extension="${filename##*.}"
               # filename="${filename%.*}"
 
+              ### --> UTF-8 BOM (0xEF 0xBB 0xBF)
               HDOC=$(sed -n -E '
-                /^\/\*/{
+                /^(\xef\xbb\xbf)?\/\*/{
                   :a;
                   N;
                   /[\r\n][[:blank:]]?\*\//!ba;
