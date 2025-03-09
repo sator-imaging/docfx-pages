@@ -270,8 +270,8 @@ runs:
               echo "[By Alphabetically](api/index.md#alphabetical-order)  " >> $AUTO_DOCS
 
               echo "- name: Docs" >> 'toc.yml'
+              echo "  href: index.html" >> 'toc.yml'
               ## echo "  expanded: true" >> 'toc.yml'
-              echo "  href: ${AUTO_DOCS}" >> 'toc.yml'
               echo "  items:" >> 'toc.yml'
               echo "  - name: Introduction" >> 'toc.yml'
               echo "    href: index.html" >> 'toc.yml'
@@ -288,6 +288,8 @@ runs:
               echo '- name: License' >> 'toc.yml'
               echo '  href: LICENSE.html' >> 'toc.yml'
             fi
+            echo '- name: `docfx-pages` Automaton' >> 'toc.yml'
+            echo "  href: ${AUTO_DOCS}" >> 'toc.yml'
           fi
         cd ..
 
