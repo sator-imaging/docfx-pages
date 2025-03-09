@@ -288,7 +288,7 @@ runs:
               echo '- name: License' >> 'toc.yml'
               echo '  href: LICENSE.html' >> 'toc.yml'
             fi
-            echo '- name: `docfx-pages` Automaton' >> 'toc.yml'
+            echo '- name: \`docfx-pages\` Automaton' >> 'toc.yml'
             echo "  href: ${AUTO_DOCS}" >> 'toc.yml'
           fi
         cd ..
