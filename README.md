@@ -62,7 +62,7 @@ Just enable GitHub Pages in repository setting and paste the code below.
 > [!TIP]
 > 👇 Here is boilerplate-included sample code for GitHub Pages by Actions.
 
-<p><details>
+<p><details open>
 
 ```yaml
 name: docfx for GitHub Pages
