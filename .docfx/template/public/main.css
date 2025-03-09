@@ -212,16 +212,19 @@ article h1+.facts+.codewrapper.deprecated>pre>code {
 /** article */
 
 article h1,
-article h2,
+article h2 {
+    margin-top: 3rem;
+}
+
+article h1+h2 {
+    margin-top: 1rem;
+}
+
 article h3,
 article h4,
 article h5,
 article h6 {
     margin-top: 1.6rem;
-}
-
-article h1+h2 {
-    margin-top: 1rem;
 }
 
 article h1:first-child,
