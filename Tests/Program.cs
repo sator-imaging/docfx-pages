@@ -31,6 +31,12 @@ Markdown triple # heading.
 ```cs
 // this comment line must be retained
 Double_Slash_at_Line_Start_must_be_Remain_Untouched();
+
+// &amp;ast; to add asterisk in HeaderDoc
+/&ast; this block comment must be retained &ast;/
+Foo();
+Bar();
+Baz();
 ```
 
  * List test in *-starting line. spaces must be preserved.
