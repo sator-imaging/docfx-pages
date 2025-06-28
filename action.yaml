@@ -368,7 +368,7 @@ runs:
 
         pushd .docfx
 
-          ##docfx docfx.json
+          touch api/toc.yml
 
           # 1st pass
           docfx metadata docfx-metadata-api.json
