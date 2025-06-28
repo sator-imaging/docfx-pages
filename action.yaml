@@ -368,6 +368,7 @@ runs:
 
         pushd .docfx
 
+          mkdir api
           touch api/toc.yml
 
           # 1st pass
