@@ -35,8 +35,8 @@ inputs:
   # optional
   docfx-version:
     description: |
-      Default '2.74.1'
-    default: '2.74.1'
+      Default '2.78.3'
+    default: '2.78.3'
 
   define_symbols:
     description: |
