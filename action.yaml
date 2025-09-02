@@ -33,6 +33,11 @@ inputs:
     required: true
 
   # optional
+  docfx-version:
+    description: |
+      Default '2.74.1'
+    default: '2.74.1'
+
   define_symbols:
     description: |
       Define additional preprocessor symbols. (separate symbols by ';')
@@ -364,7 +369,7 @@ runs:
       run: |
 
         ##dotnet tool update -g docfx
-        dotnet tool install --global docfx --version 2.74.1
+        dotnet tool install --global docfx --version ${{ inputs.docfx-version }}
 
         pushd .docfx
 
