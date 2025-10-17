@@ -33,6 +33,11 @@ inputs:
     required: true
 
   # optional
+  docfx-version:
+    description: |
+      Default '2.78.3'
+    default: '2.78.3'
+
   define_symbols:
     description: |
       Define additional preprocessor symbols. (separate symbols by ';')
