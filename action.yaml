@@ -35,8 +35,8 @@ inputs:
   # optional
   docfx-version:
     description: |
-      Default '2.78.4'
-    default: '2.78.4'
+      Default '2.78.3'
+    default: '2.78.3'  # TODO: 2.78.4 causes error
 
   define_symbols:
     description: |
