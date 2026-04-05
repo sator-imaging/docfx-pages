@@ -5,7 +5,7 @@ author: '@sator-imaging'
 # Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
   icon: 'upload-cloud'
-  color: 'yellow'
+  color: 'purple'
 
 
 inputs:
